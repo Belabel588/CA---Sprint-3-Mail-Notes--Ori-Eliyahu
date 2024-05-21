@@ -82,6 +82,7 @@ function getFilterBy() {
 
 function _createMails() {
   let mails = storageService.loadFromStorage(MAIL_KEY)
+
   if (!mails || !mails.length) {
     mails = [
       {
@@ -92,6 +93,32 @@ function _createMails() {
         sentAt: 1551133930594,
         removedAt: null,
         from: 'momo@momo.com',
+        to: 'user@appsus.com',
+        status: 'inbox',
+        isStarred: false,
+        labels: []
+      },
+      {
+        id: 'e102',
+        subject: 'tired!',
+        body: 'need a break!',
+        isRead: false,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: 'pika@chu.com',
+        to: 'user@appsus.com',
+        status: 'inbox',
+        isStarred: false,
+        labels: []
+      },
+      {
+        id: 'e103',
+        subject: 'wanna be a develpoer',
+        body: 'on my way - developing',
+        isRead: false,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: 'tolo@popo.com',
         to: 'user@appsus.com',
         status: 'inbox',
         isStarred: false,
