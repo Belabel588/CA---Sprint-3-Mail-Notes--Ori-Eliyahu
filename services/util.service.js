@@ -8,6 +8,8 @@ export const utilService = {
     getMonthName,
 }
 
+
+console.log('hey')
 function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
