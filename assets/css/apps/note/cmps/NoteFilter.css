@@ -1,0 +1,9 @@
+
+
+.filters {
+    grid-column: 2/3;
+}
+
+.pinned-cheakbox { /* Corrected class name */
+    color: red;
+}

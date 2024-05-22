@@ -1,1 +1,18 @@
  /* note list */
+ .note-list {
+     grid-column: 2/3;
+
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: fit-content;
+     list-style-type: none;
+
+ }
+
+ .note-item {
+
+     border: 2px solid beige;
+
+     margin: 10px;
+     padding: 20px;
+ }

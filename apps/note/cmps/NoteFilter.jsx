@@ -25,8 +25,8 @@ export function NoteFilter({ filterBy, onFilter }) {
     // const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids']
 
     return <div className="filters">
-        <input onChange={handleChange} value={filterByToEdit.title} placeholder='Search' type='text' name='title' />
-        <label>
+        <input className="txt-filter" onChange={handleChange} value={filterByToEdit.title} placeholder='Search' type='text' name='title' />
+        <label className="pinned-cheakbox">
             <input
                 type="checkbox"
                 name="isPinned"
@@ -35,6 +35,7 @@ export function NoteFilter({ filterBy, onFilter }) {
             />
             Sort by pinned
         </label>
+
         <select onChange={handleChange} id="">
             <option name="type" value="NoteImg">By images</option>
             <option name="type" value="NoteTxt">By text</option>
