@@ -6,7 +6,15 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getRandomColorFromArray,
+    getRandomBoolean,
+    getRandomType,
+    formatDate,
+    saveToStorage,
+    loadFromStorage,
 }
+
+console.log('iam in util');
 
 function makeId(length = 6) {
     var txt = ''
@@ -59,4 +67,35 @@ function getMonthName(date) {
         "July", "August", "September", "October", "November", "December"
     ]
     return monthNames[date.getMonth()]
+}
+
+function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so add 1
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
+}
+
+function loadFromStorage(key) {
+    const data = localStorage.getItem(key)
+    return (data) ? JSON.parse(data) : undefined
+}
+
+function getRandomType(types) {
+    const randomIndex = Math.floor(Math.random() * types.length)
+    return types[randomIndex]
+}
+
+function getRandomBoolean() {
+    return Math.random() >= 0.5
+}
+
+function getRandomColorFromArray(colors) {
+    const randomIndex = Math.floor(Math.random() * colors.length)
+    return colors[randomIndex]
 }
