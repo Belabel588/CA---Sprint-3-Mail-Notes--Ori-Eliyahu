@@ -1,0 +1,9 @@
+* {
+  border-radius: 0;
+}
+
+.mail-category {
+  /* background-color: rgba(211, 211, 211, 0.139); */
+  border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
+  border-top: 0.1em solid rgba(201, 201, 201, 0.35);
+}

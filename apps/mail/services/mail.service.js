@@ -100,8 +100,8 @@ function _createMails() {
       },
       {
         id: 'e102',
-        subject: 'tired!',
-        body: 'need a break!',
+        subject: 'Pika!',
+        body: 'Pika Chuuu!',
         isRead: false,
         sentAt: 1551133930594,
         removedAt: null,
