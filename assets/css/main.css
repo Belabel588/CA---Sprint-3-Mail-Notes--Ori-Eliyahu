@@ -13,6 +13,7 @@
 @import './views/home.css';
 @import './views/MailPage.css';
 
+
 /* @import './apps/note/views/NoteIndex.css'; */
 
 /* @import './apps/mail/views/MailIndex.css'; */
@@ -24,6 +25,8 @@
 @import './apps/note/views/NoteIndex.css';
 @import './apps/note/cmps/NoteFilter.css';
 @import './apps/note/cmps/NoteList.css';
+@import './cmps/MailPreview.css';
+@import './cmps/MailList.css'
 
 
 /* @import './apps/mail/cmps/MailList.css'; */
