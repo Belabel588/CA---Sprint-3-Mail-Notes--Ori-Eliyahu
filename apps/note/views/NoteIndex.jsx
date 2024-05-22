@@ -48,12 +48,15 @@ export function NoteIndex() {
 
 
 
-    return <div>
-        <h1>notes</h1>
-        <div className="note-search">
+    return <div className="main-container">
             <NoteFilter filterBy={filterBy} onFilter={setNewFilterBy}></NoteFilter>
-
-            <input type="text" onClick={() => handleButtonClick('NoteTxt')} />
+       
+        <div className="note-add-inputs">
+            <input
+                type="text"
+                onClick={() => handleButtonClick('NoteTxt')}
+                placeholder="New note..."
+            />
             <button onClick={() => handleButtonClick('NoteImg')}>New note img</button>
             <button onClick={() => handleButtonClick('NoteTodos')}>New note todo</button>
             <button onClick={() => handleButtonClick('NoteVids')}>New note video</button>
@@ -61,6 +64,6 @@ export function NoteIndex() {
         </div>
         <NoteList note={noteType} notes={notes} onRemove={onRemoveNote}></NoteList>
 
-    </div>
+    </div >
 
 }
