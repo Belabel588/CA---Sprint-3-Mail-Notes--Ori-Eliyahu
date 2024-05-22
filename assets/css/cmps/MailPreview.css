@@ -14,14 +14,16 @@ table {
   /* align-items: center; */
   /* justify-content: center; */
 
-
   margin-inline-start: 0.5em;
 
   border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
   border-top: 0.1em solid rgba(201, 201, 201, 0.35);
   /* box-shadow: inset 2px -2px 0px 0px #86838375; */
+}
 
 
+.read {
+  background-color: gray;
 }
 
 td {
