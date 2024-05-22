@@ -22,10 +22,10 @@ export function MailPage() {
 
   if (!mail) return <div>Loading</div>
 
-  return <div>
-    <h1>Subject:{mail.subject}</h1>
+  return <div className="mail-container">
+    <h1 className="mail-subject">{mail.subject}</h1>
     <h3 className="mail-category">From:{mail.from}</h3>
-    <h3 className="mail-category">to:{mail.to}</h3>
+    <small className="mail-category">to:{mail.to}</small>
     <p>{mail.body}</p>
 
   </div>

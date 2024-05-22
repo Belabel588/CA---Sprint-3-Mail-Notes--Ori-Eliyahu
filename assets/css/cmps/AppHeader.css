@@ -2,6 +2,7 @@ header {
 
     background: lightcyan;
     border-bottom: 2px solid white;
+    margin-block-end: 2em;
 }
 
 .app-header {

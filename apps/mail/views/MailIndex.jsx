@@ -25,7 +25,6 @@ export function MailIndex() {
     // ! HTML
 
     return <div className="mail-app">
-        <h1>Welcome to our Mail App</h1>
         <MailList mails={mails} />
     </div>
 }

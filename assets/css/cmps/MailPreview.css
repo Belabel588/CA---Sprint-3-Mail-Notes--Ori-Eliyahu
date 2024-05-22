@@ -8,21 +8,27 @@ table {
   width: 100%;
 }
 
-td {
-  padding: 0.7em;
-}
-
 .mail-card {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
+  /* align-items: center; */
+  /* justify-content: center; */
 
 
+  margin-inline-start: 0.5em;
 
   border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
   border-top: 0.1em solid rgba(201, 201, 201, 0.35);
 
 }
+
+td {
+  padding: 0;
+  margin: 0;
+  /* height: fit-content; */
+
+}
+
 
 
 .mail-sender {
