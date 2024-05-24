@@ -31,7 +31,7 @@ export function NoteIndex() {
     function setNewFilterBy(newFilter) {
         setFilterBy(newFilter);
     }
-
+    console.log('commit test');
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
