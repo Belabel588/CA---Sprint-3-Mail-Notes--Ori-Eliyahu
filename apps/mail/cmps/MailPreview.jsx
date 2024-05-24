@@ -1,5 +1,5 @@
 const { useNavigate } = ReactRouterDOM
-const { useState, useEffect } = React
+const { useState } = React
 
 import { mailService } from '../services/mail.service.js'
 
@@ -9,7 +9,7 @@ import { mailService } from '../services/mail.service.js'
 export function MailPreview({ mail }) {
   const navigate = useNavigate()
   const [newMail, setNewMail] = useState(mail)
-  // const [currIsRead, setCurrIsRead] = useState(false)
+
 
   console.log(newMail.isRead)
 
