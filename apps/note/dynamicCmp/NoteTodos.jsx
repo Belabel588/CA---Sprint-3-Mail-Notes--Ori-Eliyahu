@@ -44,6 +44,7 @@ export function NoteTodos({ note }) {
     return (
         <div>
             <h1>ITS A TODOS</h1>
+            <section className="note-todo-title" >title is :{note.info.title}</section>
             <ul>
                 {todos.map((todo, index) => (
                     <li key={todo.id || index}>

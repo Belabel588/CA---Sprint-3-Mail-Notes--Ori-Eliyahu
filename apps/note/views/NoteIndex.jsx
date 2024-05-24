@@ -72,7 +72,24 @@ export function NoteIndex() {
 
     function handleBlurAndClose() {
         setIsFocused(false);
+        if (inputs.title === '' || inputs.txt === '') return
+        noteService.createNote(noteType, inputs.title, inputs.txt, inputs.todoTxt)
+            .then(() => {
+                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
+            })
+            .catch(error => {
+                console.error('Error creating note:', error);
+            })
+        clearInputs()
     }
+
+    function clearInputs() {
+        setInputs({
+            title: '',
+            txt: ''
+        });
+    }
+
 
     function handleFocus() {
         setIsFocused(true);

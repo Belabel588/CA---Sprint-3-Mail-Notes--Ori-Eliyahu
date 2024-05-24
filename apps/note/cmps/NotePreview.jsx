@@ -16,8 +16,8 @@ export function NotePreview(props) {
 }
 
 function DynamicCmp({ props }) {
-    // console.log(props);
-    // console.log(props.noteType);
+    console.log(props);
+    console.log(props.noteType);
     switch (props.noteType) {
         case 'NoteTxt':
             return <NoteTxt {...props} />

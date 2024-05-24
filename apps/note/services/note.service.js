@@ -11,7 +11,9 @@ export const noteService = {
     get,
     remove,
     save,
-    getDefaultFilter
+    getDefaultFilter,
+    addNote,
+    createNote
 }
 
 _createDemoNotes()
@@ -19,7 +21,7 @@ _createDemoNotes()
 
 function _createDemoNotes() {
     const demoNotes = []
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids','NotePaint']
+    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids', 'NotePaint']
     const colors = [
         '#00b0ff', '#00c853', '#01579b', '#7c4dff',
         '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
@@ -56,6 +58,44 @@ function _createDemoNotes() {
     }
 }
 
+function createNote(type, title, txt, todoTxt) {
+    return new Promise((resolve, reject) => {
+        try {
+            const colors = [
+                '#00b0ff', '#00c853', '#01579b', '#7c4dff',
+                '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
+            ]
+
+            const newNote = {
+                id: utilService.makeId(),
+                type: type,
+                createdAt: utilService.formatDate(Date.now()),
+                isPinned: utilService.getRandomBoolean(),
+                style: {
+                    backgroundColor: utilService.getRandomColorFromArray(colors)
+                },
+                info: {
+                    title: title,
+                    txt: txt,
+                    todos: [
+                        {
+                            txt: todoTxt,
+                            isTodoDone: false,
+                            doneAt: null
+                        }
+                    ]
+                }
+            };
+
+            const notes = utilService.loadFromStorage(NOTES_KEY) || [];
+            notes.push(newNote);
+            utilService.saveToStorage(NOTES_KEY, notes);
+            resolve(newNote); // Resolve the promise with the new note
+        } catch (error) {
+            reject(error); // Reject the promise if there's an error
+        }
+    })
+}
 
 function query(filterBy = {}) {
 
@@ -108,5 +148,13 @@ function getDefaultFilter(filterBy = { type: '', isPinned: 0, title: '' }) {
     return { type: filterBy.type, isPinned: filterBy.isPinned, title: filterBy.title }
 }
 
+function addNote(note) {
+    console.log('the note is being added to book : ', note);
+    return storageService.put(NOTES_KEY, note)
+        .then((note) => {
+            console.log('adding note...');
+            console.log(note)
+        })
+}
 
 
