@@ -19,7 +19,7 @@ _createDemoNotes()
 
 function _createDemoNotes() {
     const demoNotes = []
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids']
+    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids','NotePaint']
     const colors = [
         '#00b0ff', '#00c853', '#01579b', '#7c4dff',
         '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
