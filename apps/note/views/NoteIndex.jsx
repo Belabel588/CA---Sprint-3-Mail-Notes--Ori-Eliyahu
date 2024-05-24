@@ -10,75 +10,75 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { getImageDataUrls } from "../services/img.service.js"
 
 export function NoteIndex() {
-    const [notes, setNotes] = useState([]);
-    const [noteType, setNoteType] = useState('NoteTxt');
-    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
-    const [isFocused, setIsFocused] = useState(false);
+    const [notes, setNotes] = useState([])
+    const [noteType, setNoteType] = useState('NoteTxt')
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+    const [isFocused, setIsFocused] = useState(false)
     const [inputs, setInputs] = useState({
         title: '',
         txt: ''
-    });
+    })
 
-    const images = getImageDataUrls();
+    const images = getImageDataUrls()
 
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                setNotes(notes);
-            });
-    }, [filterBy]);
+                setNotes(notes)
+            })
+    }, [filterBy])
 
     function setNewFilterBy(newFilter) {
-        setFilterBy(newFilter);
+        setFilterBy(newFilter)
     }
-    console.log('commit test');
+    console.log('commit test')
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
-                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
-                showSuccessMsg(`Note ${noteId} removed successfully`);
+                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
+                showSuccessMsg(`Note ${noteId} removed successfully`)
             })
             .catch(err => {
-                console.error('Error removing note', err);
-                showErrorMsg(`Failed to remove note ${noteId}`);
-            });
+                console.error('Error removing note', err)
+                showErrorMsg(`Failed to remove note ${noteId}`)
+            })
     }
 
     function handleButtonClick(newNoteType) {
-        setNoteType(newNoteType);
-        handleBlurAndClose();
+        setNoteType(newNoteType)
+        handleBlurAndClose()
     }
 
     function handleChange({ target }) {
-        const { name: prop, value } = target;
+        const { name: prop, value } = target
 
         setInputs((prevInputs) => ({
             ...prevInputs,
             [prop]: value,
-        }));
+        }))
 
         if (prop === 'txt') {
-            handleInputChange(value);
+            handleInputChange(value)
         }
     }
 
     function handleInputChange(value) {
         if (utilService.isLink(value)) {
-            setNoteType('NoteLink');
+            setNoteType('NoteLink')
         } else {
-            setNoteType('NoteTxt');
+            setNoteType('NoteTxt')
         }
     }
 
     function handleBlurAndClose() {
-        setIsFocused(false);
+        setIsFocused(false)
         if (inputs.title === '' || inputs.txt === '') return
         noteService.createNote(noteType, inputs.title, inputs.txt, inputs.todoTxt)
             .then(() => {
-                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
+                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
             })
             .catch(error => {
-                console.error('Error creating note:', error);
+                console.error('Error creating note:', error)
             })
         clearInputs()
     }
@@ -87,12 +87,12 @@ export function NoteIndex() {
         setInputs({
             title: '',
             txt: ''
-        });
+        })
     }
 
 
     function handleFocus() {
-        setIsFocused(true);
+        setIsFocused(true)
     }
 
     return (
@@ -137,5 +137,5 @@ export function NoteIndex() {
             </div>
             <NoteList note={noteType} notes={notes} onRemove={onRemoveNote} />
         </div>
-    );
+    )
 }

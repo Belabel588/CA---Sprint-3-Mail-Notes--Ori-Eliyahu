@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 25%;
-    width: 100%;
+    width: 50%;
 
     z-index: 1000;
     /* Ensure it appears above other content */
@@ -22,7 +22,7 @@
 }
 
 .filters .txt-filter {
-    width: 30%;
+    width: 50%;
     height: 30px;
     border-radius: 20px;
     background-color: #f8f5f5;

@@ -1,4 +1,3 @@
-import { NoteFilter } from "../apps/note/cmps/NoteFilter"
 
 const { Link, NavLink } = ReactRouterDOM
 
