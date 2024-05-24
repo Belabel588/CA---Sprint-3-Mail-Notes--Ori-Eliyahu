@@ -12,6 +12,7 @@ export const utilService = {
     formatDate,
     saveToStorage,
     loadFromStorage,
+    isLink,
 }
 
 console.log('iam in util');
@@ -98,4 +99,12 @@ function getRandomBoolean() {
 function getRandomColorFromArray(colors) {
     const randomIndex = Math.floor(Math.random() * colors.length)
     return colors[randomIndex]
+}
+
+function isLink(input) {
+    // Regular expression pattern to match URLs
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
+
+    // Check if the input matches the URL pattern
+    return urlRegex.test(input);
 }
