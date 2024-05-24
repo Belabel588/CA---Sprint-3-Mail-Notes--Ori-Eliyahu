@@ -18,7 +18,7 @@ table {
 
   border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
   border-top: 0.1em solid rgba(201, 201, 201, 0.35);
-  /* box-shadow: inset 2px -2px 0px 0px #5c5b5b75; */
+  /* box-shadow: inset 2px -1px 0px 0px #86838375; */
 }
 
 
@@ -35,7 +35,7 @@ td {
 
 
 tr:hover {
-  box-shadow: inset 2px -2px 0px 0px #5c5b5b75;
+  box-shadow: inset 1px -0.5px 0px 0px #86838375;
   border: 0.1em solid rgba(183, 181, 181, 0.571);
   cursor: pointer;
 }
