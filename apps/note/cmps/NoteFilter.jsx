@@ -26,22 +26,23 @@ export function NoteFilter({ filterBy, onFilter }) {
 
     return <div className="filters">
         <input className="txt-filter" onChange={handleChange} value={filterByToEdit.title} placeholder='Search' type='text' name='title' />
-        <label className="pinned-cheakbox">
-            <input
-                type="checkbox"
-                name="isPinned"
-                onChange={handleCheak}
-                checked={filterByToEdit.isPinned}
-            />
-            Sort by pinned
-        </label>
+        <div className="filter-options">
+            <label className="pinned-cheakbox">
+                <input
+                    type="checkbox"
+                    name="isPinned"
+                    onChange={handleCheak}
+                    checked={filterByToEdit.isPinned}
+                />
+                Sort by pinned
+            </label>
 
-        <select onChange={handleChange} id="">
-            <option name="type" value="NoteImg">By images</option>
-            <option name="type" value="NoteTxt">By text</option>
-            <option name="type" value="NoteTodos">By todos</option>
-            <option name="type" value="NoteVids">By videos</option>
-        </select>
+            <select onChange={handleChange} id="">
+                <option name="type" value="NoteImg">By images</option>
+                <option name="type" value="NoteTxt">By text</option>
+                <option name="type" value="NoteTodos">By todos</option>
+                <option name="type" value="NoteVids">By videos</option>
+            </select>
+        </div>
     </div>
-
 }
