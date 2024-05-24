@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+.mail-app {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.mails-list {
+  display: grid;
+}
+
+.side-bar {
+  display: grid;
+}

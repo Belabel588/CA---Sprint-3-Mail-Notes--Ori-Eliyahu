@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.side-bar-container {
+  display: flex;
+  flex-direction: column;
+
+}
