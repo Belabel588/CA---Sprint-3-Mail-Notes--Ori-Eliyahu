@@ -24,7 +24,7 @@
   justify-content: center;
   align-items: center;
   font-size: 0.875em;
-  padding: 15px;
+  padding: 0.9375em;
   border-radius: 1.25em;
   background-color: #c2e7ff;
   margin-block-end: 2em;
@@ -43,5 +43,13 @@
 
 .compose-mail-btn {
   display: flex;
+  gap: 0.1em;
+}
 
+.pen-img {
+  width: 1.375em;
+}
+
+.inbox-img {
+  width: 1.375em;
 }

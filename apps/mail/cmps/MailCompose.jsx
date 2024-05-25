@@ -1,6 +1,8 @@
 const { useNavigate } = ReactRouterDOM
 
 
+
+
 export function MailCompose() {
 
   const navigate = useNavigate()
@@ -25,16 +27,20 @@ export function MailCompose() {
         </div>
 
         <div className="mail-to-container">
-          <label htmlFor="mail-to-input" type="email">To</label>
-          <input id="mail-to-input" type="text" />
+          <input id="mail-to-input" type="text" placeholder="To" />
         </div>
 
         <div className="mail-subject-container">
-          <label htmlFor="mail-subject-input">Subject</label>
-          <input id="mail-subject-input" type="text" />
+          <input id="mail-subject-input" type="text" placeholder="Subject" />
         </div>
-        <textarea id="mail-text-input" cols="80" rows="20"></textarea>
-        <button>Send</button>
+
+
+        <textarea id="mail-text-input" cols="70" rows="25"></textarea>
+
+        <div className="compose-actions">
+          <button className="compose-send-btn">Send</button>
+        </div>
+
       </form>
     </div >
 
