@@ -89,7 +89,7 @@ export function NoteIndex() {
             txt: ''
         })
     }
-
+console.log('just for sync');
 
     function handleFocus() {
         setIsFocused(true)
