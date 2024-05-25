@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 
 import { mailService } from '../services/mail.service.js'
 import { MailList } from '../cmps/MailList.jsx'
+import { SideBar } from '../cmps/SideBar.jsx'
 
 
 
@@ -10,12 +11,14 @@ export function MailIndex() {
 
     useEffect(() => {
         loadMails()
+        console.log(mails)
     }, [])
 
     function loadMails() {
         mailService.query()
             .then(mails => {
                 setMails(mails)
+                console.log(mails)
             })
 
     }
@@ -25,7 +28,8 @@ export function MailIndex() {
     // ! HTML
 
     return <div className="mail-app">
-        <MailList mails={mails} />
+        <SideBar className="side-bar" mails={mails} />
+        <MailList className="mails-list" mails={mails} />
     </div>
 }
 

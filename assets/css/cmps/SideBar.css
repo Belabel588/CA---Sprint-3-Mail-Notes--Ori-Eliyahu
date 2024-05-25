@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.side-bar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.inbox-box {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  font-size: 1.1em;
+}
