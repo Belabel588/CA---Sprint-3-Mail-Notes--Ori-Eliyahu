@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+// const { Link } = ReactRouterDOM
 
 import { mailService } from '../services/mail.service.js'
 import { MailList } from '../cmps/MailList.jsx'
@@ -30,6 +31,10 @@ export function MailIndex() {
     return <div className="mail-app">
         <SideBar className="side-bar" mails={mails} />
         <MailList className="mails-list" mails={mails} />
+
+        {/* <nav>
+            <Link to='/mail/compose'>compose</Link>
+        </nav> */}
     </div>
 }
 
