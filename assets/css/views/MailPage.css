@@ -15,3 +15,21 @@
   border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
   border-top: 0.1em solid rgba(201, 201, 201, 0.35);
 }
+
+
+.arrow-back-btn {
+  border: 0;
+  background-color: #f6f8fc;
+  margin-block-end: 2.5em;
+}
+
+.arrow-back {
+  width: 2em;
+}
+
+.arrow-back:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.423);
+  border-radius: 50px;
+  transition: 0.5s;
+}

@@ -17,3 +17,31 @@
 
   font-size: 1.1em;
 }
+
+.compose-mail {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875em;
+  padding: 15px;
+  border-radius: 1.25em;
+  background-color: #c2e7ff;
+  margin-block-end: 2em;
+  margin-inline-start: 1em;
+  width: 80%;
+}
+
+.compose-mail:hover {
+  box-shadow: 0px 3px 13px 1px #86838375;
+  transition: 0.6s;
+}
+
+.compose-mail:hover {
+  cursor: pointer;
+}
+
+.compose-mail-btn {
+  display: flex;
+
+}

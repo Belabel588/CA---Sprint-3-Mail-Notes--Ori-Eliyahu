@@ -1,5 +1,5 @@
-
 const { useState, useEffect } = React
+const { Link, Outlet } = ReactRouterDOM
 
 
 export function SideBar({ mails }) {
@@ -20,9 +20,13 @@ export function SideBar({ mails }) {
 
   return (
     <div className="side-bar-container">
+      <div className="compose-mail-btn">
+        <Link to='/mail/compose' className="compose-mail">Compose</Link>
+      </div>
       <div className="inbox-box">
         <h3 className="inbox-count">Inbox</h3> <span>{unreadMails.length}</span>
       </div>
     </div>
+
   )
 }

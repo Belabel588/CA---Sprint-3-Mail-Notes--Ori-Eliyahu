@@ -29,6 +29,6 @@
 @import './cmps/MailPreview.css';
 @import './cmps/MailList.css';
 @import './cmps/SideBar.css';
-
+@import './cmps/MailCompose.css'
 
 /* @import './apps/mail/cmps/MailList.css'; */
