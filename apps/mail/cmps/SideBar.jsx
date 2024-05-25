@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+const { Link, Outlet } = ReactRouterDOM
 
 
 export function SideBar({ mails }) {
@@ -27,5 +27,6 @@ export function SideBar({ mails }) {
         <h3 className="inbox-count">Inbox</h3> <span>{unreadMails.length}</span>
       </div>
     </div>
+
   )
 }
