@@ -1,0 +1,17 @@
+* {
+  border-radius: 0;
+}
+
+.mail-container {
+  margin-inline-start: 1.5em;
+}
+
+.mail-subject {
+  margin-block-end: 1.875em;
+}
+
+.mail-category {
+  width: fit-content;
+  border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
+  border-top: 0.1em solid rgba(201, 201, 201, 0.35);
+}
