@@ -20,6 +20,7 @@ export function SideBar({ mails }) {
 
   return (
     <div className="side-bar-container">
+      <button className="compose-mail">Compose</button>
       <div className="inbox-box">
         <h3 className="inbox-count">Inbox</h3> <span>{unreadMails.length}</span>
       </div>

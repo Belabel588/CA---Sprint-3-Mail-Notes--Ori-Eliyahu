@@ -17,3 +17,19 @@
 
   font-size: 1.1em;
 }
+
+.compose-mail {
+  border-radius: 1.25em;
+  font-size: 0.875em;
+  line-height: 2;
+  text-align: center;
+  border: 0;
+  width: 90%;
+  height: 3em;
+  background-color: #c2e7ff;
+  margin-block-end: 2em;
+}
+
+.compose-mail:hover {
+  cursor: pointer;
+}
