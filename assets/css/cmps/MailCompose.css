@@ -9,17 +9,36 @@
   bottom: 0;
 
 
-  padding: 2px 2px;
+  padding: 0.6px 1px;
   border: 1px solid rgba(129, 129, 129, 0.265);
-  border-radius: 25px;
+  border-radius: 12px;
 
   background-color: white;
 }
 
-.new-mail-title {
+.close-compose-btn {
+  margin-inline-end: 1em;
+}
+
+.close-compose-btn:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.423);
+  border-radius: 50px;
+  transition: 0.3s;
+  padding: 0.3em;
+}
+
+
+.new-mail-title-container {
   background-color: #f2f6fc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-mail-title {
   padding: 20px;
-  border-radius: 5px;
+  /* border-radius: 10px; */
 }
 
 .mail-to-container {
