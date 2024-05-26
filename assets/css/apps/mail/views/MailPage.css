@@ -4,6 +4,12 @@
 
 .mail-container {
   margin-inline-start: 1.5em;
+  padding: 3.125em;
+  border: 1px solid rgba(129, 129, 129, 0.265);
+  border-radius: 10px;
+  width: 95%;
+  background-color: white;
+  border: 0;
 }
 
 .mail-subject {
@@ -19,7 +25,7 @@
 
 .arrow-back-btn {
   border: 0;
-  background-color: #f6f8fc;
+  background-color: white;
   margin-block-end: 2.5em;
 }
 
@@ -32,4 +38,5 @@
   background-color: rgba(128, 128, 128, 0.423);
   border-radius: 50px;
   transition: 0.5s;
+  width: 2.5em;
 }

@@ -1,11 +1,13 @@
 const { useNavigate } = ReactRouterDOM
 
 
+import { getMailImageDataUrls } from '../services/MailImg.service.js'
+
 
 
 export function MailCompose() {
-
   const navigate = useNavigate()
+  const imgs = getMailImageDataUrls()
 
 
   const handleSubmit = (ev) => {
@@ -22,8 +24,8 @@ export function MailCompose() {
       <form onSubmit={handleSubmit}>
 
         <div className="new-mail-title-container">
-          <h3 className="new-mail-title">New Message </h3>
-          <p className="close-compose-btn" onClick={quitCompose}>X</p>
+          <span className="new-mail-title">New Message </span>
+          <p className="close-compose-btn" onClick={quitCompose}><img src={imgs.xImg} alt="" className="x-img" /></p>
         </div>
 
         <div className="mail-to-container">
@@ -31,7 +33,7 @@ export function MailCompose() {
         </div>
 
         <div className="mail-subject-container">
-          <input id="mail-subject-input" type="text" placeholder="Subject" />
+          <input id="mail-subject-input" type="text" placeholder="Recipients" />
         </div>
 
 

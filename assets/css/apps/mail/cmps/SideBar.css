@@ -28,13 +28,16 @@ html {
 
 .compose-mail {
   display: flex;
+  justify-content: center;
+
 
   font-family: "Roboto", sans-serif;
-  justify-content: center;
   align-items: center;
   font-size: 0.875em;
   padding: 0.9375em;
   border-radius: 1em;
+
+  font-weight: 400;
 
   background-color: #c2e7ff;
   margin-block-end: 2em;
@@ -54,12 +57,10 @@ html {
 .compose-mail-btn {
   display: flex;
   gap: 0.1em;
-  fill: #202124;
 }
 
 .pen-img {
   width: 1.375em;
-  fill: #202124;
 }
 
 .inbox-img {

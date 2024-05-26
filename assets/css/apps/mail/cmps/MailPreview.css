@@ -40,7 +40,7 @@ td {
 
 
 tr:hover {
-  box-shadow: inset 1px -0.5px 0px 0px #86838375;
+  box-shadow: 0 0 20px 0px #ccc;
   border-bottom: 0.1em solid rgba(183, 181, 181, 0.571);
   border-top: 0.1em solid rgba(183, 181, 181, 0.571);
   cursor: pointer;
@@ -55,11 +55,13 @@ tr:hover {
 
 .mail-sender {
   font-weight: bold;
+  color: #202124;
   /* width: 10px; */
 }
 
 .mail-subject {
   font-weight: bold;
+  color: #202124;
 }
 
 .mail-body {

@@ -7,6 +7,7 @@
   position: fixed;
   right: 5.2em;
   bottom: 0;
+  box-shadow: 0 0 20px 0px #ccc;
 
 
 
@@ -20,6 +21,8 @@
 
 .close-compose-btn {
   margin-inline-end: 1em;
+  width: 1em;
+  height: 0.975em;
 }
 
 .close-compose-btn:hover {
@@ -27,7 +30,7 @@
   background-color: rgba(128, 128, 128, 0.423);
   border-radius: 50px;
   transition: 0.3s;
-  padding: 0.3em;
+  /* padding: 0.3em; */
 }
 
 
@@ -39,7 +42,9 @@
 }
 
 .new-mail-title {
-  padding: 1.25em;
+  font-size: 0.875em;
+  padding: 1em;
+  color: #041e49;
   /* border-radius: 10px; */
 }
 
@@ -116,4 +121,8 @@
 .compose-send-btn:hover {
   cursor: pointer;
   background-color: #2667d0;
+}
+
+.x-img {
+  width: 1em;
 }

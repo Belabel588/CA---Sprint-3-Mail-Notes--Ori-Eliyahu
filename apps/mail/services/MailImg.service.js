@@ -7,6 +7,7 @@ export function getMailImageDataUrls() {
     mailIconImg: 'assets/mail-imgs/Gmail-logo.png',
     penImg: 'assets/mail-imgs/pen.png',
     searchImg: 'assets/mail-imgs/search.png',
-    inboxImg: 'assets/mail-imgs/inbox.png'
+    inboxImg: 'assets/mail-imgs/inbox.png',
+    xImg: 'assets/mail-imgs/x.png'
   }
 }

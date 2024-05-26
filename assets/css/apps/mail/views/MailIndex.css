@@ -22,7 +22,7 @@ img {
   gap: 1.25em;
   /* justify-content: center; */
   align-items: center;
-  margin-inline-start: 1.2em;
+  margin-inline-start: 1em;
   margin-block-end: 1em;
 
 }
@@ -36,15 +36,15 @@ img {
   fill: #000000;
   background-color: #eaf1fb;
   border-radius: 1.5em;
-  width: 45em;
-  height: 3em;
+  height: 4.1em;
 
   /* height: 2.875em; */
   padding: 1em 3.5em;
-  margin-inline-start: 3.5em;
+  margin-inline-start: 3.4em;
+
   margin-inline-end: 3.0625em;
   overflow: hidden;
-  width: 100%;
+  width: 720px;
   border: 0;
 }
 
@@ -75,6 +75,7 @@ img {
 
 .mail-app-logo {
   width: 7em;
+  margin-inline-start: 0.7em;
 }
 
 .mail-input-container {
@@ -86,8 +87,8 @@ img {
   position: absolute;
   width: 2.8em;
   border: 0;
-  top: 0.3em;
-  left: 4.5em;
+  top: 0.8em;
+  left: 4.3em;
   background-color: #ffffff00;
   outline: none;
 }
