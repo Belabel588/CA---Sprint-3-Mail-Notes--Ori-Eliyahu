@@ -24,7 +24,7 @@ const loggedinUser = {
 
 // ! CRUDL FUNCTIONS 
 
-function query(filterBy = null) {
+function query() {
   let mails = _createMails()
   return Promise.resolve(mails)
 }
