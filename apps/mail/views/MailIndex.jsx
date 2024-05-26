@@ -39,17 +39,6 @@ export function MailIndex() {
         <div className="mail-app">
 
             <MailHeader onSearch={onSearch} />
-            {/* <div className="mails-app-header">
-                <img className="mail-app-logo" src={imgs.mailIconImg} alt="" />
-
-
-                <div className="mail-input-container">
-                    <input className="mail-filter-search" type="text" placeholder="Search mail" onChange={onSearch} />
-                    <button className="search-btn"><img className="search-img" src={imgs.searchImg} alt="" /></button>
-                </div>
-
-            </div> */}
-
 
             <div className="mails-boxes">
                 <SideBar className="side-bar" mails={mails} />
