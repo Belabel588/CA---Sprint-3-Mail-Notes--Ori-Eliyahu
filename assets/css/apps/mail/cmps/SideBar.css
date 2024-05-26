@@ -2,6 +2,9 @@
   box-sizing: border-box;
 }
 
+html {
+  font-family: "Roboto", sans-serif;
+}
 
 .side-bar-container {
   display: flex;
@@ -15,17 +18,24 @@
   flex-wrap: nowrap;
   align-items: center;
 
-  font-size: 1.1em;
+
+  padding: 0.4em;
+  color: #202124;
+  font-size: 0.875em;
+  background-color: #d3e3fd;
+  border-radius: 0px 10px 10px 0px;
 }
 
 .compose-mail {
   display: flex;
 
+  font-family: "Roboto", sans-serif;
   justify-content: center;
   align-items: center;
   font-size: 0.875em;
   padding: 0.9375em;
-  border-radius: 1.25em;
+  border-radius: 1em;
+
   background-color: #c2e7ff;
   margin-block-end: 2em;
   margin-inline-start: 1em;
@@ -44,12 +54,20 @@
 .compose-mail-btn {
   display: flex;
   gap: 0.1em;
+  fill: #202124;
 }
 
 .pen-img {
   width: 1.375em;
+  fill: #202124;
 }
 
 .inbox-img {
   width: 1.375em;
+}
+
+.unread-count {
+  font-size: 0.75em;
+  text-decoration: bold;
+  font-weight: 700;
 }

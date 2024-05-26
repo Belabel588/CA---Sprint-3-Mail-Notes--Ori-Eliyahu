@@ -15,7 +15,7 @@ table {
   /* justify-content: center; */
 
 
-  border-radius: 5px;
+  /* border-radius: 5px; */
   border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
   border-top: 0.1em solid rgba(201, 201, 201, 0.35);
   /* box-shadow: inset 2px -1px 0px 0px #86838375; */
@@ -26,6 +26,10 @@ table {
   background-color: #f2f6fc;
 
 }
+
+/* .mail-sender-container {}
+
+.mail-subject-body-container {} */
 
 td {
   padding: 0.4em;
@@ -51,6 +55,7 @@ tr:hover {
 
 .mail-sender {
   font-weight: bold;
+  /* width: 10px; */
 }
 
 .mail-subject {

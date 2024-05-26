@@ -1,1 +1,93 @@
- /* mail index  */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #f6f8fc;
+  font-family: "Roboto", sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+
+/* .mail-app {
+
+} */
+
+.mails-app-header {
+  display: flex;
+  position: relative;
+  gap: 1.25em;
+  /* justify-content: center; */
+  align-items: center;
+  margin-inline-start: 1.2em;
+  margin-block-end: 1em;
+
+}
+
+
+
+.mail-filter-search {
+  font-size: 0.8125em;
+  line-height: 1.6875em;
+  text-align: start;
+  fill: #000000;
+  background-color: #eaf1fb;
+  border-radius: 1.5em;
+  width: 45em;
+  height: 3em;
+
+  /* height: 2.875em; */
+  padding: 1em 3.5em;
+  margin-inline-start: 3.5em;
+  margin-inline-end: 3.0625em;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+}
+
+.mail-filter-search:focus {
+  background-color: white;
+  transition: 0.1s;
+}
+
+.mail-filter-search::placeholder {
+  font-size: 1.4em;
+}
+
+.mails-boxes {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  justify-content: center;
+  gap: 2em;
+
+}
+
+.mails-list {
+  display: grid;
+}
+
+.side-bar {
+  display: grid;
+}
+
+.mail-app-logo {
+  width: 7em;
+}
+
+.mail-input-container {
+  position: relative;
+  width: 30%;
+}
+
+.search-btn {
+  position: absolute;
+  width: 2.8em;
+  border: 0;
+  top: 0.3em;
+  left: 4.5em;
+  background-color: #ffffff00;
+  outline: none;
+}
