@@ -20,6 +20,7 @@ export function MailCompose() {
   }
 
   return (
+
     <div className="mail-compose-container">
       <form onSubmit={handleSubmit}>
 

@@ -11,7 +11,6 @@ export const mailService = {
   removeMail,
   getMailById,
   saveMail,
-  getFilterBy
 }
 
 const MAIL_KEY = 'mailDB'
@@ -27,7 +26,6 @@ const loggedinUser = {
 
 function query(filterBy = null) {
   let mails = _createMails()
-  if (filterBy) mails = _getFilteredMails(mails, filterBy)
   return Promise.resolve(mails)
 }
 
@@ -65,17 +63,10 @@ function addMail(mail) {
   return mail
 }
 
-//! FILTERING FUNCTIONS
 
-function getFilterBy() {
-  return {
-    status: '',
-    txt: '',
-    isRead: '',
-    isStarred: '',
-    labels: [],
-  }
-}
+
+
+
 
 
 // !  MAIL DEMO DATA
