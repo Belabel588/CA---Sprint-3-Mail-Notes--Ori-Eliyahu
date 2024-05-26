@@ -118,8 +118,6 @@ function query(filterBy = {}) {
         })
 }
 
-
-
 function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
         .then(note => {

@@ -25,12 +25,10 @@
     border: 2px solid rgb(0, 0, 0);
     width: 500px;
     padding-right: 80px;
-    /* Adjust padding to accommodate the buttons */
-    height: 35px;
+
+    height: 45px;
     border-radius: 10px;
     background-color: #f8f5f5;
-
-
 }
 
 .input-container {
@@ -92,4 +90,9 @@
 
 .input-new-note.expanded {
     height: 100px;
+}
+
+.input-new-todo.expanded {
+    height: 40px;
+    border: none;
 }
