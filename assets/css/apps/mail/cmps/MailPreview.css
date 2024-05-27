@@ -10,7 +10,7 @@ table {
 
 .mail-card {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   /* justify-items: center; */
 
   /* align-items: center; */
@@ -24,6 +24,18 @@ table {
   /* box-shadow: inset 2px -1px 0px 0px #86838375; */
 }
 
+
+.mails-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.mails-time-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: end;
+}
 
 .read {
   background-color: #f2f6fc;
@@ -65,6 +77,7 @@ tr:hover {
 .mail-subject {
   font-weight: bold;
   color: #202124;
+  width: 1000px;
 }
 
 .mail-body {
@@ -74,7 +87,9 @@ tr:hover {
 .time-container {
   display: grid;
   align-content: center;
-  margin-inline-start: 22.8em;
+  width: 20px;
+
+  /* margin-inline-start: 22.8em; */
 }
 
 .sent-time {
@@ -82,5 +97,19 @@ tr:hover {
   font-weight: 800;
   font-family: "Roboto", sans-serif;
 
+
   font-size: 0.75em;
+}
+
+.delete-btn {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+}
+
+.delete-icon {
+  width: 1.375em;
 }

@@ -10,6 +10,7 @@ export function getMailImageDataUrls() {
     inboxImg: 'assets/mail-imgs/inbox.png',
     xImg: 'assets/mail-imgs/x.png',
     readMailImg: 'assets/mail-imgs/read-mail.png',
-    unreadMailIng: 'assets/mail-imgs/unread-mail.png'
+    unreadMailImg: 'assets/mail-imgs/unread-mail.png',
+    deleteImg: 'assets/mail-imgs/delete.png'
   }
 }

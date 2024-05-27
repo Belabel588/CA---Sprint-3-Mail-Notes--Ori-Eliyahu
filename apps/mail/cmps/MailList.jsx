@@ -1,6 +1,7 @@
 import { MailPreview } from './MailPreview.jsx'
 
-export function MailList({ mails, search }) {
+
+export function MailList({ mails, search, onDeleteMail }) {
     return <div className="mails-list-container">
         <h1 className="mail-list">Mails list</h1>
         {mails.filter((mail) => {
@@ -8,7 +9,7 @@ export function MailList({ mails, search }) {
                 mail.body.toLowerCase().includes(search) ||
                 mail.from.toLowerCase().includes(search)
         }).map(mail => <div key={mail.id} className="mail-preview">
-            <MailPreview mail={mail} />
+            <MailPreview mail={mail} onDeleteMail={onDeleteMail} />
         </div>)}
     </div>
 }

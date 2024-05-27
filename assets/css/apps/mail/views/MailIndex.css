@@ -51,6 +51,7 @@ img {
 .mail-filter-search:focus {
   background-color: white;
   transition: 0.1s;
+  outline: none;
 }
 
 .mail-filter-search::placeholder {
