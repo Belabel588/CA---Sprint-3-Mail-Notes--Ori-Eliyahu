@@ -1,8 +1,9 @@
 const { useState, useEffect } = React
-const { Link, Outlet } = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
 
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
+
 
 export function SideBar({ mails }) {
   const [unreadMails, setUnreadMails] = useState([])

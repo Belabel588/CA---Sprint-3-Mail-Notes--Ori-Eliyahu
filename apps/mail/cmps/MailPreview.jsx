@@ -8,14 +8,11 @@ import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
 
-export function MailPreview({ mail, onDeleteMail }) {
+export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {
   const navigate = useNavigate()
   const [newMail, setNewMail] = useState(mail)
   const formattedDate = utilService.formatMailDate(mail.sentAt)
   const imgs = getMailImageDataUrls()
-
-
-
 
 
 
@@ -33,17 +30,21 @@ export function MailPreview({ mail, onDeleteMail }) {
     onDeleteMail(mail.id)
   }
 
-
-  const markAsRead = () => {
+  function markAsRead() {
     const updatedMail = { ...newMail, isRead: true }
     setNewMail(updatedMail)
     mailService.saveMail(updatedMail)
+    onMarkAsRead(updatedMail)
+
   }
 
-  const markAsUnread = () => {
+
+
+  function markAsUnread() {
     const updatedMail = { ...newMail, isRead: false }
     setNewMail(updatedMail)
     mailService.saveMail(updatedMail)
+    onMarkAsUnread(updatedMail)
   }
 
 
@@ -67,14 +68,16 @@ export function MailPreview({ mail, onDeleteMail }) {
 
 
           <div className="mails-time-actions">
-            <div className="time-container">
-              <td className="sent-time">{formattedDate}</td>
-            </div>
 
             <div className="actions-container">
+
               <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ?
                 <button onClick={markAsUnread} className="read-btn"><img className="read-icon" src={imgs.readMailImg} alt="" /></button> :
                 <button onClick={markAsRead} className="unread-btn"><img className="unread-icon" src={imgs.unreadMailImg} alt="" /></button>}</button></td>
+            </div>
+
+            <div className="time-container">
+              <td className="sent-time">{formattedDate}</td>
             </div>
 
           </div>

@@ -87,7 +87,6 @@ tr:hover {
 .time-container {
   display: grid;
   align-content: center;
-  width: 20px;
 
   /* margin-inline-start: 22.8em; */
 }
@@ -108,6 +107,10 @@ tr:hover {
 
 .delete-btn:hover {
   cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.423);
+  border-radius: 50px;
+  transition: 0.5s;
+  /* width: 2.5em; */
 }
 
 .delete-icon {
@@ -117,11 +120,13 @@ tr:hover {
 .unread-btn {
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  width: 2em;
 }
 
 .read-btn {
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  width: 2em;
 }
 
 .unread-icon {
@@ -130,6 +135,10 @@ tr:hover {
 
 .unread-icon:hover {
   cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.423);
+  border-radius: 30px;
+  transition: 0.5s;
+
 }
 
 .read-icon {
@@ -138,4 +147,7 @@ tr:hover {
 
 .read-icon:hover {
   cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.423);
+  border-radius: 50px;
+  transition: 0.5s;
 }

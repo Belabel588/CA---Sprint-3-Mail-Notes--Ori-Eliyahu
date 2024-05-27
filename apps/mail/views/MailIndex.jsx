@@ -13,7 +13,7 @@ import { getMailImageDataUrls } from '../services/MailImg.service.js'
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [search, setSearch] = useState('')
-    console.log(search)
+    // console.log(search)
     const imgs = getMailImageDataUrls()
 
     useEffect(() => {
@@ -40,6 +40,18 @@ export function MailIndex() {
             })
     }
 
+
+    function onMarkAsRead(updatedMail) {
+        console.log(updatedMail)
+        console.log(mails)
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+    }
+
+    function onMarkAsUnread(updatedMail) {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+    }
+
+
     // ! HTML
 
     return (
@@ -49,7 +61,7 @@ export function MailIndex() {
 
             <div className="mails-boxes">
                 <SideBar className="side-bar" mails={mails} />
-                <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} />
+                <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
             </div>
             <Outlet />
 
