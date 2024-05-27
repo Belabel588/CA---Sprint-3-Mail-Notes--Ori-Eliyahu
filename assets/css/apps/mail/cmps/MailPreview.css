@@ -113,3 +113,24 @@ tr:hover {
 .delete-icon {
   width: 1.375em;
 }
+
+.unread-btn {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.unread-icon {
+  width: 1.375em;
+}
+
+.unread-icon:hover {
+  cursor: pointer;
+}
+
+.read-icon {
+  width: 1.375em;
+}
+
+.read-icon:hover {
+  cursor: pointer;
+}

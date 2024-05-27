@@ -28,6 +28,13 @@ export function MailPreview({ mail, onDeleteMail }) {
     })
   }
 
+  function markAsRead() {
+    setNewMail(prevMail => {
+      const updatedMail = { ...prevMail, isRead: true }
+      mailService.saveMail(updatedMail)
+    })
+  }
+
   function handleMailDeletion() {
     onDeleteMail(mail.id)
   }
@@ -59,7 +66,7 @@ export function MailPreview({ mail, onDeleteMail }) {
             </div>
 
             <div className="actions-container">
-              <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button></td>
+              <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ? <img className="read-icon" src={imgs.readMailImg} alt="" /> : <img className="unread-icon" src={imgs.unreadMailImg} alt="" />}</button></td>
             </div>
 
           </div>
