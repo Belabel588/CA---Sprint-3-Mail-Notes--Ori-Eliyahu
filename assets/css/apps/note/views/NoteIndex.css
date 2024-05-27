@@ -1,7 +1,7 @@
 /* note index */
 .main-container {
     display: grid;
-    grid-template-columns: minmax(100px, 200px) 1fr minmax(100px, 200px);
+    grid-template-columns: 1fr 2fr minmax(50px , 100px) ;
 }
 
 .text-inputs {
@@ -62,16 +62,16 @@
     /* Adjust as necessary to position correctly */
 }
 
-.actions{
+.actions {
     position: relative;
     top: -14px;
 }
 
 .btn-new-img img,
 .btn-new-todos img {
-    width: 30px;
+    width: 25px;
     /* Increased image size */
-    height: 30px;
+    height: 25px;
     /* Increased image size */
 }
 
@@ -80,7 +80,7 @@
     top: 2px;
     /* Adjust as needed to position above the note input */
     left: 2px;
-    width: 99.3%;
+    width: 99.1%;
     /* Match the width of the note input */
     height: 35px;
     /* Same height as the note input for consistency */
@@ -90,6 +90,10 @@
     box-shadow: -1px 9px 34px -17px #808080;
     padding-left: 10px;
     /* Add padding for a nicer look */
+}
+
+.input-new-title:focus {
+    outline: none;
 }
 
 .close-txt-btn {
@@ -105,8 +109,12 @@
 }
 
 .input-new-note.expanded {
-    height: 100px;
+    height: 160px;
     padding-left: 10px;
+}
+
+.input-new-note:focus {
+    outline: none;
 }
 
 .input-new-todo.expanded {
@@ -123,6 +131,9 @@
     background-color: #f8f5f5;
 }
 
+.input-new-todo:focus {
+    outline: none;
+}
 
 .close-txt-btn {
     z-index: 500;
@@ -136,7 +147,7 @@
     cursor: pointer;
 }
 
-.close-todo-btn{
+.close-todo-btn {
     z-index: 500;
     position: relative;
     color: rgb(6, 4, 4);
@@ -148,6 +159,6 @@
     cursor: pointer;
 }
 
-.none{
+.none {
     display: none;
 }

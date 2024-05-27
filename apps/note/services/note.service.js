@@ -34,7 +34,7 @@ function _createDemoNotes() {
             createdAt: utilService.formatDate(Date.now()),
             isPinned: utilService.getRandomBoolean(),
             style: {
-                backgroundColor: utilService.getRandomColorFromArray(colors)
+                backgroundColor: '#ffffff' //utilService.getRandomColorFromArray(colors)
             },
             info: {
                 title: utilService.makeLorem(5),
@@ -77,7 +77,7 @@ function createNote(type, title, txt, todos) {
                 createdAt: utilService.formatDate(Date.now()), // Set the creation date of the note
                 isPinned: utilService.getRandomBoolean(), // Randomly determine if the note is pinned
                 style: {
-                    backgroundColor: utilService.getRandomColorFromArray(colors) // Randomly assign a background color
+                    backgroundColor: '#ffffff'  // Randomly assign a background color //utilService.getRandomColorFromArray(colors)
                 },
                 info: {
                     title: title, // Note title
