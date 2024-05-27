@@ -2,6 +2,7 @@ const { useNavigate } = ReactRouterDOM
 const { useState } = React
 
 import { mailService } from '../services/mail.service.js'
+import { utilService } from '../../../services/util.service.js'
 
 
 
@@ -10,8 +11,13 @@ export function MailPreview({ mail }) {
   const navigate = useNavigate()
   const [newMail, setNewMail] = useState(mail)
 
+  // console.log(mail.sentAt)
+  const formattedDate = `${utilService.getDayNumber(mail.sentAt, 'en-US')} ${utilService.getMonthName(new Date(mail.sentAt))}`
 
-  console.log(newMail.isRead)
+  // console.log(formattedDate)
+
+
+  // console.log(newMail.isRead)
 
   function onOpenMail() {
     navigate('/mail/' + mail.id)
@@ -20,6 +26,8 @@ export function MailPreview({ mail }) {
       mailService.saveMail(updatedMail)
     })
   }
+
+
 
 
 
@@ -40,8 +48,9 @@ export function MailPreview({ mail }) {
           </div>
 
 
-
-          {/* <td className="sent-time">{date}</td> */}
+          <div className="time-container">
+            <td className="sent-time">{formattedDate}</td>
+          </div>
         </tr>
       </tbody>
     </table >

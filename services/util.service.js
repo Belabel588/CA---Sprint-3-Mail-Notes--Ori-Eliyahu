@@ -5,6 +5,7 @@ export const utilService = {
     getRandomColor,
     padNum,
     getDayName,
+    getDayNumber,
     getMonthName,
     getRandomColorFromArray,
     getRandomBoolean,
@@ -56,19 +57,30 @@ function getRandomColor() {
     }
     return color
 }
-
+function getDayNumber(date) {
+    date = new Date(date);
+    return date.getDate();
+}
 function getDayName(date, locale) {
     date = new Date(date)
     return date.toLocaleDateString(locale, { weekday: 'long' })
 }
-
-
 function getMonthName(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
-    ]
-    return monthNames[date.getMonth()]
+    ];
+    // Get the full month name
+    const monthName = monthNames[date.getMonth()];
+    // Return the first 3 letters
+    return monthName.substring(0, 3);
 }
+
+// function getMonthName(date) {
+//     const monthNames = ["January", "February", "March", "April", "May", "June",
+//         "July", "August", "September", "October", "November", "December"
+//     ]
+//     return monthNames[date.getMonth()]
+// }
 
 function formatDate(timestamp) {
     const date = new Date(timestamp);
