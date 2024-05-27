@@ -8,6 +8,8 @@ export function getMailImageDataUrls() {
     penImg: 'assets/mail-imgs/pen.png',
     searchImg: 'assets/mail-imgs/search.png',
     inboxImg: 'assets/mail-imgs/inbox.png',
-    xImg: 'assets/mail-imgs/x.png'
+    xImg: 'assets/mail-imgs/x.png',
+    readMailImg: 'assets/mail-imgs/read-mail.png',
+    unreadMailIng: 'assets/mail-imgs/unread-mail.png'
   }
 }

@@ -12,9 +12,10 @@ export function MailPreview({ mail }) {
   const [newMail, setNewMail] = useState(mail)
 
   // console.log(mail.sentAt)
-  const formattedDate = `${utilService.getDayNumber(mail.sentAt, 'en-US')} ${utilService.getMonthName(new Date(mail.sentAt))}`
+  const formattedDate = utilService.formatMailDate(mail.sentAt)
+  //  `${utilService.getDayNumber(mail.sentAt, 'en-US')} ${utilService.getMonthName(new Date(mail.sentAt))}`
 
-  // console.log(formattedDate)
+  console.log(formattedDate)
 
 
   // console.log(newMail.isRead)

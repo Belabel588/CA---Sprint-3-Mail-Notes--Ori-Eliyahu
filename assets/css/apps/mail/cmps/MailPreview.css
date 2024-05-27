@@ -74,13 +74,13 @@ tr:hover {
 .time-container {
   display: grid;
   align-content: center;
-  margin-inline-start: 1em;
+  margin-inline-start: 22.8em;
 }
 
 .sent-time {
   display: grid;
-  margin-inline-start: 24.5em;
-  font-weight: bold;
+  font-weight: 800;
+  font-family: "Roboto", sans-serif;
 
   font-size: 0.75em;
 }
