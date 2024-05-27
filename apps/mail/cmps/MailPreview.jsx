@@ -28,17 +28,23 @@ export function MailPreview({ mail, onDeleteMail }) {
     })
   }
 
-  function markAsRead() {
-    setNewMail(prevMail => {
-      const updatedMail = { ...prevMail, isRead: true }
-      mailService.saveMail(updatedMail)
-    })
-  }
 
   function handleMailDeletion() {
     onDeleteMail(mail.id)
   }
 
+
+  const markAsRead = () => {
+    const updatedMail = { ...newMail, isRead: true }
+    setNewMail(updatedMail)
+    mailService.saveMail(updatedMail)
+  }
+
+  const markAsUnread = () => {
+    const updatedMail = { ...newMail, isRead: false }
+    setNewMail(updatedMail)
+    mailService.saveMail(updatedMail)
+  }
 
 
   return (
@@ -66,7 +72,9 @@ export function MailPreview({ mail, onDeleteMail }) {
             </div>
 
             <div className="actions-container">
-              <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ? <img className="read-icon" src={imgs.readMailImg} alt="" /> : <img className="unread-icon" src={imgs.unreadMailImg} alt="" />}</button></td>
+              <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ?
+                <button onClick={markAsUnread} className="read-btn"><img className="read-icon" src={imgs.readMailImg} alt="" /></button> :
+                <button onClick={markAsRead} className="unread-btn"><img className="unread-icon" src={imgs.unreadMailImg} alt="" /></button>}</button></td>
             </div>
 
           </div>
