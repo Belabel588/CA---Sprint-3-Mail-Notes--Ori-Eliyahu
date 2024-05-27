@@ -1,21 +1,21 @@
-const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+const { useState, useEffect } = React;
+const { Link } = ReactRouterDOM;
 
-import { noteService } from "../services/note.service.js"
-import { showSuccessMsg } from "../../../services/event-bus.service.js"
-import { showErrorMsg } from "../../../services/event-bus.service.js"
-import { utilService } from "../../../services/util.service.js"
-import { NoteFilter } from "../cmps/NoteFilter.jsx"
-import { NoteList } from "../cmps/NoteList.jsx"
-import { getImageDataUrls } from "../services/img.service.js"
-import { TodoInput } from "../cmps/TodoInput.jsx"
+import { noteService } from "../services/note.service.js";
+import { showSuccessMsg } from "../../../services/event-bus.service.js";
+import { showErrorMsg } from "../../../services/event-bus.service.js";
+import { utilService } from "../../../services/util.service.js";
+import { NoteFilter } from "../cmps/NoteFilter.jsx";
+import { NoteList } from "../cmps/NoteList.jsx";
+import { getImageDataUrls } from "../services/img.service.js";
+import { TodoInput } from "../cmps/TodoInput.jsx";
 
 export function NoteIndex() {
-    const [notes, setNotes] = useState([])
-    const [noteType, setNoteType] = useState('NoteTxt')
-    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-    const [isFocused, setIsFocused] = useState(false)
-    const [isClicked, setisClicked] = useState(false)
+    const [notes, setNotes] = useState([]);
+    const [noteType, setNoteType] = useState('NoteTxt');
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
+    const [isFocused, setIsFocused] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
     const [inputs, setInputs] = useState({
         title: '',
         txt: '',
@@ -26,40 +26,39 @@ export function NoteIndex() {
                 doneAt: null
             }
         ]
-    })
+    });
 
-    const images = getImageDataUrls()
+    const images = getImageDataUrls();
 
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                setNotes(notes)
-            })
-    }, [filterBy])
+                setNotes(notes);
+            });
+    }, [filterBy]);
 
     function setNewFilterBy(newFilter) {
-        setFilterBy(newFilter)
+        setFilterBy(newFilter);
     }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
-                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-                showSuccessMsg(`Note ${noteId} removed successfully`)
+                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+                showSuccessMsg(`Note ${noteId} removed successfully`);
             })
             .catch(err => {
-                console.error('Error removing note', err)
-                showErrorMsg(`Failed to remove note ${noteId}`)
-            })
+                console.error('Error removing note', err);
+                showErrorMsg(`Failed to remove note ${noteId}`);
+            });
     }
 
     function handleButtonClick(newNoteType) {
-        setNoteType(newNoteType)
-        setisClicked(true)
+        setNoteType(newNoteType);
+        setIsClicked(true);
         console.log(newNoteType);
-        handleFocus()
-        clearInputs()
-
+        handleFocus();
+        clearInputs();
     }
 
     function handleChange({ target }) {
@@ -81,43 +80,57 @@ export function NoteIndex() {
             }
             return { ...prevInputs, [prop]: value };
         });
-
-        if (prop === 'txt') {
-            handleInputChange(value);
-        }
     }
 
     function handleInputChange(value) {
         if (utilService.isLink(value)) {
             console.log('ITS A LINK');
-            setNoteType('NoteLink')
+            setNoteType('NoteLink');
         } else {
             console.log('ITS A TXT');
-            setNoteType('NoteTxt')
+            setNoteType('NoteTxt');
         }
     }
 
-    function handleBlurAndClose() {
-        setisClicked(false) // reset
-        setIsFocused(false) // reset
-        setNoteType('NoteTxt') // reset
-        if (inputs.txt === '') return
-        handleInputChange(inputs.txt)
+    function handleBlur() {
+        setIsFocused(false);
+    }
 
+    function handleClose() {
+        setIsClicked(false);
+        setIsFocused(false)
 
-        if (noteType === 'NoteLink') {
-            console.log('Note type is NoteLink')
-        } else {
-            noteService.createNote(noteType, inputs.title, inputs.txt, inputs.todos[0].todoTxt)
+        if (noteType === 'NoteTodos') {
+            if (inputs.todos[0].txt === '') {
+                setNoteType( 'NoteTxt');
+                return;
+            }
+            noteService.createNote(noteType, inputs.title, '', inputs.todos)
                 .then(() => {
-                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
+                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
                 })
                 .catch(error => {
-                    console.error('Error creating note:', error)
-                })
+                    console.error('Error creating note:', error);
+                });
+            clearInputs();
+            setNoteType( 'NoteTxt');
+            return;
         }
-        clearInputs()
 
+        if (inputs.txt === '') return;
+
+        handleInputChange(inputs.txt);
+
+        noteService.createNote(noteType, inputs.title, inputs.txt, [])
+            .then(() => {
+                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
+            })
+            .catch(error => {
+                console.error('Error creating note:', error);
+            });
+
+        clearInputs();
+        setNoteType( 'NoteTxt');
     }
 
     function clearInputs() {
@@ -131,12 +144,11 @@ export function NoteIndex() {
                     doneAt: null
                 }
             ]
-        })
+        });
     }
 
     function handleFocus() {
-        setIsFocused(true)
-
+        setIsFocused(true);
     }
 
     return (
@@ -150,21 +162,23 @@ export function NoteIndex() {
                                 className="input-new-title"
                                 type="text"
                                 placeholder="Title"
-                                onBlur={handleBlurAndClose}
+                                onBlur={handleBlur}
                                 onChange={handleChange}
                                 value={inputs.title}
                                 name="title"
                             />
                         )}
-                        {(noteType === 'NoteTxt' || noteType === 'NoteLink') && <input
-                            className={`input-new-note ${isFocused ? 'expanded' : ''}`}
-                            type="text"
-                            onChange={handleChange}
-                            onFocus={handleFocus}
-                            placeholder="New note..."
-                            value={inputs.txt}
-                            name="txt"
-                        />}
+                        {(noteType === 'NoteTxt' || noteType === 'NoteLink') && (
+                            <input
+                                className={`input-new-note ${isFocused ? 'expanded' : ''}`}
+                                type="text"
+                                onChange={handleChange}
+                                onFocus={handleFocus}
+                                placeholder="New note..."
+                                value={inputs.txt}
+                                name="txt"
+                            />
+                        )}
                         {noteType === 'NoteTodos' && (
                             <ul className={'new-todo-list'}>
                                 {inputs.todos.map((todo, idx) => (
@@ -178,21 +192,25 @@ export function NoteIndex() {
                                 ))}
                             </ul>
                         )}
-                        {!isClicked && <button className="btn-new-img" onClick={() => handleButtonClick('NoteImg')}>
-                            <img src={images.noteImg} alt="" />
-                        </button>}
-                        {!isClicked && <button className="btn-new-todos" onClick={() => handleButtonClick('NoteTodos')}>
-                            <img src={images.todoImg} alt="" />
-                        </button>}
+                        {!isClicked && (
+                            <div className={'actions'}>
+                                <button className="btn-new-img" onClick={() => handleButtonClick('NoteImg')}>
+                                    <img src={images.noteImg} alt="" />
+                                </button>
+                                <button className="btn-new-todos" onClick={() => handleButtonClick('NoteTodos')}>
+                                    <img src={images.todoImg} alt="" />
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
-                {isFocused && (
-                    <button className="close-txt-btn" onClick={handleBlurAndClose}>
-                        Close
-                    </button>
-                )}
+                <button
+                    className={isFocused ? "close-txt-btn" : "none"}
+                    onClick={handleClose}>
+                    Close
+                </button>
             </div>
             <NoteList note={noteType} notes={notes} onRemove={onRemoveNote} />
         </div>
-    )
+    );
 }

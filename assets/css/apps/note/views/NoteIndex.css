@@ -22,19 +22,22 @@
 
 .note-add-inputs .input-new-note {
     height: 2em;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(159, 159, 159);
     width: 500px;
     padding-right: 80px;
-
     height: 45px;
     border-radius: 10px;
     background-color: #f8f5f5;
 }
 
 .input-container {
-    box-shadow: -12px -4px 21px 10px #B8B8B8;
+
+    -webkit-box-shadow: -1px 9px 34px -17px #808080;
+    box-shadow: -1px 9px 34px -17px #808080;
+    /* border: solid transparent; */
     border-radius: 10px;
 }
+
 
 .btn-new-img,
 .btn-new-todos {
@@ -59,6 +62,11 @@
     /* Adjust as necessary to position correctly */
 }
 
+.actions{
+    position: relative;
+    top: -14px;
+}
+
 .btn-new-img img,
 .btn-new-todos img {
     width: 30px;
@@ -69,30 +77,77 @@
 
 .input-new-title {
     position: absolute;
-    top: -40px;
+    top: 2px;
     /* Adjust as needed to position above the note input */
-    left: 0;
-    width: 97.5%;
+    left: 2px;
+    width: 99.3%;
     /* Match the width of the note input */
     height: 35px;
     /* Same height as the note input for consistency */
-    border: 2px solid black;
+    border: none;
     border-radius: 10px;
     background-color: #f8f5f5;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: -1px 9px 34px -17px #808080;
     padding-left: 10px;
     /* Add padding for a nicer look */
 }
 
 .close-txt-btn {
-    color: red;
+    z-index: 500;
+    position: relative;
+    color: rgb(6, 4, 4);
+    top: -25px;
+    left: 433px;
+    width: 50px;
+    border: none;
+    background-color: #f8f5f5;
+    cursor: pointer;
 }
 
 .input-new-note.expanded {
     height: 100px;
+    padding-left: 10px;
 }
 
 .input-new-todo.expanded {
-    height: 40px;
+    height: 100px;
     border: none;
+}
+
+.input-new-todo {
+    position: relative;
+    margin: 20px;
+    top: 10px;
+    left: -50px;
+    border: transparent;
+    background-color: #f8f5f5;
+}
+
+
+.close-txt-btn {
+    z-index: 500;
+    position: relative;
+    color: rgb(6, 4, 4);
+    top: -25px;
+    left: 180px;
+    width: 50px;
+    border: none;
+    background-color: #f8f5f5;
+    cursor: pointer;
+}
+
+.close-todo-btn{
+    z-index: 500;
+    position: relative;
+    color: rgb(6, 4, 4);
+    top: -25px;
+    left: 180px;
+    width: 50px;
+    border: none;
+    background-color: #f8f5f5;
+    cursor: pointer;
+}
+
+.none{
+    display: none;
 }
