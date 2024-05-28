@@ -24,17 +24,30 @@ table {
   /* box-shadow: inset 2px -1px 0px 0px #86838375; */
 }
 
+.mail-subject-body-container {
+  width: 200%;
+}
 
 .mails-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
+/* 
+.mails-info:hover {
+  cursor: pointer;
+} */
+
 
 .mails-time-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
   justify-items: end;
+  align-items: center;
+
+  gap: 1em;
+  /* width: 60%; */
 }
 
 .read {
@@ -47,7 +60,7 @@ table {
 .mail-subject-body-container {} */
 
 td {
-  padding: 0.4em;
+  padding: 0.6em;
   margin: 0;
   height: fit-content;
 

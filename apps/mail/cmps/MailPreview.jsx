@@ -69,12 +69,12 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
 
           <div className="mails-time-actions">
 
-            <div className="actions-container">
+            {/* <div className="actions-container"> */}
 
-              <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ?
-                <button onClick={markAsUnread} className="read-btn"><img className="read-icon" src={imgs.readMailImg} alt="" /></button> :
-                <button onClick={markAsRead} className="unread-btn"><img className="unread-icon" src={imgs.unreadMailImg} alt="" /></button>}</button></td>
-            </div>
+            <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ?
+              <button onClick={markAsUnread} className="read-btn"><img className="read-icon" src={imgs.readMailImg} alt="" /></button> :
+              <button onClick={markAsRead} className="unread-btn"><img className="unread-icon" src={imgs.unreadMailImg} alt="" /></button>}</button></td>
+            {/* </div> */}
 
             <div className="time-container">
               <td className="sent-time">{formattedDate}</td>
