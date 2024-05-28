@@ -19,7 +19,8 @@ export function MailCompose() {
     sentAt: new Date(),
     to: '',
     status: 'sent',
-    isRead: true
+    isRead: true,
+    id: utilService.makeId(6)
   })
 
 

@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+const { Link, NavLink } = ReactRouterDOM
+
 
 
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
@@ -8,6 +9,7 @@ import { getMailImageDataUrls } from '../services/MailImg.service.js'
 export function SideBar({ mails }) {
   const [unreadMails, setUnreadMails] = useState([])
   const imgs = getMailImageDataUrls()
+  // const navigate = useNavigate()
 
 
 
@@ -16,11 +18,15 @@ export function SideBar({ mails }) {
   }, [mails])
 
   function showUnread() {
-    console.log('all mails', mails)
+    // console.log('all mails', mails)
     const unread = mails.filter(mail => !mail.isRead)
-    console.log(unread)
+    // console.log(unread)
     setUnreadMails(unread)
   }
+
+  // function openInbox() {
+  //   navigate('/mail/inbox')
+  // }
 
   return (
     <div className="side-bar-container">
@@ -31,7 +37,7 @@ export function SideBar({ mails }) {
 
 
 
-      <Link to='/mail' className="inbox-container">
+      <NavLink to='/mail' className="inbox-container">
         <div className="inbox-box">
 
           <div className="inbox-img-container">
@@ -47,7 +53,27 @@ export function SideBar({ mails }) {
           </div>
 
         </div>
-      </Link>
+      </NavLink>
+
+
+      <NavLink to='/mail/sent' className="sent-container">
+        <div className="sent-box">
+
+          <div className="sent-img-container">
+            <img className="sent-img" src={imgs.sendImg} alt="" />
+          </div>
+
+
+          <div className="sent-btn">
+            <div className="sent-count-container">
+              <h3 className="sent-count">Sent</h3>
+            </div>
+          </div>
+
+
+        </div>
+      </NavLink>
+
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { MailPreview } from './MailPreview.jsx'
+import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
 export function MailList({ mails, search, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {

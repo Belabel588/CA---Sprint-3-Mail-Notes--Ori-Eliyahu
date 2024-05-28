@@ -11,6 +11,7 @@ export function getMailImageDataUrls() {
     xImg: 'assets/mail-imgs/x.png',
     readMailImg: 'assets/mail-imgs/read-mail.png',
     unreadMailImg: 'assets/mail-imgs/unread-mail.png',
-    deleteImg: 'assets/mail-imgs/delete.png'
+    deleteImg: 'assets/mail-imgs/delete.png',
+    sendImg: 'assets/mail-imgs/send.png'
   }
 }

@@ -261,13 +261,16 @@ function _createMails() {
       },
       {
         "id": "e115",
-        "subject": "Article recommendation",
-        "body": "I came across an interesting article that I think you'd enjoy reading. Check it out when you have time.",
+        "subject": "Vacation planning",
+        "body": "Let's start planning our next vacation destination. Any preferences?",
         "isRead": false,
-        "sentAt": 1342693200,
+        "sentAt": 1242779600,
         "removedAt": null,
-        "from": "reader@example.com",
-        "to": "user@example.com"
+        "from": "friend5@example.com",
+        "to": "user@example.com",
+        "status": "inbox",
+        "isStarred": false,
+        "labels": []
       },
       {
         "id": "e116",
