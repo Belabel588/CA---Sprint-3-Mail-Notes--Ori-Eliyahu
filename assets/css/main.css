@@ -1,7 +1,7 @@
 /* Setup */
 
 @import './setup/variables.css';
-/* @import './setup/fonts.css'; */
+@import './setup/fonts.css';
 
 /* Basics */
 
@@ -11,8 +11,8 @@
 
 /* Views */
 @import './views/home.css';
-@import './views/MailPage.css';
-@import './views/MailIndex.css';
+@import './../css/apps/mail/views/MailPage.css';
+@import './../css/apps/mail/views/MailIndex.css';
 
 
 /* @import './apps/note/views/NoteIndex.css'; */
@@ -28,9 +28,9 @@
 @import './apps/note/cmps/NoteList.css';
 @import './apps/note/cmps/TodoInput.css';
 @import './apps/note/cmps/NoteEdit.css';
-@import './cmps/MailPreview.css';
-@import './cmps/MailList.css';
-@import './cmps/SideBar.css';
-
+@import './../css/apps/mail/cmps/MailPreview.css';
+@import './../css/apps/mail/cmps/MailList.css';
+@import './../css/apps/mail/cmps/SideBar.css';
+@import './../css/apps/mail/cmps/MailCompose.css'
 
 /* @import './apps/mail/cmps/MailList.css'; */

@@ -3,6 +3,7 @@ const { useParams, useNavigate } = ReactRouterDOM
 
 
 import { mailService } from '../services/mail.service.js'
+import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
 
@@ -11,6 +12,8 @@ export function MailPage() {
   const navigate = useNavigate()
 
   const [mail, setMail] = useState(null)
+  const imgs = getMailImageDataUrls()
+  console.log(imgs)
 
   function loadMail() {
     mailService.getMailById(mailId).then(mail => {
@@ -31,7 +34,7 @@ export function MailPage() {
 
   return <div className="mail-container">
     <div className="mail-actions">
-      <button onClick={onBackToInbox}>Back</button>
+      <button className="arrow-back-btn" onClick={onBackToInbox}><img className="arrow-back" src={imgs.arrowImg} alt="" /></button>
     </div>
 
 

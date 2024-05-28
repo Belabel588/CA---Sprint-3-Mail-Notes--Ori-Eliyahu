@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+.side-bar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.inbox-box {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+
+  padding: 0.4em;
+  color: #202124;
+  font-size: 0.875em;
+  background-color: #d3e3fd;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.compose-mail {
+  display: flex;
+  justify-content: center;
+
+
+  font-family: "Roboto", sans-serif;
+  align-items: center;
+  font-size: 0.875em;
+  padding: 0.9375em;
+  border-radius: 1em;
+
+  font-weight: 400;
+
+  background-color: #c2e7ff;
+  margin-block-end: 2em;
+  margin-inline-start: 1em;
+  width: 80%;
+}
+
+.compose-mail:hover {
+  box-shadow: 0px 3px 13px 1px #86838375;
+  transition: 0.6s;
+}
+
+.compose-mail:hover {
+  cursor: pointer;
+}
+
+.compose-mail-btn {
+  display: flex;
+  gap: 0.1em;
+}
+
+.pen-img {
+  width: 1.375em;
+}
+
+.inbox-img {
+  width: 1.375em;
+}
+
+.unread-count {
+  font-size: 0.75em;
+  text-decoration: bold;
+  font-weight: 700;
+}

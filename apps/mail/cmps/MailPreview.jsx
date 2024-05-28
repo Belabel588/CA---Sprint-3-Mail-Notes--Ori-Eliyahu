@@ -30,10 +30,14 @@ export function MailPreview({ mail }) {
       <tbody className="mails-container">
         <tr className={`mail-card ${newMail.isRead ? 'read' : ''}`} onClick={onOpenMail}>
 
-          <td className="mail-sender">{mail.from}</td>
 
+          <div className="mail-sender-container">
+            <td className="mail-sender">{mail.from}</td>
+          </div>
 
-          <td className="mail-subject">{mail.subject}- <span className="mail-body">{mail.body.substring(0, 100)}</span></td>
+          <div className="mail-subject-body-container">
+            <td className="mail-subject">{mail.subject}- <span className="mail-body">{mail.body.substring(0, 100)}</span></td>
+          </div>
 
 
 
