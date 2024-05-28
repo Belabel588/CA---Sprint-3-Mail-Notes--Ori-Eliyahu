@@ -27,6 +27,7 @@
 @import './apps/note/cmps/NoteFilter.css';
 @import './apps/note/cmps/NoteList.css';
 @import './apps/note/cmps/TodoInput.css';
+@import './apps/note/cmps/NoteEdit.css';
 @import './cmps/MailPreview.css';
 @import './cmps/MailList.css';
 @import './cmps/SideBar.css';

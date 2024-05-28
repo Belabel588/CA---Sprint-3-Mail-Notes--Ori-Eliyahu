@@ -41,7 +41,7 @@ export function NoteIndex() {
     useEffect(() => {
         function handleClickOutside(event) {
             if (containerRef.current && !containerRef.current.contains(event.target)) {
-                console.log('Click outside detected, calling handleClose')
+                // console.log('Click outside detected, calling handleClose')
                 handleClose()
             }
         }
@@ -69,6 +69,8 @@ export function NoteIndex() {
             })
     }
 
+
+
     function handleButtonClick(newNoteType) {
         setNoteType(newNoteType)
         setIsClicked(true)
@@ -79,7 +81,7 @@ export function NoteIndex() {
 
     function handleChange({ target }) {
         const { name: prop, value } = target
-        console.log('Changing input:', prop, value) // Added log
+        console.log('Changing input:', prop, value)
 
         setInputs(prevInputs => {
             if (prop.startsWith('todos')) {
@@ -110,8 +112,8 @@ export function NoteIndex() {
     }
 
     function handleClose() {
-        console.log('Closing note')
-        console.log('Current inputs state:', inputs)
+        // console.log('Closing note')
+        // console.log('Current inputs state:', inputs)
         setIsClicked(false)
         setIsFocused(false)
 
@@ -135,9 +137,9 @@ export function NoteIndex() {
             return
         }
 
-        console.log('Checking text input:', inputs.txt);
+        // console.log('Checking text input:', inputs.txt);
         if (inputs.txt === '') {
-            console.log('No text input, exiting handleClose');
+            // console.log('No text input, exiting handleClose');
             return;
         }
 
@@ -172,6 +174,27 @@ export function NoteIndex() {
 
     function handleFocus() {
         setIsFocused(true)
+    }
+
+    function getUpdatedNote(updatedNote) {
+        console.log(updatedNote);
+        console.log('Updated note:', updatedNote);
+        setNotes(prevNotes =>
+            prevNotes.map(note =>
+                note.id === updatedNote.id ? updatedNote : note
+            )
+        );
+    }
+
+
+    function handleNoteUpdate(updatedNote) {
+        console.log(updatedNote);
+        console.log('Updated note:', updatedNote);
+        setNotes(prevNotes =>
+            prevNotes.map(note =>
+                note.id === updatedNote.id ? updatedNote : note
+            )
+        );
     }
 
     return (
@@ -217,10 +240,10 @@ export function NoteIndex() {
                         )}
                         {!isClicked && (
                             <div className={'actions'}>
-                                <button className="btn-new-img" onClick={(e) => {e.stopPropagation(); handleButtonClick('NoteImg'); }}>
+                                <button className="btn-new-img" onClick={(e) => { e.stopPropagation(); handleButtonClick('NoteImg'); }}>
                                     <img src={images.noteImg} alt="" />
                                 </button>
-                                <button className="btn-new-todos" onClick={(e) => {e.stopPropagation(); handleButtonClick('NoteTodos'); }}>
+                                <button className="btn-new-todos" onClick={(e) => { e.stopPropagation(); handleButtonClick('NoteTodos'); }}>
                                     <img src={images.todoImg} alt="" />
                                 </button>
                             </div>
@@ -233,7 +256,7 @@ export function NoteIndex() {
                     Close
                 </button>
             </div>
-            <NoteList note={noteType} notes={notes} onRemove={onRemoveNote} />
+            <NoteList note={noteType} notes={notes} onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} />
         </div>
     );
 }
