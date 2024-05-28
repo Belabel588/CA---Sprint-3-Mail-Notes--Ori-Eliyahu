@@ -24,13 +24,30 @@ export function SideBar({ mails }) {
 
   return (
     <div className="side-bar-container">
+
       <div className="compose-mail-btn">
         <Link to='/mail/compose' className="compose-mail"><img className="pen-img" src={imgs.penImg} alt="" />Compose</Link>
       </div>
-      <div className="inbox-box">
-        <img className="inbox-img" src={imgs.inboxImg} alt="" /><h3 className="inbox-count">Inbox</h3> <span className="unread-count">{unreadMails.length}</span>
-      </div>
-    </div>
 
+
+
+      <Link to='/mail' className="inbox-container">
+        <div className="inbox-box">
+
+          <div className="inbox-img-container">
+            <img className="inbox-img" src={imgs.inboxImg} alt="" />
+          </div>
+
+          <div className="inbox-count-container">
+            <h3 className="inbox-count">Inbox</h3>
+          </div>
+
+          <div className="inbox-unread-count-container">
+            <span className="unread-count">{unreadMails.length}</span>
+          </div>
+
+        </div>
+      </Link>
+    </div>
   )
 }

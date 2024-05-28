@@ -18,13 +18,15 @@ html {
   flex-wrap: nowrap;
   align-items: center;
 
-
   padding: 0.4em;
   color: #202124;
   font-size: 0.875em;
   background-color: #d3e3fd;
   border-radius: 0px 10px 10px 0px;
 }
+
+
+
 
 .compose-mail {
   display: flex;

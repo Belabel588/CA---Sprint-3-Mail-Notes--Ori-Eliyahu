@@ -51,6 +51,12 @@ export function MailIndex() {
         setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
     }
 
+    // function onMailSubmit() {
+    //     const sentMail = {
+
+    //     }
+    // }
+
 
     // ! HTML
 
