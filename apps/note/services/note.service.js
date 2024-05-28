@@ -112,9 +112,9 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.title, 'i')
                 notes = notes.filter(note => regExp.test(note.info.title))
             }
-            if (filterBy.isPinned) {
-                notes = notes.filter(note => note.isPinned === true)
-            }
+            // if (filterBy.isPinned) {
+            //     notes = notes.filter(note => note.isPinned === true)
+            // }
             if (filterBy.type) {
                 notes = notes.filter(note => noteTypes.includes(note.type))
             }

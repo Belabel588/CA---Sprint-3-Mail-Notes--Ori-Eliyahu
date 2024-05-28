@@ -1,21 +1,21 @@
-const { useState, useEffect, useRef } = React
-const { Link } = ReactRouterDOM
+const { useState, useEffect, useRef } = React;
+const { Link } = ReactRouterDOM;
 
-import { noteService } from "../services/note.service.js"
-import { showSuccessMsg } from "../../../services/event-bus.service.js"
-import { showErrorMsg } from "../../../services/event-bus.service.js"
-import { utilService } from "../../../services/util.service.js"
-import { NoteFilter } from "../cmps/NoteFilter.jsx"
-import { NoteList } from "../cmps/NoteList.jsx"
-import { getImageDataUrls } from "../services/img.service.js"
-import { TodoInput } from "../cmps/TodoInput.jsx"
+import { noteService } from "../services/note.service.js";
+import { showSuccessMsg } from "../../../services/event-bus.service.js";
+import { showErrorMsg } from "../../../services/event-bus.service.js";
+import { utilService } from "../../../services/util.service.js";
+import { NoteFilter } from "../cmps/NoteFilter.jsx";
+import { NoteList } from "../cmps/NoteList.jsx";
+import { getImageDataUrls } from "../services/img.service.js";
+import { TodoInput } from "../cmps/TodoInput.jsx";
 
 export function NoteIndex() {
-    const [notes, setNotes] = useState([])
-    const [noteType, setNoteType] = useState('NoteTxt')
-    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-    const [isFocused, setIsFocused] = useState(false)
-    const [isClicked, setIsClicked] = useState(false)
+    const [notes, setNotes] = useState([]);
+    const [noteType, setNoteType] = useState('NoteTxt');
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
+    const [isFocused, setIsFocused] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
     const [inputs, setInputs] = useState({
         title: '',
         txt: '',
@@ -28,118 +28,108 @@ export function NoteIndex() {
         ]
     });
 
-    const images = getImageDataUrls()
-    const containerRef = useRef(null)
+    const images = getImageDataUrls();
+    const containerRef = useRef(null);
 
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                setNotes(notes)
-            })
-    }, [filterBy])
+                setNotes(notes);
+            });
+    }, [filterBy]);
 
     useEffect(() => {
         function handleClickOutside(event) {
             if (containerRef.current && !containerRef.current.contains(event.target)) {
-                // console.log('Click outside detected, calling handleClose')
-                handleClose()
+                handleClose();
             }
         }
 
-        document.addEventListener('click', handleClickOutside)
+        document.addEventListener('click', handleClickOutside);
 
         return () => {
-            document.removeEventListener('click', handleClickOutside)
-        }
-    }, [inputs])
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [inputs]);
 
     function setNewFilterBy(newFilter) {
-        setFilterBy(newFilter)
+        // Check if newFilter is an array (updated notes) or an object (filter criteria)
+        if (Array.isArray(newFilter)) {
+            setNotes(newFilter);
+        } else {
+            setFilterBy(newFilter);
+        }
     }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
-                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-                showSuccessMsg(`Note ${noteId} removed successfully`)
+                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+                showSuccessMsg(`Note ${noteId} removed successfully`);
             })
             .catch(err => {
-                console.error('Error removing note', err)
-                showErrorMsg(`Failed to remove note ${noteId}`)
-            })
+                console.error('Error removing note', err);
+                showErrorMsg(`Failed to remove note ${noteId}`);
+            });
     }
 
-
-
     function handleButtonClick(newNoteType) {
-        setNoteType(newNoteType)
-        setIsClicked(true)
-        console.log(newNoteType)
-        handleFocus()
-        clearInputs()
+        setNoteType(newNoteType);
+        setIsClicked(true);
+        handleFocus();
+        clearInputs();
     }
 
     function handleChange({ target }) {
-        const { name: prop, value } = target
-        console.log('Changing input:', prop, value)
-
+        const { name: prop, value } = target;
         setInputs(prevInputs => {
             if (prop.startsWith('todos')) {
-                const todos = [...prevInputs.todos]
-                const index = parseInt(prop.split('-')[1])
-                todos[index].txt = value
+                const todos = [...prevInputs.todos];
+                const index = parseInt(prop.split('-')[1]);
+                todos[index].txt = value;
                 if (!todos[index + 1]) {
                     todos.push({
                         txt: '',
                         isTodoDone: false,
                         doneAt: null
-                    })
+                    });
                 }
-                return { ...prevInputs, todos }
+                return { ...prevInputs, todos };
             }
-            return { ...prevInputs, [prop]: value }
-        })
+            return { ...prevInputs, [prop]: value };
+        });
     }
 
     function handleInputChange(value) {
         if (utilService.isLink(value)) {
-            console.log('ITS A LINK')
-            setNoteType('NoteLink')
+            setNoteType('NoteLink');
         } else {
-            console.log('ITS A TXT')
-            setNoteType('NoteTxt')
+            setNoteType('NoteTxt');
         }
     }
 
     function handleClose() {
-        // console.log('Closing note')
-        // console.log('Current inputs state:', inputs)
-        setIsClicked(false)
-        setIsFocused(false)
+        setIsClicked(false);
+        setIsFocused(false);
 
         if (noteType === 'NoteTodos') {
             if (inputs.todos[0].txt === '') {
-                console.log('No todos text, resetting noteType to NoteTxt')
-                setNoteType('NoteTxt')
-                return
+                setNoteType('NoteTxt');
+                return;
             }
-            console.log('Creating NoteTodos')
             noteService.createNote(noteType, inputs.title, '', inputs.todos)
                 .then(() => {
                     setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
-                    console.log('NoteTodos created successfully')
                 })
                 .catch(error => {
-                    console.error('Error creating note:', error)
-                })
-            clearInputs()
-            setNoteType('NoteTxt')
-            return
+                    console.error('Error creating note:', error);
+                });
+            clearInputs();
+            setNoteType('NoteTxt');
+            return;
         }
 
-        // console.log('Checking text input:', inputs.txt);
         if (inputs.txt === '') {
-            // console.log('No text input, exiting handleClose');
             return;
         }
 
@@ -147,15 +137,14 @@ export function NoteIndex() {
 
         noteService.createNote(noteType, inputs.title, inputs.txt, [])
             .then(() => {
-                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
-                console.log('Note created successfully')
+                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
             })
             .catch(error => {
-                console.error('Error creating note:', error)
-            })
+                console.error('Error creating note:', error);
+            });
 
-        clearInputs()
-        setNoteType('NoteTxt')
+        clearInputs();
+        setNoteType('NoteTxt');
     }
 
     function clearInputs() {
@@ -169,16 +158,14 @@ export function NoteIndex() {
                     doneAt: null
                 }
             ]
-        })
+        });
     }
 
     function handleFocus() {
-        setIsFocused(true)
+        setIsFocused(true);
     }
 
     function getUpdatedNote(updatedNote) {
-        console.log(updatedNote);
-        console.log('Updated note:', updatedNote);
         setNotes(prevNotes =>
             prevNotes.map(note =>
                 note.id === updatedNote.id ? updatedNote : note
@@ -186,10 +173,7 @@ export function NoteIndex() {
         );
     }
 
-
     function handleNoteUpdate(updatedNote) {
-        console.log(updatedNote);
-        console.log('Updated note:', updatedNote);
         setNotes(prevNotes =>
             prevNotes.map(note =>
                 note.id === updatedNote.id ? updatedNote : note
@@ -199,7 +183,7 @@ export function NoteIndex() {
 
     return (
         <div className="main-container">
-            <NoteFilter filterBy={filterBy} onFilter={setNewFilterBy} />
+            <NoteFilter filterBy={filterBy} onFilter={setNewFilterBy} notes={notes} />
             <div className="text-inputs" ref={containerRef}>
                 <div className="note-add-inputs">
                     <div className="input-container">
@@ -233,7 +217,7 @@ export function NoteIndex() {
                                         value={todo.txt}
                                         onChange={handleChange}
                                         onFocus={handleFocus}
-                                        name={`todos-${idx}-txt`} // Pass the name prop
+                                        name={`todos-${idx}-txt`}
                                     />
                                 ))}
                             </ul>

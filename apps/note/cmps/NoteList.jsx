@@ -18,7 +18,7 @@ export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote }) 
     return (
         <ul className="note-list">
             {notes.map((note) => (
-                <li key={note.id} className="note-item" style={{ backgroundColor: note.style.backgroundColor }}>
+                <li key={note.id} className={`note-item`} style={{ backgroundColor: note.style.backgroundColor }}>
                     <NotePreview note={note} noteType={note.type} onNoteUpdate={handleNoteUpdate} />
 
                     <button onClick={() => onRemove(note.id)}>X</button>
