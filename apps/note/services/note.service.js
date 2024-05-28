@@ -34,7 +34,7 @@ function _createDemoNotes() {
             createdAt: utilService.formatDate(Date.now()),
             isPinned: utilService.getRandomBoolean(),
             style: {
-                backgroundColor: utilService.getRandomColorFromArray(colors)
+                backgroundColor: '#ffffff' //utilService.getRandomColorFromArray(colors)
             },
             info: {
                 title: utilService.makeLorem(5),
@@ -58,44 +58,48 @@ function _createDemoNotes() {
     }
 }
 
-function createNote(type, title, txt, todoTxt) {
+function createNote(type, title, txt, todos) {
     return new Promise((resolve, reject) => {
         try {
+            // Define a list of colors to randomly assign to the note's background
             const colors = [
                 '#00b0ff', '#00c853', '#01579b', '#7c4dff',
                 '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
             ]
 
+            // Filter out todos that have empty text
+            const filteredTodos = todos.filter(todo => todo.txt.trim() !== '')
+
+            // Create a new note object with the specified type, title, and content
             const newNote = {
-                id: utilService.makeId(),
-                type: type,
-                createdAt: utilService.formatDate(Date.now()),
-                isPinned: utilService.getRandomBoolean(),
+                id: utilService.makeId(), // Generate a unique ID for the note
+                type: type, // Note type (e.g., 'NoteTxt', 'NoteTodos', etc.)
+                createdAt: utilService.formatDate(Date.now()), // Set the creation date of the note
+                isPinned: utilService.getRandomBoolean(), // Randomly determine if the note is pinned
                 style: {
-                    backgroundColor: utilService.getRandomColorFromArray(colors)
+                    backgroundColor: '#ffffff'  // Randomly assign a background color //utilService.getRandomColorFromArray(colors)
                 },
                 info: {
-                    title: title,
-                    txt: txt,
-                    todos: [
-                        {
-                            txt: todoTxt,
-                            isTodoDone: false,
-                            doneAt: null
-                        }
-                    ]
+                    title: title, // Note title
+                    txt: type === 'NoteTodos' ? '' : txt, // Note text, empty if type is 'NoteTodos'
+                    todos: type === 'NoteTodos' ? filteredTodos : [] // Include todos if type is 'NoteTodos', otherwise an empty array
                 }
-            };
+            }
 
-            const notes = utilService.loadFromStorage(NOTES_KEY) || [];
-            notes.push(newNote);
-            utilService.saveToStorage(NOTES_KEY, notes);
-            resolve(newNote); // Resolve the promise with the new note
+            // Load existing notes from local storage, or initialize an empty array if none exist
+            const notes = utilService.loadFromStorage(NOTES_KEY) || []
+            notes.push(newNote) // Add the new note to the array of notes
+            utilService.saveToStorage(NOTES_KEY, notes) // Save the updated array of notes to local storage
+
+            resolve(newNote) // Resolve the promise with the new note
         } catch (error) {
-            reject(error); // Reject the promise if there's an error
+            reject(error) // Reject the promise if there's an error
         }
     })
 }
+
+
+
 
 function query(filterBy = {}) {
 
@@ -117,8 +121,6 @@ function query(filterBy = {}) {
             return notes
         })
 }
-
-
 
 function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
