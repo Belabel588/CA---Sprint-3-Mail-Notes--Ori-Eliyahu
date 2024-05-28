@@ -26,9 +26,10 @@ export function NoteIndex() {
                 doneAt: null
             }
         ]
-    })
+    });
 
     const images = getImageDataUrls()
+    const containerRef = useRef(null)
 
     useEffect(() => {
         noteService.query(filterBy)
@@ -37,34 +38,20 @@ export function NoteIndex() {
             })
     }, [filterBy])
 
-    const titleRef = useRef(null)
-    const txtRef = useRef(null)
-
     useEffect(() => {
-        function handleClickOutside({ target }) {
-            console.log(target);
-            console.log(target.classList);
-            console.log(titleRef.current);
-            console.log(txtRef.current);
-            if (titleRef.current === target.classList[0]) {
-                // console.log(titleRef.current);
-                console.log('SUCCESSSSSS');
+        function handleClickOutside(event) {
+            if (containerRef.current && !containerRef.current.contains(event.target)) {
+                console.log('Click outside detected, calling handleClose')
+                handleClose()
             }
-            if (txtRef.current === target.classList[0]) {
-                // console.log(txtRef.current);
-                console.log('SUCCESSSSSS');
-            }
-
-
         }
 
         document.addEventListener('click', handleClickOutside)
 
         return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, [titleRef, txtRef])
-
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [inputs])
 
     function setNewFilterBy(newFilter) {
         setFilterBy(newFilter)
@@ -92,6 +79,7 @@ export function NoteIndex() {
 
     function handleChange({ target }) {
         const { name: prop, value } = target
+        console.log('Changing input:', prop, value) // Added log
 
         setInputs(prevInputs => {
             if (prop.startsWith('todos')) {
@@ -121,20 +109,23 @@ export function NoteIndex() {
         }
     }
 
-
-
     function handleClose() {
+        console.log('Closing note')
+        console.log('Current inputs state:', inputs)
         setIsClicked(false)
         setIsFocused(false)
 
         if (noteType === 'NoteTodos') {
             if (inputs.todos[0].txt === '') {
+                console.log('No todos text, resetting noteType to NoteTxt')
                 setNoteType('NoteTxt')
                 return
             }
+            console.log('Creating NoteTodos')
             noteService.createNote(noteType, inputs.title, '', inputs.todos)
                 .then(() => {
-                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
+                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
+                    console.log('NoteTodos created successfully')
                 })
                 .catch(error => {
                     console.error('Error creating note:', error)
@@ -144,13 +135,18 @@ export function NoteIndex() {
             return
         }
 
-        if (inputs.txt === '') return
+        console.log('Checking text input:', inputs.txt);
+        if (inputs.txt === '') {
+            console.log('No text input, exiting handleClose');
+            return;
+        }
 
-        handleInputChange(inputs.txt)
+        handleInputChange(inputs.txt);
 
         noteService.createNote(noteType, inputs.title, inputs.txt, [])
             .then(() => {
                 setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
+                console.log('Note created successfully')
             })
             .catch(error => {
                 console.error('Error creating note:', error)
@@ -178,45 +174,29 @@ export function NoteIndex() {
         setIsFocused(true)
     }
 
-    function handleBlur({ target }) {
-
-        const { name } = target
-        console.log(name);
-        if (name === 'txt' || name === 'title') return
-
-        handleClose()
-
-    }
-
-    console.log('isFocused : ', isFocused);
-
     return (
         <div className="main-container">
             <NoteFilter filterBy={filterBy} onFilter={setNewFilterBy} />
-            <div className="text-inputs">
+            <div className="text-inputs" ref={containerRef}>
                 <div className="note-add-inputs">
                     <div className="input-container">
                         {isFocused && (
                             <input
-                                ref={titleRef}
                                 className="input-new-title"
                                 type="text"
                                 placeholder="Title"
                                 onChange={handleChange}
                                 onFocus={handleFocus}
-                                onBlur={handleBlur}
                                 value={inputs.title}
                                 name="title"
                             />
                         )}
                         {(noteType === 'NoteTxt' || noteType === 'NoteLink') && (
                             <input
-                                ref={txtRef}
                                 className={`input-new-note ${isFocused ? 'expanded' : ''}`}
                                 type="text"
                                 onChange={handleChange}
                                 onFocus={handleFocus}
-                                onBlur={handleBlur}
                                 placeholder="New note..."
                                 value={inputs.txt}
                                 name="txt"
@@ -237,10 +217,10 @@ export function NoteIndex() {
                         )}
                         {!isClicked && (
                             <div className={'actions'}>
-                                <button className="btn-new-img" onClick={() => handleButtonClick('NoteImg')}>
+                                <button className="btn-new-img" onClick={(e) => {e.stopPropagation(); handleButtonClick('NoteImg'); }}>
                                     <img src={images.noteImg} alt="" />
                                 </button>
-                                <button className="btn-new-todos" onClick={() => handleButtonClick('NoteTodos')}>
+                                <button className="btn-new-todos" onClick={(e) => {e.stopPropagation(); handleButtonClick('NoteTodos'); }}>
                                     <img src={images.todoImg} alt="" />
                                 </button>
                             </div>
@@ -255,5 +235,5 @@ export function NoteIndex() {
             </div>
             <NoteList note={noteType} notes={notes} onRemove={onRemoveNote} />
         </div>
-    )
+    );
 }
