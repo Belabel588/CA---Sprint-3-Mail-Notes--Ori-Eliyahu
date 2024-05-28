@@ -50,6 +50,11 @@ table {
   /* width: 60%; */
 }
 
+.actions {
+  position: relative;
+  top: 0px;
+}
+
 .read {
   background-color: #f2f6fc;
 
