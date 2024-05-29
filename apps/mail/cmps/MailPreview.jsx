@@ -20,8 +20,12 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   function onOpenMail() {
     navigate('/mail/' + mail.id)
     setNewMail(prevMail => {
+      // console.log(prevMail)
       const updatedMail = { ...prevMail, isRead: true }
-      mailService.saveMail(updatedMail)
+      mailService.put(updatedMail)
+      return updatedMail
+      // console.log(prevMail)
+      // console.log(updatedMail)
     })
   }
 
@@ -33,7 +37,7 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   function markAsRead() {
     const updatedMail = { ...newMail, isRead: true }
     setNewMail(updatedMail)
-    mailService.update(updatedMail)
+    mailService.put(updatedMail)
     onMarkAsRead(updatedMail)
 
   }
@@ -43,7 +47,7 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   function markAsUnread() {
     const updatedMail = { ...newMail, isRead: false }
     setNewMail(updatedMail)
-    mailService.update(updatedMail)
+    mailService.put(updatedMail)
     onMarkAsUnread(updatedMail)
   }
 

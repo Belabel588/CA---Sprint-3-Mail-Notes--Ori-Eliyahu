@@ -37,7 +37,7 @@ export function MailCompose() {
 
     console.log('sent Mail:', sentMail)
 
-    mailService.save(sentMail)
+    mailService.post(sentMail)
       .then(() => {
         console.log('mail added!')
         navigate('/mail')

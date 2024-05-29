@@ -7,8 +7,9 @@ export const mailService = {
   query,
   get,
   remove,
-  save,
-  addMail
+  addMail,
+  post,
+  put
 }
 
 
@@ -37,15 +38,23 @@ function remove(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
 }
 
-function save(mail) {
-  if (mail.id) {
-    console.log(mail.id);
-    console.log(mail);
-    return storageService.post(MAIL_KEY, mail)
-  } else {
-  }
+function post(mail) {
+  return storageService.post(MAIL_KEY, mail)
+}
+
+function put(mail) {
   return storageService.put(MAIL_KEY, mail)
 }
+
+// function save(mail) {
+//   if (mail.id) {
+//     console.log(mail.id);
+//     console.log(mail);
+//     return storageService.post(MAIL_KEY, mail)
+//   } else {
+//   }
+//   return storageService.put(MAIL_KEY, mail)
+// }
 
 
 function addMail(mail) {

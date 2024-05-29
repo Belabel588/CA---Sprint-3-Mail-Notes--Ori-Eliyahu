@@ -41,11 +41,17 @@ export function MailIndex() {
     function onMarkAsRead(updatedMail) {
         // console.log(updatedMail)
         // console.log(mails)
-        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+        mailService.put(updatedMail)
+            .then(() => {
+                setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+            })
     }
 
     function onMarkAsUnread(updatedMail) {
-        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+        mailService.put(updatedMail)
+            .then(() => {
+                setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+            })
     }
 
     console.log(mails);
