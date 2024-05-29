@@ -4,7 +4,7 @@ import { NotePreview } from "./NotePreview.jsx"
 import { NoteEdit } from "./NoteEdit.jsx"
 import { getImageDataUrls } from "../services/img.service.js"
 
-export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, togglePin, videoId }) {
+export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, togglePin }) {
     const [editNoteId, setEditNoteId] = useState(null);
     const imgs = getImageDataUrls();
 
@@ -20,7 +20,7 @@ export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, to
         <ul className="note-list">
             {notes.map(note => (
                 <li key={note.id} className={`note-item`} style={{ backgroundColor: note.style.backgroundColor }}>
-                    <NotePreview note={note} noteType={note.type} onNoteUpdate={handleNoteUpdate} videoId={videoId} />
+                    <NotePreview note={note} noteType={note.type} onNoteUpdate={handleNoteUpdate} videoId={note.videoId} />
                     <div className="actions-note">
                         <button onClick={() => togglePin(note.id)}>
                             <img src={imgs.pinImg} alt="" />

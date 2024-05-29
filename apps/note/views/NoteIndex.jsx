@@ -344,11 +344,11 @@ export function NoteIndex() {
             </div>
             {/* Render NoteList with only pinned notes */}
             <NoteList note={noteType} notes={pinnedNotes}
-                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} videoId={videoId} />
+                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin}  />
             <span className="lists-seperation"></span>
             {/* Render NoteList with all notes */}
             <NoteList note={noteType} notes={unPinnedNotes}
-                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} videoId={videoId} />
+                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin}  />
         </div>
     );
 }

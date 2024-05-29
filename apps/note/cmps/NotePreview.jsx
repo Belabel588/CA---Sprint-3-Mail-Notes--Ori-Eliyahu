@@ -7,6 +7,7 @@ import { NoteTxt } from "../dynamicCmp/NoteTxt.jsx";
 import { NoteVideo } from "../dynamicCmp/NoteVideo.jsx";
 
 export function NotePreview(props) {
+    console.log(props.note.videoId);
     return (
         <div>
             <DynamicCmp {...props} />

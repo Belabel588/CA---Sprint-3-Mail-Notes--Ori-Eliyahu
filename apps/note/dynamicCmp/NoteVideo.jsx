@@ -1,5 +1,7 @@
+
+
 export function NoteVideo(props) {
-    const { videoId } = props;
+    const { videoId } = props.note;
 
     if (!videoId) {
         console.log('EMPTY');
