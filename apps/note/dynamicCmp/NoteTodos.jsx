@@ -54,7 +54,7 @@ export function NoteTodos({ note, onNoteUpdate }) {
                                 checked={todo.isTodoDone}
                                 onChange={() => handleCheckboxChange(index)}
                             />
-                            <span>{todo.txt}</span>
+                            <span className={todo.isTodoDone ? 'line-over-todo' : ''} >{todo.txt}</span>
                             {todo.isTodoDone && (
                                 <span> (Completed on: {new Date(todo.doneAt).toLocaleDateString()})</span>
                             )}

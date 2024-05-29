@@ -1,20 +1,20 @@
-const { useState, useEffect } = React;
-const { Link } = ReactRouterDOM;
-import { NotePreview } from "./NotePreview.jsx";
-import { NoteEdit } from "./NoteEdit.jsx";
-import { getImageDataUrls } from "../services/img.service.js";
+const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
+import { NotePreview } from "./NotePreview.jsx"
+import { NoteEdit } from "./NoteEdit.jsx"
+import { getImageDataUrls } from "../services/img.service.js"
 
 export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, togglePin }) {
-    const [editNoteId, setEditNoteId] = useState(null); // State to track the note being edited
-    const imgs = getImageDataUrls();
+    const [editNoteId, setEditNoteId] = useState(null) // State to track the note being edited
+    const imgs = getImageDataUrls()
 
     function handleClose() {
-        setEditNoteId(null);
+        setEditNoteId(null)
     }
 
     function onUpdate(updatedNote) {
-        console.log(updatedNote);
-        getUpdatedNote(updatedNote);
+        console.log(updatedNote)
+        getUpdatedNote(updatedNote)
     }
 
     return (
@@ -43,5 +43,5 @@ export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, to
                 </li>
             ))}
         </ul>
-    );
+    )
 }

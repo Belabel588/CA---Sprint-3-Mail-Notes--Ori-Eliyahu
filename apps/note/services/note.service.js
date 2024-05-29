@@ -102,25 +102,22 @@ function createNote(type, title, txt, todos) {
 
 
 function query(filterBy = {}) {
-
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids']
+    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids'];
 
     console.log(filterBy)
     return storageService.query(NOTES_KEY)
         .then(notes => {
-            if (filterBy.title) {
-                const regExp = new RegExp(filterBy.title, 'i')
-                notes = notes.filter(note => regExp.test(note.info.title))
+            if (filterBy.search) {
+                const regExp = new RegExp(filterBy.search, 'i')
+                notes = notes.filter(note => regExp.test(note.info.title) || regExp.test(note.info.txt))
             }
-            // if (filterBy.isPinned) {
-            //     notes = notes.filter(note => note.isPinned === true)
-            // }
             if (filterBy.type) {
                 notes = notes.filter(note => noteTypes.includes(note.type))
             }
             return notes
         })
 }
+
 
 function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
@@ -146,15 +143,16 @@ function save(note) {
 }
 
 
-function getDefaultFilter(filterBy = { type: '', isPinned: 0, title: '' }) {
-    return { type: filterBy.type, isPinned: filterBy.isPinned, title: filterBy.title }
+function getDefaultFilter(filterBy = { type: '', isPinned: 0, search: '' }) {
+    return { type: filterBy.type, isPinned: filterBy.isPinned, search: filterBy.search }
 }
 
+
 function addNote(note) {
-    console.log('the note is being added to book : ', note);
+    console.log('the note is being added to book : ', note)
     return storageService.put(NOTES_KEY, note)
         .then((note) => {
-            console.log('adding note...');
+            console.log('adding note...')
             console.log(note)
         })
 }

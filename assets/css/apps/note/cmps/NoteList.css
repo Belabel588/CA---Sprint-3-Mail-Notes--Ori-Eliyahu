@@ -65,3 +65,7 @@
 .todo ul li {
     list-style: none;
 }
+
+.line-over-todo{
+    text-decoration:line-through;
+}
