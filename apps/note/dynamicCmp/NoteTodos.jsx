@@ -42,13 +42,13 @@ export function NoteTodos({ note, onNoteUpdate }) {
     }
 
     return (
-        <div>
+        <div className="todo">
             <h1>ITS A TODOS</h1>
-            <section className="note-todo-title">title is :{note.info.title}</section>
+            <section className="note-todo-title">{note.info.title}</section>
             <ul>
                 {todos.map((todo, index) => (
                     <li key={todo.id || index}>
-                        <div>
+                        <div className="todo-content-container">
                             <input
                                 type="checkbox"
                                 checked={todo.isTodoDone}

@@ -53,8 +53,8 @@ export function NoteIndex() {
     }, [inputs]);
 
     function setNewFilterBy(newFilter) {
-        // Check if newFilter is an array (updated notes) or an object (filter criteria)
         if (Array.isArray(newFilter)) {
+            console.log('Updated Notes in NoteIndex:', newFilter);
             setNotes(newFilter);
         } else {
             setFilterBy(newFilter);
@@ -181,6 +181,40 @@ export function NoteIndex() {
         );
     }
 
+    function togglePin(noteId) {
+        console.log('Fetching note with ID:', noteId);
+        noteService.get(noteId)
+            .then(note => {
+                if (!note) {
+                    console.error('Note not found:', noteId);
+                } else {
+                    console.log('Note fetched successfully:', note);
+                    console.log('PINNING', noteId, note);
+                    setNotes(prevNotes =>
+                        prevNotes.map(note =>
+                            note.id === noteId ? { ...note, isPinned: !note.isPinned } : note
+                        )
+                    );
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching note:', error);
+            });
+    }
+
+
+
+
+
+
+
+    // Filter the pinned notes
+    const pinnedNotes = notes.filter(note => note.isPinned);
+    console.log('pinned notes : ', pinnedNotes);
+
+    const unPinnedNotes = notes.filter(note => !note.isPinned)
+    console.log('unpinned notes : ', unPinnedNotes);
+
     return (
         <div className="main-container">
             <NoteFilter filterBy={filterBy} onFilter={setNewFilterBy} notes={notes} />
@@ -240,7 +274,12 @@ export function NoteIndex() {
                     Close
                 </button>
             </div>
-            <NoteList note={noteType} notes={notes} onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} />
+            {/* Render NoteList with only pinned notes */}
+            <NoteList note={noteType} notes={pinnedNotes} onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} />
+            <span className="lists-seperation"></span>
+            {/* Render NoteList with all notes */}
+            <NoteList note={noteType} notes={unPinnedNotes} onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} />
+
         </div>
     );
 }

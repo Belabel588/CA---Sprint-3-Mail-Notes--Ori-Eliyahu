@@ -1,44 +1,44 @@
-const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+const { useState, useEffect } = React;
+const { Link } = ReactRouterDOM;
 
 export function NoteFilter({ filterBy, onFilter, notes }) {
-    console.log(notes)
-    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+    console.log(notes);
+    const [filterByToEdit, setFilterByToEdit] = useState(filterBy);
 
     useEffect(() => {
-        onFilter(filterByToEdit)
-    }, [filterByToEdit])
+        onFilter(filterByToEdit);
+    }, [filterByToEdit]);
 
     function handleChange({ target }) {
-        const { name, value } = target
-        setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
+        const { name, value } = target;
+        setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }));
     }
 
-    function handleCheak() {
-        const newIsPinned = !filterByToEdit.isPinned
-        setFilterByToEdit(prevState => ({
-            ...prevState,
-            isPinned: newIsPinned
-        }))
+    // function handleCheak() {
+    //     const newIsPinned = !filterByToEdit.isPinned;
+    //     setFilterByToEdit(prevState => ({
+    //         ...prevState,
+    //         isPinned: newIsPinned
+    //     }));
 
-        const updatedNotes = notes.map(note => {
-            if (note.isPinned) {
-                return { ...note, class: 'pinned' }
-            }
-            return note
-        })
+    //     const updatedNotes = notes.map(note => {
+    //         if (note.isPinned) {
+    //             return { ...note, class: newIsPinned ? 'pinned' : '' };
+    //         }
+    //         return note;
+    //     });
 
-        console.log('Updated Notes:', updatedNotes)
+    //     console.log('Updated Notes:', updatedNotes);
 
-        // Instead of updating filter, you can now pass the updated notes to the parent component
-        onFilter(updatedNotes)
-    }
+    //     // Instead of updating filter, you can now pass the updated notes to the parent component
+    //     onFilter(updatedNotes);
+    // }
 
     return (
         <div className="filters">
             <input className="txt-filter" onChange={handleChange} value={filterByToEdit.title} placeholder='Search' type='text' name='title' />
             <div className="filter-options">
-                <label className="pinned-cheakbox">
+                {/* <label className="pinned-cheakbox">
                     <input
                         type="checkbox"
                         name="isPinned"
@@ -46,7 +46,7 @@ export function NoteFilter({ filterBy, onFilter, notes }) {
                         checked={filterByToEdit.isPinned}
                     />
                     Sort by pinned
-                </label>
+                </label> */}
 
                 <select name="type" onChange={handleChange} value={filterByToEdit.type}>
                     <option value="NoteImg">By images</option>
@@ -56,5 +56,5 @@ export function NoteFilter({ filterBy, onFilter, notes }) {
                 </select>
             </div>
         </div>
-    )
+    );
 }
