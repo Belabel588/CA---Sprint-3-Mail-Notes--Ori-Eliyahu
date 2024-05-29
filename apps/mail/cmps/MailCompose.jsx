@@ -35,11 +35,9 @@ export function MailCompose() {
   const handleSubmit = (ev) => {
     ev.preventDefault()
 
-
-
     console.log('sent Mail:', sentMail)
 
-    mailService.saveMail(sentMail)
+    mailService.save(sentMail)
       .then(() => {
         console.log('mail added!')
         navigate('/mail')

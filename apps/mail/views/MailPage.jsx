@@ -16,7 +16,7 @@ export function MailPage() {
   // console.log(imgs)
 
   function loadMail() {
-    mailService.getMailById(mailId).then(mail => {
+    mailService.get(mailId).then(mail => {
       // console.log(mail)
       setMail(mail)
     })

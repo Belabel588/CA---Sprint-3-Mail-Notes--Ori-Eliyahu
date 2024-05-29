@@ -33,7 +33,7 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   function markAsRead() {
     const updatedMail = { ...newMail, isRead: true }
     setNewMail(updatedMail)
-    mailService.saveMail(updatedMail)
+    mailService.update(updatedMail)
     onMarkAsRead(updatedMail)
 
   }
@@ -43,7 +43,7 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   function markAsUnread() {
     const updatedMail = { ...newMail, isRead: false }
     setNewMail(updatedMail)
-    mailService.saveMail(updatedMail)
+    mailService.update(updatedMail)
     onMarkAsUnread(updatedMail)
   }
 

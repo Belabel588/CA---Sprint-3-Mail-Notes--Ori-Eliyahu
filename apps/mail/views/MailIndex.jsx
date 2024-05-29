@@ -35,7 +35,7 @@ export function MailIndex() {
     }
 
     function onDeleteMail(mailId) {
-        mailService.removeMail(mailId)
+        mailService.remove(mailId)
             .then(() => {
                 setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
             })
@@ -52,8 +52,9 @@ export function MailIndex() {
         setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
     }
 
-
-
+    console.log(mails);
+    const sentMails = mails.filter(mail => mail.status === 'sent')
+    console.log(sentMails);
 
 
     // ! HTML
@@ -67,6 +68,7 @@ export function MailIndex() {
 
                 <SideBar className="side-bar" mails={mails} />
                 <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
+                <MailSentList className="mails-list" mails={sentMails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
                 {/* <MailSentList mails={mails} /> */}
 
 

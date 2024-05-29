@@ -17,8 +17,14 @@ html {
   padding: 0.4em;
   background-color: #d3e3fd;
   border-radius: 0px 10px 10px 0px;
-
 }
+
+.sent-container.active {
+  padding: 0.4em;
+  background-color: #d3e3fd;
+  border-radius: 0px 10px 10px 0px;
+}
+
 
 .inbox-box {
   display: flex;
