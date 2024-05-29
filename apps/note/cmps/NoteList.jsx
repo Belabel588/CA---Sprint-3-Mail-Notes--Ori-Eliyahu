@@ -4,24 +4,23 @@ import { NotePreview } from "./NotePreview.jsx"
 import { NoteEdit } from "./NoteEdit.jsx"
 import { getImageDataUrls } from "../services/img.service.js"
 
-export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, togglePin }) {
-    const [editNoteId, setEditNoteId] = useState(null) // State to track the note being edited
-    const imgs = getImageDataUrls()
+export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, togglePin, videoId }) {
+    const [editNoteId, setEditNoteId] = useState(null);
+    const imgs = getImageDataUrls();
 
     function handleClose() {
-        setEditNoteId(null)
+        setEditNoteId(null);
     }
 
     function onUpdate(updatedNote) {
-        console.log(updatedNote)
-        getUpdatedNote(updatedNote)
+        getUpdatedNote(updatedNote);
     }
 
     return (
         <ul className="note-list">
-            {notes.map((note) => (
+            {notes.map(note => (
                 <li key={note.id} className={`note-item`} style={{ backgroundColor: note.style.backgroundColor }}>
-                    <NotePreview note={note} noteType={note.type} onNoteUpdate={handleNoteUpdate} />
+                    <NotePreview note={note} noteType={note.type} onNoteUpdate={handleNoteUpdate} videoId={videoId} />
                     <div className="actions-note">
                         <button onClick={() => togglePin(note.id)}>
                             <img src={imgs.pinImg} alt="" />
@@ -34,14 +33,10 @@ export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, to
                         </button>
                     </div>
                     {editNoteId === note.id && (
-                        <NoteEdit
-                            note={note}
-                            onClose={handleClose}
-                            onNoteUpdate={onUpdate}
-                        />
+                        <NoteEdit note={note} onClose={handleClose} onNoteUpdate={onUpdate} />
                     )}
                 </li>
             ))}
         </ul>
-    )
+    );
 }

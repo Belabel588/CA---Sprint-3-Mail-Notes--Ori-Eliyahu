@@ -2,7 +2,8 @@
 .note-list {
     grid-column: 2/3;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Updated grid settings */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Updated grid settings */
     list-style-type: none;
 }
 
@@ -22,12 +23,16 @@
 
 /* Adjusting min-width to be more flexible */
 .note-item {
-    min-width: 200px; /* This can be adjusted as needed */
+    min-width: 200px;
+    /* This can be adjusted as needed */
 }
 
-.note-txt-title{
-    margin-top: 40px;
-    font-weight: bold; 
+.note-txt{
+    margin-top: 2em;
+}
+
+.note-txt-title {
+    font-weight: bold;
 }
 
 .note-todo-title {
@@ -50,6 +55,7 @@
     margin-top: 2em;
 }
 
+
 .actions-note {
     margin-top: 2em;
     display: flex;
@@ -66,6 +72,44 @@
     list-style: none;
 }
 
-.line-over-todo{
-    text-decoration:line-through;
+.line-over-todo {
+    text-decoration: line-through;
+}
+
+.note-item .actions-note button {
+    display: none; /* Hide buttons initially */
+}
+
+.note-item:hover .actions-note button {
+    display: inline-block; /* Show buttons when hovering over note-item */
+}
+
+.note-todo-title {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo ul {
+    padding-left: 10px;
+}
+
+.todo-content-container {
+    margin-top: 2em;
+}
+
+.actions-note button {
+    border: none;
+    background-color: #f8f5f5;
+    cursor: pointer;
+}
+
+.todo ul li {
+    list-style: none;
 }

@@ -13,6 +13,7 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     isLink,
+    extractVideoId
 }
 
 console.log('iam in util');
@@ -108,3 +109,14 @@ function isLink(input) {
     // Check if the input matches the URL pattern
     return urlRegex.test(input);
 }
+
+function extractVideoId(url) {
+    const urlObj = new URL(url);
+    if (urlObj.hostname.includes('youtube.com') && urlObj.searchParams.get('v')) {
+        return urlObj.searchParams.get('v');
+    } else if (urlObj.hostname === 'youtu.be') {
+        return urlObj.pathname.slice(1);
+    }
+    return null;
+}
+

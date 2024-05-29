@@ -9,7 +9,6 @@ import { NoteVideo } from "../dynamicCmp/NoteVideo.jsx";
 export function NotePreview(props) {
     return (
         <div>
-            <p>I AM NOTE OF KIND: {`${props.noteType}`}</p>
             <DynamicCmp {...props} />
         </div>
     );
@@ -23,7 +22,7 @@ function DynamicCmp(props) {
             return <NoteImg {...props} />;
         case 'NoteTodos':
             return <NoteTodos {...props} />;
-        case 'NoteVids':
+        case 'NoteLink':
             return <NoteVideo {...props} />;
         default:
             return null;

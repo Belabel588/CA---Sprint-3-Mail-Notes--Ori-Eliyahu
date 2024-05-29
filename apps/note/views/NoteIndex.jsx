@@ -1,21 +1,27 @@
-const { useState, useEffect, useRef } = React
-const { Link } = ReactRouterDOM
+const { useState, useEffect, useRef } = React;
+const { Link } = ReactRouterDOM;
 
-import { noteService } from "../services/note.service.js"
-import { showSuccessMsg } from "../../../services/event-bus.service.js"
-import { showErrorMsg } from "../../../services/event-bus.service.js"
-import { utilService } from "../../../services/util.service.js"
-import { NoteFilter } from "../cmps/NoteFilter.jsx"
-import { NoteList } from "../cmps/NoteList.jsx"
-import { getImageDataUrls } from "../services/img.service.js"
-import { TodoInput } from "../cmps/TodoInput.jsx"
+import { noteService } from "../services/note.service.js";
+import { showSuccessMsg } from "../../../services/event-bus.service.js";
+import { showErrorMsg } from "../../../services/event-bus.service.js";
+import { utilService } from "../../../services/util.service.js";
+import { NoteFilter } from "../cmps/NoteFilter.jsx";
+import { NoteList } from "../cmps/NoteList.jsx";
+import { getImageDataUrls } from "../services/img.service.js";
+import { TodoInput } from "../cmps/TodoInput.jsx";
 
 export function NoteIndex() {
-    const [notes, setNotes] = useState([])
-    const [noteType, setNoteType] = useState('NoteTxt')
-    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-    const [isFocused, setIsFocused] = useState(false)
-    const [isClicked, setIsClicked] = useState(false)
+    const [notes, setNotes] = useState([]);
+    const [noteType, setNoteType] = useState('NoteTxt');
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter());
+    const [isFocused, setIsFocused] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    const [videoData, setVideoData] = useState(null); // State to hold the video data
+    const [videoId, setVideoId] = useState('');
+    const [videoUrl, setVideoUrl] = useState('');
+
+    const YT_API = 'AIzaSyB4BXvsGKBG4o0WHOmm2jKzwIQS32KAVvM';
+
     const [inputs, setInputs] = useState({
         title: '',
         txt: '',
@@ -26,120 +32,182 @@ export function NoteIndex() {
                 doneAt: null
             }
         ]
-    })
-
-    const images = getImageDataUrls()
-    const containerRef = useRef(null)
+    });
+    const images = getImageDataUrls();
+    const containerRef = useRef(null);
 
     useEffect(() => {
         noteService.query(filterBy)
             .then(notes => {
-                setNotes(notes)
-            })
-    }, [filterBy])
+                setNotes(notes);
+            });
+    }, [filterBy]);
 
     useEffect(() => {
         function handleClickOutside(event) {
             if (containerRef.current && !containerRef.current.contains(event.target)) {
-                handleClose()
+                handleClose();
             }
         }
 
-        document.addEventListener('click', handleClickOutside)
+        document.addEventListener('click', handleClickOutside);
 
         return () => {
-            document.removeEventListener('click', handleClickOutside)
-        }
-    }, [inputs])
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [inputs]);
 
     function setNewFilterBy(newFilter) {
-        setFilterBy(newFilter)
+        setFilterBy(newFilter);
     }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
-                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-                showSuccessMsg(`Note ${noteId} removed successfully`)
+                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+                showSuccessMsg(`Note ${noteId} removed successfully`);
             })
             .catch(err => {
-                console.error('Error removing note', err)
-                showErrorMsg(`Failed to remove note ${noteId}`)
-            })
+                console.error('Error removing note', err);
+                showErrorMsg(`Failed to remove note ${noteId}`);
+            });
     }
 
     function handleButtonClick(newNoteType) {
-        setNoteType(newNoteType)
-        setIsClicked(true)
-        handleFocus()
-        clearInputs()
+        setNoteType(newNoteType);
+        setIsClicked(true);
+        handleFocus();
+        clearInputs();
     }
 
     function handleChange({ target }) {
-        const { name: prop, value } = target
+        const { name: prop, value } = target;
+        if (utilService.isLink(value)) {
+            fetchYouTubeVideo(value);
+            setVideoUrl(value);
+        } else {
+            setVideoData(null);
+            setVideoId('');
+        }
         setInputs(prevInputs => {
             if (prop.startsWith('todos')) {
-                const todos = [...prevInputs.todos]
-                const index = parseInt(prop.split('-')[1])
-                todos[index].txt = value
+                const todos = [...prevInputs.todos];
+                const index = parseInt(prop.split('-')[1]);
+                todos[index].txt = value;
                 if (!todos[index + 1]) {
                     todos.push({
                         txt: '',
                         isTodoDone: false,
                         doneAt: null
-                    })
+                    });
                 }
-                return { ...prevInputs, todos }
+                return { ...prevInputs, todos };
             }
-            return { ...prevInputs, [prop]: value }
-        })
+            return { ...prevInputs, [prop]: value };
+        });
     }
 
     function handleInputChange(value) {
         if (utilService.isLink(value)) {
-            setNoteType('NoteLink')
+            console.log('ITS A LINK');
+            fetchYouTubeVideo(value);
         } else {
-            setNoteType('NoteTxt')
+            console.log('NOT A LINK');
+            setNoteType('NoteTxt');
+            setVideoData(null);
+            setVideoId('');
         }
     }
 
+    function fetchYouTubeVideo(url) {
+        const videoId = utilService.extractVideoId(url);
+        if (!videoId) return;
+        setVideoId(videoId);
+
+        axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${YT_API}&part=snippet,contentDetails`)
+            .then(response => {
+                if (response.data.items && response.data.items.length > 0) {
+                    console.log('Video found:', response.data.items[0]);
+                    setNoteType('NoteLink');
+                    displayVideo(response.data.items[0]); // Call a function to handle the display
+                } else {
+                    console.log('No video found');
+                    setNoteType('NoteTxt');
+                    setVideoId('');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching video:', error);
+                setNoteType('NoteTxt');
+                setVideoId('');
+            });
+    }
+
+    function displayVideo(videoData) {
+        setVideoData(videoData);
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            title: videoData.snippet.title,
+            txt: `https://www.youtube.com/watch?v=${videoData.id}`
+        }));
+    }
+
     function handleClose() {
-        setIsClicked(false)
-        setIsFocused(false)
+        setIsClicked(false);
+        setIsFocused(false);
 
         if (noteType === 'NoteTodos') {
             if (inputs.todos[0].txt === '') {
-                setNoteType('NoteTxt')
-                return
+                setNoteType('NoteTxt');
+                return;
             }
             noteService.createNote(noteType, inputs.title, '', inputs.todos)
                 .then(() => {
-                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
+                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
                 })
                 .catch(error => {
-                    console.error('Error creating note:', error)
+                    console.error('Error creating note:', error);
+                });
+            clearInputs();
+            setNoteType('NoteTxt');
+            return;
+        }
+
+        if (noteType === 'NoteLink') {
+            if (inputs.txt === '') {
+                return;
+            }
+
+            console.log(videoId);
+            noteService.createNote(noteType, inputs.title, '', inputs.todos , videoId)
+                .then(() => {
+                    setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
+                    setVideoId(videoId)
                 })
-            clearInputs()
-            setNoteType('NoteTxt')
-            return
+                .catch(error => {
+                    console.error('Error creating note:', error);
+                });
+            clearInputs();
+            setNoteType('NoteTxt');
+            return;
         }
 
         if (inputs.txt === '') {
-            return
+            return;
         }
 
-        handleInputChange(inputs.txt)
+        handleInputChange(inputs.txt);
 
         noteService.createNote(noteType, inputs.title, inputs.txt, [])
             .then(() => {
-                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
+                setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }));
             })
             .catch(error => {
-                console.error('Error creating note:', error)
-            })
+                console.error('Error creating note:', error);
+            });
 
-        clearInputs()
-        setNoteType('NoteTxt')
+        clearInputs();
+        setNoteType('NoteTxt');
     }
 
     function clearInputs() {
@@ -153,11 +221,13 @@ export function NoteIndex() {
                     doneAt: null
                 }
             ]
-        })
+        });
+        setVideoData(null); // Clear video data
+        setVideoId(''); // Clear video ID
     }
 
     function handleFocus() {
-        setIsFocused(true)
+        setIsFocused(true);
     }
 
     function getUpdatedNote(updatedNote) {
@@ -165,7 +235,7 @@ export function NoteIndex() {
             prevNotes.map(note =>
                 note.id === updatedNote.id ? updatedNote : note
             )
-        )
+        );
     }
 
     function handleNoteUpdate(updatedNote) {
@@ -173,30 +243,32 @@ export function NoteIndex() {
             prevNotes.map(note =>
                 note.id === updatedNote.id ? updatedNote : note
             )
-        )
+        );
     }
 
     function togglePin(noteId) {
         noteService.get(noteId)
             .then(note => {
                 if (!note) {
-                    console.error('Note not found:', noteId)
+                    console.error('Note not found:', noteId);
                 } else {
                     setNotes(prevNotes =>
                         prevNotes.map(note =>
                             note.id === noteId ? { ...note, isPinned: !note.isPinned } : note
                         )
-                    )
+                    );
                 }
             })
             .catch(error => {
-                console.error('Error fetching note:', error)
-            })
+                console.error('Error fetching note:', error);
+            });
     }
 
     // Filter the pinned notes
-    const pinnedNotes = notes.filter(note => note.isPinned)
-    const unPinnedNotes = notes.filter(note => !note.isPinned)
+    const pinnedNotes = notes.filter(note => note.isPinned);
+    const unPinnedNotes = notes.filter(note => !note.isPinned);
+
+    console.log('NoteIndex videoId:', videoId); // Log videoId here
 
     return (
         <div className="main-container">
@@ -250,6 +322,19 @@ export function NoteIndex() {
                             </div>
                         )}
                     </div>
+                    {videoData && (
+                        <div className="video-preview">
+                            <h3>{videoData.snippet.title}</h3>
+                            <iframe
+                                width="100%"
+                                height="315"
+                                src={`https://www.youtube.com/embed/${videoData.id}`}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    )}
                 </div>
                 <button
                     className={isFocused ? "close-txt-btn" : "none"}
@@ -258,10 +343,12 @@ export function NoteIndex() {
                 </button>
             </div>
             {/* Render NoteList with only pinned notes */}
-            <NoteList note={noteType} notes={pinnedNotes} onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} />
+            <NoteList note={noteType} notes={pinnedNotes}
+                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} videoId={videoId} />
             <span className="lists-seperation"></span>
             {/* Render NoteList with all notes */}
-            <NoteList note={noteType} notes={unPinnedNotes} onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} />
+            <NoteList note={noteType} notes={unPinnedNotes}
+                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} videoId={videoId} />
         </div>
-    )
+    );
 }

@@ -21,18 +21,19 @@ _createDemoNotes()
 
 function _createDemoNotes() {
     const demoNotes = []
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids', 'NotePaint']
+    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos']
     const colors = [
         '#00b0ff', '#00c853', '#01579b', '#7c4dff',
         '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
     ]
-
+    // 'NotePaint'
     for (let i = 0; i < 5; i++) {
         const demoNote = {
+            videoId: null,
             id: utilService.makeId(),
             type: utilService.getRandomType(noteTypes),
             createdAt: utilService.formatDate(Date.now()),
-            isPinned: utilService.getRandomBoolean(),
+            isPinned: false,//utilService.getRandomBoolean(),
             style: {
                 backgroundColor: '#ffffff' //utilService.getRandomColorFromArray(colors)
             },
@@ -58,7 +59,7 @@ function _createDemoNotes() {
     }
 }
 
-function createNote(type, title, txt, todos) {
+function createNote(type, title, txt, todos, videoId = '') {
     return new Promise((resolve, reject) => {
         try {
             // Define a list of colors to randomly assign to the note's background
@@ -72,10 +73,11 @@ function createNote(type, title, txt, todos) {
 
             // Create a new note object with the specified type, title, and content
             const newNote = {
+                videoId: videoId,
                 id: utilService.makeId(), // Generate a unique ID for the note
                 type: type, // Note type (e.g., 'NoteTxt', 'NoteTodos', etc.)
                 createdAt: utilService.formatDate(Date.now()), // Set the creation date of the note
-                isPinned: utilService.getRandomBoolean(), // Randomly determine if the note is pinned
+                isPinned: false,//utilService.getRandomBoolean(), // Randomly determine if the note is pinned
                 style: {
                     backgroundColor: '#ffffff'  // Randomly assign a background color //utilService.getRandomColorFromArray(colors)
                 },

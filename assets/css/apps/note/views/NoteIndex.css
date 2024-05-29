@@ -171,3 +171,16 @@
     height: 5px;
     background-color: #808080;
 }
+
+
+.input-container {
+    position: relative;
+}
+
+.input-new-note {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 150px; /* Adjust based on the width of your video preview */
+}
+
+

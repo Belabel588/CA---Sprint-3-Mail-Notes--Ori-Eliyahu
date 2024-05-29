@@ -43,7 +43,7 @@ export function NoteTodos({ note, onNoteUpdate }) {
 
     return (
         <div className="todo">
-            <h1>ITS A TODOS</h1>
+            <h1>Todo list:</h1>
             <section className="note-todo-title">{note.info.title}</section>
             <ul>
                 {todos.map((todo, index) => (
