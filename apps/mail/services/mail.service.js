@@ -26,6 +26,7 @@ const loggedinUser = {
 
 function query() {
   return storageService.query(MAIL_KEY)
+
 }
 
 function get(mailId) {
@@ -42,9 +43,10 @@ function save(mail) {
     console.log(mail);
     return storageService.post(MAIL_KEY, mail)
   } else {
-    return storageService.put(MAIL_KEY, mail)
   }
+  return storageService.put(MAIL_KEY, mail)
 }
+
 
 function addMail(mail) {
   return storageService.post(MAIL_KEY, mail)
@@ -53,7 +55,7 @@ function addMail(mail) {
 
 
 
-_createMails()
+// _createMails()
 
 
 
@@ -106,5 +108,5 @@ function _createMails() {
     ]
     utilService.saveToStorage(MAIL_KEY, mails)
   }
-
+  return mails
 }

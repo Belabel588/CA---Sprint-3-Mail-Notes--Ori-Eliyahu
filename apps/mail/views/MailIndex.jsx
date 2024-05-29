@@ -18,17 +18,11 @@ export function MailIndex() {
 
 
     useEffect(() => {
-        loadMails()
-        // console.log(mails)
-    }, [])
-
-    function loadMails() {
         mailService.query()
             .then(mails => {
                 setMails(mails)
-                // console.log(mails)
             })
-    }
+    }, [])
 
     function onSearch(ev) {
         setSearch(ev.target.value)
