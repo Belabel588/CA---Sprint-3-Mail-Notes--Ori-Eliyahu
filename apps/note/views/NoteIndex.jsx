@@ -38,7 +38,7 @@ export function NoteIndex() {
 
     const images = getImageDataUrls()
     const containerRef = useRef(null)
-
+    const imageInputRef = useRef(null)
 
 
     useEffect(() => {
@@ -84,8 +84,12 @@ export function NoteIndex() {
 
 
 
-    function handleButtonClick(newNoteType) {
+    function handleButtonClick(newNoteType, event) {
         setNoteType(newNoteType)
+        if (newNoteType === 'NoteImg') {
+            setIsClicked(false)
+            console.log(event);
+        }
         setIsClicked(true)
         handleFocus()
         clearInputs()
@@ -177,6 +181,13 @@ export function NoteIndex() {
 
         setIsClicked(false)
         setIsFocused(false)
+
+        if (noteType === 'NoteImg') {
+            console.log('loading an img');
+            setNoteType('NoteTxt')
+            return
+        }
+
 
         if (noteType === 'NoteTodos') {
             if (inputs.todos[0].txt === '') {
@@ -308,7 +319,8 @@ export function NoteIndex() {
                     return
                 }
                 console.log('original note:', note)
-                const newNote = noteService.createNote(note.type, note.title, note.txt, note.info.todos, note.videoId)
+                const newNote = noteService.createNote(note.type, note.info.title, note.info.txt, note.info.todos, note.videoId)
+                .then((res)=>noteService.addNote(res))
                 setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
                 if (!newNote) {
                     console.error('Error: Failed to create new note')
@@ -346,6 +358,11 @@ export function NoteIndex() {
     }
 
 
+    function handleImgClick() {
+
+        console.log('loading img');
+    }
+
     // Filter the pinned / unpinned notes
     const pinnedNotes = notes.filter(note => note.isPinned)
     const unPinnedNotes = notes.filter(note => !note.isPinned)
@@ -358,7 +375,13 @@ export function NoteIndex() {
             <div className="text-inputs" ref={containerRef}>
                 <div className="note-add-inputs">
                     <div className="input-container">
-                        {isFocused && (
+                        {noteType === 'noteImg' && (
+                            <div>
+
+                            </div>
+                        )}
+
+                        {(isFocused && noteType !== 'NoteImg') && (
                             <input
                                 className="input-new-title"
                                 type="text"
@@ -395,9 +418,22 @@ export function NoteIndex() {
                         )}
                         {!isClicked && (
                             <div className={'actions'}>
-                                <button className="btn-new-img" onClick={(e) => { e.stopPropagation(); handleButtonClick('NoteImg'); }}>
-                                    <img src={images.noteImg} alt="" />
-                                </button>
+                                <div className="btn-new-img">
+                                    <input
+                                        ref={imageInputRef}
+                                        type="file"
+                                        id="file-input"
+                                        style={{ display: 'none' }}
+                                        onClick={handleImgClick}
+                                    />
+                                    <label htmlFor="file-input" onClick={(e) => e.stopPropagation()}>
+                                        <img
+                                            src={images.noteImg}
+                                            alt="Upload"
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    </label>
+                                </div>
                                 <button className="btn-new-todos" onClick={(e) => { e.stopPropagation(); handleButtonClick('NoteTodos'); }}>
                                     <img src={images.todoImg} alt="" />
                                 </button>

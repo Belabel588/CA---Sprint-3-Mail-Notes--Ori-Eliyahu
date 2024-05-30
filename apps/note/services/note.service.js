@@ -151,7 +151,7 @@ function getDefaultFilter(filterBy = { type: '', isPinned: 0, search: '' }) {
 
 
 function addNote(note) {
-    console.log('the note is being added to book : ', note)
+    console.log('the note is being added  : ', note)
     return storageService.put(NOTES_KEY, note)
         .then((note) => {
             console.log('adding note...')

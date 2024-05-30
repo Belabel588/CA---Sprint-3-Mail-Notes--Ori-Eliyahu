@@ -17,8 +17,6 @@ export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, to
     }
 
     function changeColor(event, note) {
-        // console.log(event.target.value);
-        // console.log(note);
         onChangeColor(event.target.value, note.id)
     }
 
@@ -28,6 +26,8 @@ export function NoteList({ notes, onRemove, handleNoteUpdate, getUpdatedNote, to
                 <li key={note.id} className={`note-item`} style={{ backgroundColor: note.style.backgroundColor }}>
                     <NotePreview note={note} noteType={note.type} onNoteUpdate={handleNoteUpdate} videoId={note.videoId} />
                     <div className="actions-note">
+                        
+
                         <input onChange={(event) => changeColor(event, note)} type="color" className={'color-picker-input'} value={note.style.backgroundColor} />
                         <button onClick={() => copyNote(note.id)}>
                             <img className="copy-img" src={imgs.copyFileBlack} alt="" />
