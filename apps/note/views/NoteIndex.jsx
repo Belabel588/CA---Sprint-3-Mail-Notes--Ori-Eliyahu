@@ -35,6 +35,7 @@ export function NoteIndex() {
         ]
     })
 
+    console.log(notes);
 
     const images = getImageDataUrls()
     const containerRef = useRef(null)
@@ -295,18 +296,31 @@ export function NoteIndex() {
             .then(note => {
                 if (!note) {
                     console.error('Note not found:', noteId)
-                } else {
-                    setNotes(prevNotes =>
-                        prevNotes.map(note =>
-                            note.id === noteId ? { ...note, isPinned: !note.isPinned } : note
-                        )
-                    )
+                    return
                 }
+  
+                const updatedNote = { ...note, isPinned: !note.isPinned }
+ 
+                noteService.save(updatedNote)
+                    .then(() => {
+                        
+                        setNotes(prevNotes =>
+                            prevNotes.map(note =>
+                                note.id === noteId ? updatedNote : note
+                            )
+                        )
+                        showSuccessMsg(`Note ${noteId} pin status updated successfully`)
+                    })
+                    .catch(error => {
+                        console.error('Error saving note:', error)
+                        showErrorMsg(`Failed to update pin status for note ${noteId}`)
+                    })
             })
             .catch(error => {
                 console.error('Error fetching note:', error)
             })
     }
+    
 
 
 
@@ -320,7 +334,10 @@ export function NoteIndex() {
                 }
                 console.log('original note:', note)
                 const newNote = noteService.createNote(note.type, note.info.title, note.info.txt, note.info.todos, note.videoId)
-                .then((res)=>noteService.addNote(res))
+                .then((res)=>{
+                    
+                    noteService.addNote(res)}
+                )
                 setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
                 if (!newNote) {
                     console.error('Error: Failed to create new note')
