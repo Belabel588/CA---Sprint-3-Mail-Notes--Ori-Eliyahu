@@ -27,8 +27,9 @@ export function App() {
                 {/* MAIL ROUTES  */}
                 <Route path="/mail" element={<MailIndex />}>
                     <Route path="/mail/compose" element={<MailCompose />} />
-                    {/* <Route path="/mail/inbox" element={<MailList />} /> */}
                 </Route>
+
+
                 <Route path="/mail/:mailId" element={<MailPage />} />
                 <Route path="/mail/sent" element={<MailSentList />} />
 

@@ -13,16 +13,25 @@ html {
   gap: 0.3em;
 }
 
+
+.inbox-container,
+.sent-container {
+  display: block;
+
+}
+
 .inbox-container.active {
   padding: 0.4em;
   background-color: #d3e3fd;
   border-radius: 0px 10px 10px 0px;
+  text-decoration: none;
 }
 
 .sent-container.active {
   padding: 0.4em;
   background-color: #d3e3fd;
   border-radius: 0px 10px 10px 0px;
+  text-decoration: none;
 }
 
 
