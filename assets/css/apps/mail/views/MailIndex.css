@@ -46,11 +46,14 @@ img {
   overflow: hidden;
   width: 720px;
   border: 0;
+  /* box-shadow: 0 0 20px 0px #ccc; */
 }
 
 .mail-filter-search:focus {
   background-color: white;
   transition: 0.1s;
+  outline: none;
+  box-shadow: 0 0 3px 0px #ccc;
 }
 
 .mail-filter-search::placeholder {

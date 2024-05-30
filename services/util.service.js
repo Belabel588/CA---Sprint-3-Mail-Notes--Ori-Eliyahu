@@ -5,6 +5,7 @@ export const utilService = {
     getRandomColor,
     padNum,
     getDayName,
+    getDayNumber,
     getMonthName,
     getRandomColorFromArray,
     getRandomBoolean,
@@ -13,7 +14,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     isLink,
-    extractVideoId
+    extractVideoId,
+    formatMailDate
 }
 
 console.log('iam in util');
@@ -57,18 +59,36 @@ function getRandomColor() {
     }
     return color
 }
-
+function getDayNumber(date) {
+    date = new Date(date);
+    return date.getDate();
+}
 function getDayName(date, locale) {
     date = new Date(date)
     return date.toLocaleDateString(locale, { weekday: 'long' })
 }
-
-
 function getMonthName(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
-    ]
-    return monthNames[date.getMonth()]
+    ];
+    // Get the full month name
+    const monthName = monthNames[date.getMonth()];
+    // Return the first 3 letters
+    return monthName.substring(0, 3);
+}
+
+// function getMonthName(date) {
+//     const monthNames = ["January", "February", "March", "April", "May", "June",
+//         "July", "August", "September", "October", "November", "December"
+//     ]
+//     return monthNames[date.getMonth()]
+// }
+function formatMailDate(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${day}/${month}/${year}`;
 }
 
 function formatDate(timestamp) {

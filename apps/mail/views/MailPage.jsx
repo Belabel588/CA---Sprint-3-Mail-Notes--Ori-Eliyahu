@@ -13,11 +13,11 @@ export function MailPage() {
 
   const [mail, setMail] = useState(null)
   const imgs = getMailImageDataUrls()
-  console.log(imgs)
+  // console.log(imgs)
 
   function loadMail() {
-    mailService.getMailById(mailId).then(mail => {
-      console.log(mail)
+    mailService.get(mailId).then(mail => {
+      // console.log(mail)
       setMail(mail)
     })
   }

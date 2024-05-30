@@ -60,13 +60,13 @@
 }
 
 
-#mail-to-input {
+#to {
   height: 1.625em;
   border-radius: 10px;
   border: 0;
 }
 
-#mail-to-input:focus {
+#to:focus {
   outline: none;
 }
 
@@ -82,21 +82,21 @@
 }
 
 
-#mail-subject-input {
+#subject {
   height: 1.625em;
   border-radius: 10px;
   border: 0;
 }
 
-#mail-subject-input:focus {
+#subject:focus {
   outline: none;
 }
 
-#mail-text-input {
+#body {
   border: none;
 }
 
-#mail-text-input:focus {
+#body:focus {
   outline: none;
 }
 

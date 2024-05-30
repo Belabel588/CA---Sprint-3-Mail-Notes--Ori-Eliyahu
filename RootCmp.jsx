@@ -8,7 +8,8 @@ import { MailIndex } from "./apps/mail/views/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/views/NoteIndex.jsx"
 import { MailPage } from "./apps/mail/views/MailPage.jsx"
 import { MailCompose } from "./apps/mail/cmps/MailCompose.jsx"
-
+import { MailSentList } from "./apps/mail/views/MailSentList.jsx"
+import { MailBin } from "./apps/mail/views/MailBIn.jsx"
 
 
 export function App() {
@@ -18,13 +19,22 @@ export function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/note" element={<NoteIndex />} />
 
+
+
+
+                {/* MAIL ROUTES  */}
                 <Route path="/mail" element={<MailIndex />}>
                     <Route path="/mail/compose" element={<MailCompose />} />
                 </Route>
 
-                <Route path="/note" element={<NoteIndex />} />
+
+                <Route path="/mail/sent" element={<MailSentList />} />
+                <Route path="/mail/bin" element={<MailBin />} />
                 <Route path="/mail/:mailId" element={<MailPage />} />
+
+
             </Routes>
         </section>
     </Router >
