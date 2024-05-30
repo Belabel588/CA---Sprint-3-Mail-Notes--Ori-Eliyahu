@@ -21,12 +21,13 @@ _createDemoNotes()
 
 function _createDemoNotes() {
     const demoNotes = []
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos']
+    const noteTypes = ['NoteTxt', 'NoteTodos']
     const colors = [
         '#00b0ff', '#00c853', '#01579b', '#7c4dff',
         '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
     ]
     // 'NotePaint'
+    //'NoteImg'
     for (let i = 0; i < 5; i++) {
         const demoNote = {
             videoId: null,
