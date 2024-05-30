@@ -21,7 +21,7 @@ export function MailIndex() {
     useEffect(() => {
         mailService.query()
             .then(mails => {
-                console.log(mails);
+                // console.log(mails);
                 setMails(mails)
             })
     }, [mails])
@@ -39,6 +39,12 @@ export function MailIndex() {
             })
     }
 
+    function onSendToBin(mailId) {
+        mailService.put(mailId)
+            .then(() => {
+                setMails(prevMails => prevMails.map(mail => mail.id === mailId ? mail.status = 'bin' : mail))
+            })
+    }
 
     function onMarkAsRead(updatedMail) {
         // console.log(updatedMail)
@@ -64,6 +70,9 @@ export function MailIndex() {
     function handleSentClick() {
         setView('sent')
     }
+    function handleBinClick() {
+        setView('bin')
+    }
 
 
 
@@ -80,10 +89,12 @@ export function MailIndex() {
 
 
                 {/* {console.log(mails)} */}
-                {view === 'inbox' ?
-                    <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} /> :
-                    < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} />
-                }
+                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />}
+                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} />}
+                {view === 'bin' && < MailBin className="mails-list" />}
+
+
+
 
             </div>
             <Outlet />

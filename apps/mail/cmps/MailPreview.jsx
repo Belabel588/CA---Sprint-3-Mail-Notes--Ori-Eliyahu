@@ -31,6 +31,10 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   }
 
 
+  // function handleSendToBin(){
+
+  // }
+
   function handleMailDeletion() {
     onDeleteMail(mail.id)
   }

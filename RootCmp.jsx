@@ -9,7 +9,7 @@ import { NoteIndex } from "./apps/note/views/NoteIndex.jsx"
 import { MailPage } from "./apps/mail/views/MailPage.jsx"
 import { MailCompose } from "./apps/mail/cmps/MailCompose.jsx"
 import { MailSentList } from "./apps/mail/views/MailSentList.jsx"
-
+import { MailBin } from "./apps/mail/views/MailBIn.jsx"
 
 
 export function App() {
@@ -30,8 +30,9 @@ export function App() {
                 </Route>
 
 
-                <Route path="/mail/:mailId" element={<MailPage />} />
                 <Route path="/mail/sent" element={<MailSentList />} />
+                <Route path="/mail/bin" element={<MailBin />} />
+                <Route path="/mail/:mailId" element={<MailPage />} />
 
 
             </Routes>
