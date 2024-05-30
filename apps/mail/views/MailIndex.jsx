@@ -13,6 +13,7 @@ import { MailSentList } from '../views/MailSentList.jsx'
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [search, setSearch] = useState('')
+    const [view, setView] = useState('inbox')
     // console.log(search)
     const imgs = getMailImageDataUrls()
 
@@ -20,6 +21,7 @@ export function MailIndex() {
     useEffect(() => {
         mailService.query()
             .then(mails => {
+                console.log(mails);
                 setMails(mails)
             })
     }, [])
@@ -54,9 +56,15 @@ export function MailIndex() {
             })
     }
 
-    console.log(mails);
-    const sentMails = mails.filter(mail => mail.status === 'sent')
-    console.log(sentMails);
+    function handleInboxClick() {
+        setView('inbox')
+    }
+
+
+    function handleSentClick() {
+        setView('sent')
+    }
+
 
 
     // ! HTML
@@ -67,12 +75,14 @@ export function MailIndex() {
             <MailHeader onSearch={onSearch} />
 
             <div className="mails-boxes">
+                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} />
 
-                <SideBar className="side-bar" mails={mails} />
-                <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
-                <MailSentList className="mails-list" mails={sentMails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
-                {/* <MailSentList mails={mails} /> */}
 
+
+                {view === 'inbox' ?
+                    <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} /> :
+                    <MailSentList className="mails-list" mails={mails} />
+                }
 
             </div>
             <Outlet />

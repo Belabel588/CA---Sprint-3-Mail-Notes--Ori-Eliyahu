@@ -13,6 +13,7 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
   const [newMail, setNewMail] = useState(mail)
   const formattedDate = utilService.formatMailDate(mail.sentAt)
   const imgs = getMailImageDataUrls()
+  const [showActions, setShowActions] = useState(false)
 
 
 
@@ -51,13 +52,23 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
     onMarkAsUnread(updatedMail)
   }
 
+  function handleShowActions() {
+    setShowActions(true)
+  }
+
+  function handleUnshowActions() {
+    setShowActions(false)
+  }
+
 
   return (
     <table>
       <tbody className="mails-container">
 
 
-        <tr className={`mail-card ${newMail.isRead ? 'read' : ''}`}>
+        <tr onMouseEnter={handleShowActions}
+          onMouseLeave={handleUnshowActions}
+          className={`mail-card ${newMail.isRead ? 'read' : ''}`}>
 
           <div className="mails-info" onClick={onOpenMail}>
 
@@ -73,14 +84,19 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
 
           <div className="mails-time-actions">
 
+
             {/* <div className="actions-container"> */}
 
-            <td className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ?
-              <button onClick={markAsUnread} className="read-btn"><img className="read-icon" src={imgs.readMailImg} alt="" /></button> :
-              <button onClick={markAsRead} className="unread-btn"><img className="unread-icon" src={imgs.unreadMailImg} alt="" /></button>}</button></td>
-            {/* </div> */}
+            {showActions && (
 
-            <div className="time-container">
+              <td
+                className="actions"><button className="delete-btn" onClick={handleMailDeletion}><img className="delete-icon" src={imgs.deleteImg} alt="" /></button><button className="unread-btn">{newMail.isRead ?
+                  <button onClick={markAsUnread} className="read-btn"><img className="read-icon" src={imgs.readMailImg} alt="" /></button> :
+                  <button onClick={markAsRead} className="unread-btn"><img className="unread-icon" src={imgs.unreadMailImg} alt="" /></button>}</button>
+              </td>
+            )}
+
+            <div className={`time-container ${showActions ? 'hidden' : ''}`}>
               <td className="sent-time">{formattedDate}</td>
             </div>
 

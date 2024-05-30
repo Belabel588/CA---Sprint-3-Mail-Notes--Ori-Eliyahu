@@ -6,7 +6,7 @@ const { Link, NavLink } = ReactRouterDOM
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
-export function SideBar({ mails }) {
+export function SideBar({ mails, onInboxClick, onSentClick }) {
   const [unreadMails, setUnreadMails] = useState([])
   const imgs = getMailImageDataUrls()
   // const navigate = useNavigate()
@@ -38,7 +38,7 @@ export function SideBar({ mails }) {
 
 
       <NavLink to='/mail' className="inbox-container">
-        <div className="inbox-box">
+        <div className="inbox-box" onClick={onInboxClick}>
 
           <div className="inbox-img-container">
             <img className="inbox-img" src={imgs.inboxImg} alt="" />
@@ -57,7 +57,7 @@ export function SideBar({ mails }) {
 
 
       <NavLink to='/mail/sent' className="sent-container">
-        <div className="sent-box">
+        <div className="sent-box" onClick={onSentClick}>
 
           <div className="sent-img-container">
             <img className="sent-img" src={imgs.sendImg} alt="" />
