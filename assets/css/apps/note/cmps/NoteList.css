@@ -2,13 +2,13 @@
 .note-list {
     grid-column: 2/3;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     /* Updated grid settings */
     list-style-type: none;
 }
 
 .note-item {
-    width: fit-content;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -106,10 +106,14 @@
 
 .actions-note button {
     border: none;
-    background-color: #f8f5f5;
+    background-color: #f8f5f500;
     cursor: pointer;
 }
 
 .todo ul li {
     list-style: none;
+}
+
+.copy-img{
+    width: 2em;
 }
