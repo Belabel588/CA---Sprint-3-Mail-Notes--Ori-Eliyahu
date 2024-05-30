@@ -21,6 +21,10 @@
     overflow-y: auto;
 }
 
+.note-item::-webkit-scrollbar{
+    display: none;
+}
+
 /* Adjusting min-width to be more flexible */
 .note-item {
     min-width: 200px;
@@ -76,11 +80,15 @@
     text-decoration: line-through;
 }
 
-.note-item .actions-note button {
+.note-item .actions-note button,
+.note-item .actions-note input {
+    
     display: none; /* Hide buttons initially */
 }
 
-.note-item:hover .actions-note button {
+.note-item:hover .actions-note button,
+.note-item:hover .actions-note input {
+    
     display: inline-block; /* Show buttons when hovering over note-item */
 }
 
@@ -115,5 +123,9 @@
 }
 
 .copy-img{
-    width: 2em;
+    width: 1.5em;
+}
+
+.color-picker-input{
+    width: 3em;
 }

@@ -274,6 +274,7 @@ export function NoteIndex() {
                 note.id === updatedNote.id ? updatedNote : note
             )
         )
+        noteService.save(updatedNote)
     }
 
 
@@ -296,6 +297,8 @@ export function NoteIndex() {
             })
     }
 
+
+
     function onCopyNote(noteId) {
         console.log('copying note with id:', noteId)
         noteService.get(noteId)
@@ -312,13 +315,36 @@ export function NoteIndex() {
                     return
                 }
                 console.log(newNote)
-                // setNotes(prevNotes => [...prevNotes, newNote]) // Add the new note to the existing notes array
             })
             .catch(error => {
                 console.error('Error copying note:', error)
             })
     }
-    
+
+
+    function onChangeColor(color, noteId) {
+        console.log('Selected color:', color);
+        console.log('Note ID:', noteId);
+        noteService.get(noteId)
+            .then(note => {
+                if (!note) {
+                    console.error('Error: Note is undefined');
+                    return;
+                }
+                const updatedNote = {
+                    ...note,
+                    style: {
+                        ...note.style,
+                        backgroundColor: color
+                    }
+                };
+                handleNoteUpdate(updatedNote)
+            })
+            .catch(error => {
+                console.error('Error updating note color:', error);
+            });
+    }
+
 
     // Filter the pinned / unpinned notes
     const pinnedNotes = notes.filter(note => note.isPinned)
@@ -400,11 +426,11 @@ export function NoteIndex() {
             </div>
             {/* Render NoteList with only pinned notes */}
             <NoteList note={noteType} notes={pinnedNotes}
-                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} copyNote={onCopyNote} />
+                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} copyNote={onCopyNote} onChangeColor={onChangeColor} />
             <span className="lists-seperation"></span>
             {/* Render NoteList with all notes */}
             <NoteList note={noteType} notes={unPinnedNotes}
-                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} copyNote={onCopyNote} />
+                onRemove={onRemoveNote} handleNoteUpdate={handleNoteUpdate} getUpdatedNote={getUpdatedNote} togglePin={togglePin} copyNote={onCopyNote} onChangeColor={onChangeColor} />
         </div>
     )
 }
