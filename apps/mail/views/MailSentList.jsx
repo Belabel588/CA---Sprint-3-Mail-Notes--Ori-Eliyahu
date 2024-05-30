@@ -7,7 +7,7 @@ import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
-export function MailSentList({ onInboxClick, onSentClick, onSearch, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {
+export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
   const [mails, setMails] = useState([])
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onDeleteMail
           {/* <h1 className="mail-list">Mails list</h1> */}
           {
             mails.filter((mail) => mail.status === 'sent').map(mail => <div key={mail.id} className="mail-preview">
-              <MailPreview mail={mail} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
+              <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />
             </div>)
           }
         </div>

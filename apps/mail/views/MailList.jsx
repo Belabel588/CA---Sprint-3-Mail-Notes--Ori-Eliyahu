@@ -1,7 +1,7 @@
 import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
-export function MailList({ mails, search, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {
+export function MailList({ mails, search, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
     // console.log(mails)
     if (!mails) return <div>Loading...</div>
 
@@ -13,7 +13,7 @@ export function MailList({ mails, search, onDeleteMail, onMarkAsRead, onMarkAsUn
                     mail.body.toLowerCase().includes(search) ||
                     mail.from.toLowerCase().includes(search)
             }).map(mail => <div key={mail.id} className="mail-preview">
-                <MailPreview mail={mail} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
+                <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />
             </div>)}
     </div>
 }

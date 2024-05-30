@@ -7,17 +7,17 @@ import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
-export function MailBin({ onInboxClick, onSentClick, onSearch, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {
+export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
   const [mails, setMails] = useState([])
 
   useEffect(() => {
     mailService.query()
       .then(mails => {
-        console.log(mails);
+        // console.log(mails);
         setMails(mails)
       })
   }, [])
-  console.log(mails);
+  // console.log(mails);
 
   return (
     <div className="mail-app">
@@ -29,11 +29,9 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onDeleteMail, onM
 
         <div className="mails-list-container">
 
-          {/* <h1 className="mail-list">Mails list</h1> */}
-          {
-            mails.filter((mail) => mail.status === 'bin').map(mail => <div key={mail.id} className="mail-preview">
-              <MailPreview mail={mail} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />
-            </div>)
+          {mails.filter((mail) => mail.status === 'bin').map(mail => <div key={mail.id} className="mail-preview">
+            <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />
+          </div>)
           }
         </div>
       </div>

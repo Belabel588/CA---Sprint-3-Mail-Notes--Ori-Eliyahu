@@ -7,6 +7,7 @@ import { SideBar } from '../cmps/SideBar.jsx'
 import { MailHeader } from '../cmps/MailHeader.jsx'
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
 import { MailSentList } from '../views/MailSentList.jsx'
+import { MailBin } from '../views/MailBIn.jsx'
 
 
 
@@ -32,19 +33,6 @@ export function MailIndex() {
         setSearch(ev.target.value)
     }
 
-    function onDeleteMail(mailId) {
-        mailService.remove(mailId)
-            .then(() => {
-                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
-            })
-    }
-
-    function onSendToBin(mailId) {
-        mailService.put(mailId)
-            .then(() => {
-                setMails(prevMails => prevMails.map(mail => mail.id === mailId ? mail.status = 'bin' : mail))
-            })
-    }
 
     function onMarkAsRead(updatedMail) {
         // console.log(updatedMail)
@@ -56,6 +44,21 @@ export function MailIndex() {
     }
 
     function onMarkAsUnread(updatedMail) {
+        mailService.put(updatedMail)
+            .then(() => {
+                setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+            })
+    }
+
+    function onDeleteMail(mailId) {
+        mailService.remove(mailId)
+            .then(() => {
+                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
+            })
+    }
+
+
+    function onSendToBin(updatedMail) {
         mailService.put(updatedMail)
             .then(() => {
                 setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
@@ -84,14 +87,14 @@ export function MailIndex() {
             <MailHeader onSearch={onSearch} />
 
             <div className="mails-boxes">
-                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} />
+                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} onBinClick={handleBinClick} />
 
 
 
                 {/* {console.log(mails)} */}
-                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} />}
-                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} />}
-                {view === 'bin' && < MailBin className="mails-list" />}
+                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
+                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
+                {view === 'bin' && < MailBin className="mails-list" onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
 
 
 
