@@ -2,6 +2,8 @@ import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
 export function MailList({ mails, search, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {
+    if (!mails) return <div>Loading...</div>
+
     return <div className="mails-list-container">
         <h1 className="mail-list">Mails list</h1>
         {mails.filter((mail) => mail.status === 'inbox')

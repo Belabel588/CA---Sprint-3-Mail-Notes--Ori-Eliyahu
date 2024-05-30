@@ -10,7 +10,8 @@ table {
 
 .mail-card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  padding: 0.3em;
   /* justify-items: center; */
 
   /* align-items: center; */
@@ -25,12 +26,19 @@ table {
 }
 
 .mail-subject-body-container {
-  width: 200%;
+  width: 100%;
 }
 
 .mails-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.mail-sender-container {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
 }
 
 /* 
@@ -173,4 +181,14 @@ tr:hover {
 
 .hidden {
   display: none;
+}
+
+.star-icon {
+  height: 1.8em;
+  ;
+}
+
+.star-btn {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
 }

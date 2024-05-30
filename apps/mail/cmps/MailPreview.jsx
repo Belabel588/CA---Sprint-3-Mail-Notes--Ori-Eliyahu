@@ -73,7 +73,14 @@ export function MailPreview({ mail, onDeleteMail, onMarkAsRead, onMarkAsUnread }
           <div className="mails-info" onClick={onOpenMail}>
 
             <div className="mail-sender-container">
-              <td className="mail-sender">{mail.from}</td>
+
+              <div>
+                <button className="star-btn" ><img className="star-icon" src={imgs.starImg} alt="" /></button>
+              </div>
+
+              <div>
+                <td className="mail-sender">{mail.from}</td>
+              </div>
             </div>
 
             <div className="mail-subject-body-container">
