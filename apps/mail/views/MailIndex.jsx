@@ -24,7 +24,7 @@ export function MailIndex() {
                 console.log(mails);
                 setMails(mails)
             })
-    }, [])
+    }, [mails])
 
 
 
@@ -79,9 +79,10 @@ export function MailIndex() {
 
 
 
+                {/* {console.log(mails)} */}
                 {view === 'inbox' ?
                     <MailList className="mails-list" mails={mails} search={search} onDeleteMail={onDeleteMail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} /> :
-                    <MailSentList className="mails-list" mails={mails} />
+                    < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} />
                 }
 
             </div>

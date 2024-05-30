@@ -2,6 +2,7 @@ import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
 export function MailList({ mails, search, onDeleteMail, onMarkAsRead, onMarkAsUnread }) {
+    console.log(mails)
     if (!mails) return <div>Loading...</div>
 
     return <div className="mails-list-container">

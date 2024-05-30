@@ -14,6 +14,7 @@ export function MailCompose() {
 
 
   const [sentMail, setSentMail] = useState({
+    from: 'Me',
     subject: '',
     body: '',
     sentAt: new Date(),
