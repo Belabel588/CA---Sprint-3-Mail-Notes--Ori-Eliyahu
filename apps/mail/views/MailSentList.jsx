@@ -9,6 +9,7 @@ import { MailPreview } from '../cmps/MailPreview.jsx'
 
 export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
   const [mails, setMails] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     mailService.query()
@@ -18,6 +19,10 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
       })
   }, [])
   // console.log(mails);
+
+  function onSearch(ev) {
+    setSearch(ev.target.value)
+  }
 
   function onSendToBin(updatedMail) {
     mailService.put(updatedMail)
@@ -38,9 +43,14 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
 
           {/* <h1 className="mail-list">Mails list</h1> */}
           {
-            mails.filter((mail) => mail.status === 'sent').map(mail => <div key={mail.id} className="mail-preview">
-              <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />
-            </div>)
+            mails.filter((mail) => mail.status === 'sent')
+              .filter((mail) => {
+                return search.toLowerCase() === '' ? mail : mail.subject.toLowerCase().includes(search.toLowerCase()) ||
+                  mail.body.toLowerCase().includes(search.toLowerCase()) ||
+                  mail.from.toLowerCase().includes(search.toLowerCase())
+              }).map(mail => <div key={mail.id} className="mail-preview">
+                <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />
+              </div>)
           }
         </div>
       </div>

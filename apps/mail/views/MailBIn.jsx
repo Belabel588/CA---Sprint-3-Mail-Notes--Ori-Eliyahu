@@ -9,6 +9,7 @@ import { MailPreview } from '../cmps/MailPreview.jsx'
 
 export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread }) {
   const [mails, setMails] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     mailService.query()
@@ -17,6 +18,12 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
         setMails(mails)
       })
   }, [])
+
+
+  function onSearch(ev) {
+    setSearch(ev.target.value)
+  }
+
 
   function onDeleteMail(mailId) {
     mailService.remove(mailId)
@@ -36,9 +43,14 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
 
         <div className="mails-list-container">
 
-          {mails.filter((mail) => mail.status === 'bin').map(mail => <div key={mail.id} className="mail-preview">
-            <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onDeleteMail={onDeleteMail} />
-          </div>)
+          {mails.filter((mail) => mail.status === 'bin')
+            .filter((mail) => {
+              return search.toLowerCase() === '' ? mail : mail.subject.toLowerCase().includes(search.toLowerCase()) ||
+                mail.body.toLowerCase().includes(search.toLowerCase()) ||
+                mail.from.toLowerCase().includes(search.toLowerCase())
+            }).map(mail => <div key={mail.id} className="mail-preview">
+              <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onDeleteMail={onDeleteMail} />
+            </div>)
           }
         </div>
       </div>
