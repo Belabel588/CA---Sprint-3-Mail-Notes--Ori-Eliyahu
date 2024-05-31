@@ -24,6 +24,23 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
     setSearch(ev.target.value)
   }
 
+  function onMarkAsRead(updatedMail) {
+    // console.log(updatedMail)
+    // console.log(mails)
+    mailService.put(updatedMail)
+      .then(() => {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+      })
+  }
+
+  function onMarkAsUnread(updatedMail) {
+    mailService.put(updatedMail)
+      .then(() => {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+      })
+  }
+
+
 
   function onDeleteMail(mailId) {
     mailService.remove(mailId)

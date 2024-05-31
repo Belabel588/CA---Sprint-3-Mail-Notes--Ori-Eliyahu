@@ -20,9 +20,28 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
   }, [])
   // console.log(mails);
 
+
+
   function onSearch(ev) {
     setSearch(ev.target.value)
   }
+
+  function onMarkAsRead(updatedMail) {
+    // console.log(updatedMail)
+    // console.log(mails)
+    mailService.put(updatedMail)
+      .then(() => {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+      })
+  }
+
+  function onMarkAsUnread(updatedMail) {
+    mailService.put(updatedMail)
+      .then(() => {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+      })
+  }
+
 
   function onSendToBin(updatedMail) {
     mailService.put(updatedMail)
