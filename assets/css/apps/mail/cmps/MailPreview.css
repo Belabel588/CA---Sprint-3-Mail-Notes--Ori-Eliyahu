@@ -56,6 +56,7 @@ table {
 
   gap: 1em;
   /* width: 60%; */
+  padding: 0.7em;
 }
 
 .actions {
@@ -184,11 +185,12 @@ tr:hover {
 }
 
 .star-icon {
-  height: 1.8em;
-  ;
+  height: 1.5em;
+  width: 1.5em;
 }
 
 .star-btn {
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  width: 2em;
 }
