@@ -33,9 +33,12 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
 
   function handleSendToBin() {
     const updatedMail = { ...newMail, status: 'bin' }
-    setNewMail(updatedMail)
-    mailService.put(updatedMail)
+    // setNewMail(updatedMail)
+    // mailService.put(updatedMail)
     onSendToBin(updatedMail)
+      .then(() => {
+        setNewMail(updatedMail)
+      })
   }
 
   function handleMailDeletion() {

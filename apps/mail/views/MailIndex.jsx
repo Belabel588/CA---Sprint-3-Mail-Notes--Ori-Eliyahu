@@ -58,13 +58,13 @@ export function MailIndex() {
     //         })
     // }
 
-
     function onSendToBin(updatedMail) {
         mailService.put(updatedMail)
             .then(() => {
                 setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
             })
     }
+
 
     function onMenuClick() {
         setIsClicked(!isClicked)
@@ -99,7 +99,7 @@ export function MailIndex() {
                 {/* {console.log(mails)} */}
                 {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} />}
                 {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} onSendToBin={onSendToBin} />}
-                {view === 'bin' && < MailBin className="mails-list" onSendToBin={onSendToBin} />}
+                {view === 'bin' && < MailBin className="mails-list" />}
 
 
 

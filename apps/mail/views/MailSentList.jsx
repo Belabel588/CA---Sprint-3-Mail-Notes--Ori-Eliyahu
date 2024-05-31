@@ -19,6 +19,13 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
   }, [])
   // console.log(mails);
 
+  function onSendToBin(updatedMail) {
+    mailService.put(updatedMail)
+      .then(() => {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+      })
+  }
+
   return (
     <div className="mail-app">
       <MailHeader onSearch={onSearch} />
