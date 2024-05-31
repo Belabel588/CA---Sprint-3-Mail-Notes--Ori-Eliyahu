@@ -21,18 +21,20 @@ _createDemoNotes()
 
 function _createDemoNotes() {
     const demoNotes = []
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids', 'NotePaint']
+    const noteTypes = ['NoteTxt', 'NoteTodos']
     const colors = [
         '#00b0ff', '#00c853', '#01579b', '#7c4dff',
         '#8d6e63', '#8e24aa', '#90a4ae', '#9fa8da', '#a142f4'
     ]
-
+    // 'NotePaint'
+    //'NoteImg'
     for (let i = 0; i < 5; i++) {
         const demoNote = {
+            videoId: null,
             id: utilService.makeId(),
             type: utilService.getRandomType(noteTypes),
             createdAt: utilService.formatDate(Date.now()),
-            isPinned: utilService.getRandomBoolean(),
+            isPinned: false,//utilService.getRandomBoolean(),
             style: {
                 backgroundColor: '#ffffff' //utilService.getRandomColorFromArray(colors)
             },
@@ -58,7 +60,7 @@ function _createDemoNotes() {
     }
 }
 
-function createNote(type, title, txt, todos) {
+function createNote(type, title, txt, todos, videoId = '') {
     return new Promise((resolve, reject) => {
         try {
             // Define a list of colors to randomly assign to the note's background
@@ -72,10 +74,11 @@ function createNote(type, title, txt, todos) {
 
             // Create a new note object with the specified type, title, and content
             const newNote = {
+                videoId: videoId,
                 id: utilService.makeId(), // Generate a unique ID for the note
                 type: type, // Note type (e.g., 'NoteTxt', 'NoteTodos', etc.)
                 createdAt: utilService.formatDate(Date.now()), // Set the creation date of the note
-                isPinned: utilService.getRandomBoolean(), // Randomly determine if the note is pinned
+                isPinned: false,//utilService.getRandomBoolean(), // Randomly determine if the note is pinned
                 style: {
                     backgroundColor: '#ffffff'  // Randomly assign a background color //utilService.getRandomColorFromArray(colors)
                 },
@@ -102,18 +105,14 @@ function createNote(type, title, txt, todos) {
 
 
 function query(filterBy = {}) {
-
-    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids']
+    const noteTypes = ['NoteImg', 'NoteTxt', 'NoteTodos', 'NoteVids'];
 
     console.log(filterBy)
     return storageService.query(NOTES_KEY)
         .then(notes => {
-            if (filterBy.title) {
-                const regExp = new RegExp(filterBy.title, 'i')
-                notes = notes.filter(note => regExp.test(note.info.title))
-            }
-            if (filterBy.isPinned) {
-                notes = notes.filter(note => note.isPinned === true)
+            if (filterBy.search) {
+                const regExp = new RegExp(filterBy.search, 'i')
+                notes = notes.filter(note => regExp.test(note.info.title) || regExp.test(note.info.txt))
             }
             if (filterBy.type) {
                 notes = notes.filter(note => noteTypes.includes(note.type))
@@ -122,10 +121,11 @@ function query(filterBy = {}) {
         })
 }
 
+
 function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
         .then(note => {
-            note = _setNextPrevNoteId(note)
+            // note = _setNextPrevNoteId(note)
             return note
         })
 }
@@ -146,15 +146,16 @@ function save(note) {
 }
 
 
-function getDefaultFilter(filterBy = { type: '', isPinned: 0, title: '' }) {
-    return { type: filterBy.type, isPinned: filterBy.isPinned, title: filterBy.title }
+function getDefaultFilter(filterBy = { type: '', isPinned: 0, search: '' }) {
+    return { type: filterBy.type, isPinned: filterBy.isPinned, search: filterBy.search }
 }
 
+
 function addNote(note) {
-    console.log('the note is being added to book : ', note);
+    console.log('the note is being added  : ', note)
     return storageService.put(NOTES_KEY, note)
         .then((note) => {
-            console.log('adding note...');
+            console.log('adding note...')
             console.log(note)
         })
 }

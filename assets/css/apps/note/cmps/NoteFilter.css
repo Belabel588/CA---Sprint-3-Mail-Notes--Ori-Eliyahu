@@ -3,7 +3,7 @@
 .filters {
     top: 7%;
     left: 25%;
-    width: 150%;
+    width: 100%;
     z-index: 1000;
     gap: 3em;
     /* Ensure it appears above other content */
@@ -29,7 +29,7 @@
 
 .filters .txt-filter {
     width: 80%;
-    height: 30px;
+    height: 3em;
     border-radius: 20px;
     background-color: #f8f5f5;
 }
