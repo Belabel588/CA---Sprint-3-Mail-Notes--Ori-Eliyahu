@@ -7,6 +7,7 @@
 
 @import './basics/base.css';
 @import './basics/helpers.css';
+
 /* @import './basics/layout.css'; */
 
 /* Views */
@@ -32,6 +33,9 @@
 @import './../css/apps/mail/cmps/MailList.css';
 /* @import './../css/apps/mail/cmps/MailSentList.css'; */
 @import './../css/apps/mail/cmps/SideBar.css';
-@import './../css/apps/mail/cmps/MailCompose.css'
+@import './../css/apps/mail/cmps/MailCompose.css';
 
 /* @import './apps/mail/cmps/MailList.css'; */
+
+/* mq */
+@import './setup/mq.css';

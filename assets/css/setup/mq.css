@@ -1,0 +1,129 @@
+/* PC/TV */
+
+@media screen and (min-width:1024px) {}
+
+
+/* Tablet */
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+
+
+
+  .mails-app-header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1.25em;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin-inline-start: 1em; */
+    margin-block-end: 1em;
+    /* width: 30%; */
+
+  }
+
+
+  .mail-input-container {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 65%;
+  }
+
+  .mail-filter-search {
+    font-size: 0.8125em;
+    line-height: 1.6875em;
+    text-align: start;
+    fill: #000000;
+    background-color: #eaf1fb;
+    border-radius: 1.5em;
+    height: 4.1em;
+    /* min-width: 21.875em; */
+    width: 50%;
+
+    /* max-width: 45em; */
+
+    /* height: 2.875em; */
+    padding: 1em 3.5em;
+    margin-inline-start: 1em;
+
+    /* margin-inline-end: 3.0625em; */
+    overflow: hidden;
+    /* width: 720px; */
+    border: 0;
+    /* box-shadow: 0 0 20px 0px #ccc; */
+  }
+
+
+  .search-btn {
+    position: absolute;
+    width: 2.8em;
+    border: 0;
+    top: 0.8em;
+    left: 11em;
+    background-color: #ffffff00;
+    outline: none;
+  }
+}
+
+/* Mobile */
+
+@media screen and (max-width:767px) {
+  .mails-app-header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1.25em;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin-inline-start: 1em; */
+    margin-block-end: 1em;
+    /* width: 30%; */
+
+  }
+
+
+  .mail-input-container {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 65%;
+  }
+
+  .mail-filter-search {
+    font-size: 0.8125em;
+    line-height: 1.6875em;
+    text-align: start;
+    fill: #000000;
+    background-color: #eaf1fb;
+    border-radius: 1.5em;
+    height: 4.1em;
+    /* min-width: 21.875em; */
+    width: 50%;
+
+    /* max-width: 45em; */
+
+    /* height: 2.875em; */
+    padding: 1em 3.5em;
+    margin-inline-start: 1em;
+
+    /* margin-inline-end: 3.0625em; */
+    overflow: hidden;
+    /* width: 720px; */
+    border: 0;
+    /* box-shadow: 0 0 20px 0px #ccc; */
+  }
+
+
+  .search-btn {
+    position: absolute;
+    width: 2.8em;
+    border: 0;
+    top: 0.8em;
+    left: 8em;
+    background-color: #ffffff00;
+    outline: none;
+  }
+}
