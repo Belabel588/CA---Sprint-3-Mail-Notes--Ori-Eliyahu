@@ -51,12 +51,12 @@ export function MailIndex() {
             })
     }
 
-    function onDeleteMail(mailId) {
-        mailService.remove(mailId)
-            .then(() => {
-                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
-            })
-    }
+    // function onDeleteMail(mailId) {
+    //     mailService.remove(mailId)
+    //         .then(() => {
+    //             setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
+    //         })
+    // }
 
 
     function onSendToBin(updatedMail) {
@@ -97,9 +97,9 @@ export function MailIndex() {
 
 
                 {/* {console.log(mails)} */}
-                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
-                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
-                {view === 'bin' && < MailBin className="mails-list" onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
+                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} />}
+                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} onSendToBin={onSendToBin} />}
+                {view === 'bin' && < MailBin className="mails-list" onSendToBin={onSendToBin} />}
 
 
 

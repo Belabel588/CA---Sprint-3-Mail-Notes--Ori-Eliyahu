@@ -7,7 +7,7 @@ import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailPreview } from '../cmps/MailPreview.jsx'
 
 
-export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
+export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread, onSendToBin }) {
   const [mails, setMails] = useState([])
 
   useEffect(() => {
@@ -17,6 +17,13 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
         setMails(mails)
       })
   }, [])
+
+  function onDeleteMail(mailId) {
+    mailService.remove(mailId)
+      .then(() => {
+        setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
+      })
+  }
   // console.log(mails);
 
   return (
