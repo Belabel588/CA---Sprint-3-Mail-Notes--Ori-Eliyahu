@@ -12,7 +12,8 @@
   .mails-app-header {
     display: flex;
     flex-direction: column;
-    position: relative;
+
+
     gap: 1.25em;
     /* justify-content: center; */
     align-items: center;
@@ -65,6 +66,52 @@
     background-color: #ffffff00;
     outline: none;
   }
+
+  .mails-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    gap: 2em;
+
+  }
+
+  .hidden {
+    display: block;
+  }
+
+  .menu-hidden {
+    display: none;
+  }
+
+  .menu-show {
+    display: block;
+  }
+
+  .inbox-container,
+  .sent-container {
+    display: block;
+    width: 20%;
+
+  }
+
+  .inbox-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 105.2%;
+  }
+
+  .sent-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 0px 10px 10px 0px;
+    text-decoration: none;
+    width: 105.2%;
+
+  }
 }
 
 /* Mobile */
@@ -93,7 +140,7 @@
   }
 
   .mail-filter-search {
-    font-size: 0.8125em;
+    font-size: 0.7125em;
     line-height: 1.6875em;
     text-align: start;
     fill: #000000;
@@ -101,7 +148,7 @@
     border-radius: 1.5em;
     height: 4.1em;
     /* min-width: 21.875em; */
-    width: 50%;
+    width: 70%;
 
     /* max-width: 45em; */
 
@@ -116,6 +163,16 @@
     /* box-shadow: 0 0 20px 0px #ccc; */
   }
 
+  .mails-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    gap: 2em;
+
+  }
+
 
   .search-btn {
     position: absolute;
@@ -125,5 +182,61 @@
     left: 8em;
     background-color: #ffffff00;
     outline: none;
+  }
+
+  .hidden {
+    display: block;
+  }
+
+  .menu-hidden {
+    display: none;
+  }
+
+  .menu-show {
+    display: block;
+  }
+
+  .inbox-container,
+  .sent-container {
+    display: block;
+    width: 20%;
+
+  }
+
+  .inbox-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 105.2%;
+  }
+
+  .sent-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10%;
+    text-decoration: none;
+    width: 105.2%;
+  }
+
+  .search-btn {
+    position: absolute;
+    width: 2.8em;
+    border: 0;
+    top: 0.8em;
+    left: 3.7em;
+    background-color: #ffffff00;
+    outline: none;
+  }
+
+  .mail-compose-container {
+    position: fixed;
+    right: 1.1em;
+    bottom: 40px;
+    box-shadow: 0 0 20px 0px #ccc;
+  }
+
+  #body {
+    width: 20%;
   }
 }

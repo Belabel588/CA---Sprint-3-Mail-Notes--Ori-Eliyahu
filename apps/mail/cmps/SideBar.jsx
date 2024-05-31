@@ -6,7 +6,7 @@ const { Link, NavLink } = ReactRouterDOM
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
-export function SideBar({ mails, onInboxClick, onSentClick, onBinClick }) {
+export function SideBar({ mails, onInboxClick, onSentClick, onBinClick, onMenuClick, isClicked }) {
   const [unreadMails, setUnreadMails] = useState([])
   const imgs = getMailImageDataUrls()
   // const navigate = useNavigate()
@@ -29,7 +29,7 @@ export function SideBar({ mails, onInboxClick, onSentClick, onBinClick }) {
   // }
 
   return (
-    <div className="side-bar-container">
+    <div className={`side-bar-container ${isClicked ? 'menu-hidden' : 'menu-show'} `}>
 
       <div className="compose-mail-btn">
         <Link to='/mail/compose' className="compose-mail"><img className="pen-img" src={imgs.penImg} alt="" />Compose</Link>

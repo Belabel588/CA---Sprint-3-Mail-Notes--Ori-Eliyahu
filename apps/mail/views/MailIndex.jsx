@@ -15,6 +15,7 @@ export function MailIndex() {
     const [mails, setMails] = useState([])
     const [search, setSearch] = useState('')
     const [view, setView] = useState('inbox')
+    const [isClicked, setIsClicked] = useState(false)
     // console.log(search)
     const imgs = getMailImageDataUrls()
 
@@ -65,6 +66,10 @@ export function MailIndex() {
             })
     }
 
+    function onMenuClick() {
+        setIsClicked(!isClicked)
+    }
+
     function handleInboxClick() {
         setView('inbox')
     }
@@ -84,10 +89,10 @@ export function MailIndex() {
     return (
 
         <div className="mail-app">
-            <MailHeader onSearch={onSearch} />
+            <MailHeader onSearch={onSearch} isClicked={isClicked} onMenuClick={onMenuClick} />
 
             <div className="mails-boxes">
-                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} onBinClick={handleBinClick} />
+                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} onBinClick={handleBinClick} isClicked={isClicked} onMenuClick={onMenuClick} />
 
 
 

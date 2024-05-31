@@ -15,6 +15,7 @@ export function getMailImageDataUrls() {
     sendImg: 'assets/mail-imgs/send.png',
     starImg: 'assets/mail-imgs/star.png',
     loadingImg: 'assets/mail-imgs/loading.svg',
+    menuImg: 'assets/mail-imgs/menu.png'
 
   }
 }

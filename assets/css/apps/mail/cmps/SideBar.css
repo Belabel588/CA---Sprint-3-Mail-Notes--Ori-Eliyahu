@@ -70,7 +70,7 @@ html {
   background-color: #c2e7ff;
   margin-block-end: 2em;
   margin-inline-start: 1em;
-  width: 80%;
+  min-width: 6em;
 }
 
 .compose-mail:hover {

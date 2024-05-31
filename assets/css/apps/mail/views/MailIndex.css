@@ -9,6 +9,7 @@ html {
 
 img {
   width: 100%;
+  object-fit: fill;
 }
 
 
@@ -28,7 +29,10 @@ img {
 
 }
 
-
+.mail-logo-burger {
+  display: flex;
+  flex-direction: row;
+}
 
 .mail-filter-search {
   font-size: 0.8125em;
@@ -99,4 +103,14 @@ img {
   left: 1.8em;
   background-color: #ffffff00;
   outline: none;
+}
+
+.menu-btn {
+  border: 0;
+  background-color: #ffffff00;
+  outline: none;
+}
+
+.menu-icon {
+  width: 2.5em;
 }
