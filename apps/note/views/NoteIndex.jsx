@@ -18,7 +18,7 @@ export function NoteIndex() {
     const [isClicked, setIsClicked] = useState(false)
     const [videoData, setVideoData] = useState(null) // State to hold the video data
     const [videoId, setVideoId] = useState('')
-
+    const [img, setImg] = useState('')
 
     const YT_API = 'AIzaSyB4BXvsGKBG4o0WHOmm2jKzwIQS32KAVvM'
 
@@ -64,6 +64,7 @@ export function NoteIndex() {
             document.removeEventListener('click', handleClickOutside)
         }
     }, [inputs])
+
 
     function setNewFilterBy(newFilter) {
         setFilterBy(newFilter)
@@ -179,9 +180,10 @@ export function NoteIndex() {
 
 
     function handleClose() {
-
         setIsClicked(false)
         setIsFocused(false)
+
+        console.log(noteType);
 
         if (noteType === 'NoteImg') {
             console.log('loading an img');
@@ -298,12 +300,12 @@ export function NoteIndex() {
                     console.error('Note not found:', noteId)
                     return
                 }
-  
+
                 const updatedNote = { ...note, isPinned: !note.isPinned }
- 
+
                 noteService.save(updatedNote)
                     .then(() => {
-                        
+
                         setNotes(prevNotes =>
                             prevNotes.map(note =>
                                 note.id === noteId ? updatedNote : note
@@ -320,7 +322,7 @@ export function NoteIndex() {
                 console.error('Error fetching note:', error)
             })
     }
-    
+
 
 
 
@@ -334,10 +336,11 @@ export function NoteIndex() {
                 }
                 console.log('original note:', note)
                 const newNote = noteService.createNote(note.type, note.info.title, note.info.txt, note.info.todos, note.videoId)
-                .then((res)=>{
-                    
-                    noteService.addNote(res)}
-                )
+                    .then((res) => {
+
+                        noteService.addNote(res)
+                    }
+                    )
                 setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
                 if (!newNote) {
                     console.error('Error: Failed to create new note')
@@ -376,10 +379,18 @@ export function NoteIndex() {
 
 
     function handleImgClick() {
+        setNoteType('NoteImg')
 
         console.log('loading img');
+
     }
 
+
+    function handleImgChange(event) {
+        const file = event.target.files[0]
+        console.log(file);
+        setImg(file)
+    }
     // Filter the pinned / unpinned notes
     const pinnedNotes = notes.filter(note => note.isPinned)
     const unPinnedNotes = notes.filter(note => !note.isPinned)
@@ -392,9 +403,9 @@ export function NoteIndex() {
             <div className="text-inputs" ref={containerRef}>
                 <div className="note-add-inputs">
                     <div className="input-container">
-                        {noteType === 'noteImg' && (
+                        {(
                             <div>
-
+                                {img ? <img className="selected-image" src={URL.createObjectURL(img)} /> : <img className="none" src={null} />}
                             </div>
                         )}
 
@@ -435,13 +446,14 @@ export function NoteIndex() {
                         )}
                         {!isClicked && (
                             <div className={'actions'}>
-                                <div className="btn-new-img">
+                                <div onClick={handleImgClick} className="btn-new-img">
+
                                     <input
                                         ref={imageInputRef}
                                         type="file"
                                         id="file-input"
                                         style={{ display: 'none' }}
-                                        onClick={handleImgClick}
+                                        onChange={handleImgChange}
                                     />
                                     <label htmlFor="file-input" onClick={(e) => e.stopPropagation()}>
                                         <img
