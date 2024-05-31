@@ -25,6 +25,11 @@
   }
 
 
+  .mail-app-logo {
+    width: 7em;
+    margin-inline-start: 0;
+  }
+
   .mail-input-container {
     display: flex;
     justify-content: space-around;
@@ -140,6 +145,11 @@
     margin-block-end: 1em;
     /* width: 30%; */
 
+  }
+
+  .mail-app-logo {
+    width: 7em;
+    margin-inline-start: 0;
   }
 
 
