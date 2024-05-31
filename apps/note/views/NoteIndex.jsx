@@ -22,6 +22,12 @@ export function NoteIndex() {
 
     const YT_API = 'AIzaSyB4BXvsGKBG4o0WHOmm2jKzwIQS32KAVvM'
 
+    const images = getImageDataUrls()
+    const containerRef = useRef(null)
+    const imageInputRef = useRef(null)
+    const selectedImgRef = useRef(img)
+
+    console.log(selectedImgRef);
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -37,9 +43,7 @@ export function NoteIndex() {
 
     console.log(notes);
 
-    const images = getImageDataUrls()
-    const containerRef = useRef(null)
-    const imageInputRef = useRef(null)
+
 
 
     useEffect(() => {
@@ -89,6 +93,7 @@ export function NoteIndex() {
     function handleButtonClick(newNoteType, event) {
         setNoteType(newNoteType)
         if (newNoteType === 'NoteImg') {
+            console.log(newNoteType);
             setIsClicked(false)
             console.log(event);
         }
@@ -183,10 +188,19 @@ export function NoteIndex() {
         setIsClicked(false)
         setIsFocused(false)
 
-        console.log(noteType);
+        console.log(selectedImgRef.current)
 
-        if (noteType === 'NoteImg') {
-            console.log('loading an img');
+        if (selectedImgRef.current) {
+            setImg(selectedImgRef.current)
+            console.log(selectedImgRef.current);
+            console.log('adding an image')
+            // noteService.createNote(noteType,inputs.title,'',inputs.todos,src)
+
+            setImg(null) // Reset the image state
+            selectedImgRef.current = null // Reset the ref
+            if (imageInputRef.current) {
+                imageInputRef.current.value = null // Reset the input field value, not the ref itself
+            }
             setNoteType('NoteTxt')
             return
         }
@@ -379,17 +393,20 @@ export function NoteIndex() {
 
 
     function handleImgClick() {
-        setNoteType('NoteImg')
+        console.log('hi');
 
-        console.log('loading img');
+        imageInputRef.current.click()
 
     }
 
 
     function handleImgChange(event) {
+        setNoteType('NoteImg')
         const file = event.target.files[0]
-        console.log(file);
         setImg(file)
+        selectedImgRef.current = file
+        console.log(file);
+   
     }
     // Filter the pinned / unpinned notes
     const pinnedNotes = notes.filter(note => note.isPinned)
@@ -403,9 +420,10 @@ export function NoteIndex() {
             <div className="text-inputs" ref={containerRef}>
                 <div className="note-add-inputs">
                     <div className="input-container">
+
                         {(
                             <div>
-                                {img ? <img className="selected-image" src={URL.createObjectURL(img)} /> : <img className="none" src={null} />}
+                                {img ? <img ref={selectedImgRef} className="selected-image" src={URL.createObjectURL(img)} /> : <img className="none" src={null} />}
                             </div>
                         )}
 
@@ -420,6 +438,7 @@ export function NoteIndex() {
                                 name="title"
                             />
                         )}
+
                         {(noteType === 'NoteTxt' || noteType === 'NoteLink') && (
                             <input
                                 className={`input-new-note ${isFocused ? 'expanded' : ''}`}
@@ -431,6 +450,7 @@ export function NoteIndex() {
                                 name="txt"
                             />
                         )}
+
                         {noteType === 'NoteTodos' && (
                             <ul className={'new-todo-list'}>
                                 {inputs.todos.map((todo, idx) => (
@@ -444,9 +464,10 @@ export function NoteIndex() {
                                 ))}
                             </ul>
                         )}
+
                         {!isClicked && (
                             <div className={'actions'}>
-                                <div onClick={handleImgClick} className="btn-new-img">
+                                <div onClick={() => { handleImgClick }} className="btn-new-img">
 
                                     <input
                                         ref={imageInputRef}
@@ -455,7 +476,7 @@ export function NoteIndex() {
                                         style={{ display: 'none' }}
                                         onChange={handleImgChange}
                                     />
-                                    <label htmlFor="file-input" onClick={(e) => e.stopPropagation()}>
+                                    <label htmlFor="file-input" onClick={(e) => { e.stopPropagation() }}>
                                         <img
                                             src={images.noteImg}
                                             alt="Upload"
