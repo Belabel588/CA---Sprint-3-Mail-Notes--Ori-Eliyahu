@@ -14,6 +14,7 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
   const formattedDate = utilService.formatMailDate(mail.sentAt)
   const imgs = getMailImageDataUrls()
   const [showActions, setShowActions] = useState(false)
+  const [isStarred, setIsStarred] = useState(false)
 
 
 
@@ -41,14 +42,18 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
       })
   }
   function handleSendToStar() {
-    const updatedMail = { ...newMail, status: 'star' }
-    // setNewMail(updatedMail)
-    // mailService.put(updatedMail)
+    const updatedMail = { ...newMail, isStarred: true }
+    if (updatedMail.isStarred === true)
+      console.log(updatedMail)
+    setNewMail(updatedMail)
     onSendToStar(updatedMail)
       .then(() => {
         setNewMail(updatedMail)
       })
   }
+
+
+
 
   function handleMailDeletion() {
     console.log(mail.id)
@@ -91,7 +96,7 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
           className={`mail-card ${newMail.isRead ? 'read' : ''}`}>
 
           <div>
-            <button className="star-btn" onClick={handleSendToStar}><img className="star-icon" src={imgs.starImg} alt="" /></button>
+            <button className="star-btn" onClick={handleSendToStar}><img className="star-icon" src={newMail.isStarred === true ? imgs.starFilledImg : imgs.starImg} alt="" /></button>
           </div>
 
           <div className="mails-info" onClick={onOpenMail}>

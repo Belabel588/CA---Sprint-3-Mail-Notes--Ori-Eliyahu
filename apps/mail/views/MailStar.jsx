@@ -66,7 +66,7 @@ export function MailStar({ onInboxClick, onSentClick, onSearch, onMarkAsRead, on
 
         <div className="mails-list-container">
 
-          {mails.filter((mail) => mail.status === 'star')
+          {mails.filter((mail) => mail.isStarred === true)
             .filter((mail) => {
               return search.toLowerCase() === '' ? mail : mail.subject.toLowerCase().includes(search.toLowerCase()) ||
                 mail.body.toLowerCase().includes(search.toLowerCase()) ||

@@ -67,9 +67,9 @@ export function MailIndex() {
 
     function onSendToStar(updatedMail) {
         mailService.put(updatedMail)
-            .then(() => {
-                setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
-            })
+        // .then(() => {
+        //     setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+        // })
     }
 
 
