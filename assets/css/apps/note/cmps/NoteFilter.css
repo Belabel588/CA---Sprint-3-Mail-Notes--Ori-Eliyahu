@@ -1,0 +1,41 @@
+
+
+.filters {
+    top: 7%;
+    left: 25%;
+    width: 100%;
+    z-index: 1000;
+    gap: 3em;
+    /* Ensure it appears above other content */
+    padding: 20px;
+    text-align: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    grid-column: 1/2;
+}
+
+.pinned-cheakbox {
+    /* Corrected class name */
+    display: flex;
+    justify-self: flex-start;
+    color: rgb(80, 73, 73);
+}
+
+.filters select {
+    width: 10em;
+}
+
+.filters .txt-filter {
+    width: 80%;
+    height: 3em;
+    border-radius: 20px;
+    background-color: #f8f5f5;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+
+}
