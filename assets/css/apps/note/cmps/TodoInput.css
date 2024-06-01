@@ -1,8 +1,0 @@
-* {
-    box-sizing: border-box;
-}
-
-ul.new-todo-list {
-    display: flex;
-    flex-direction: column;
-}
