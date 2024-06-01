@@ -312,6 +312,7 @@
 
     padding: 0.9em 10em 0.1em 0.1em;
     background-color: #f6f8fc;
+    box-shadow: 0 0 3px 0px #ccc;
   }
 
   .inbox-count,
