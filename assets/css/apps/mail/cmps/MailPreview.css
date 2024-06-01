@@ -10,11 +10,12 @@ table {
 
 .mail-card {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  padding: 0.3em;
+  grid-template-columns: 1fr 9fr 1fr;
+  padding: 0em;
   /* justify-items: center; */
 
   /* align-items: center; */
+  align-items: baseline;
   /* justify-content: center; */
 
 
@@ -31,8 +32,8 @@ table {
 
 .mails-info {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
+  grid-template-columns: 1fr 2fr;
+  width: 85%;
 }
 
 .mail-sender-container {
@@ -56,7 +57,7 @@ table {
 
   gap: 1em;
   /* width: 60%; */
-  padding: 0.9em;
+  padding: 0.3em;
 }
 
 .actions {

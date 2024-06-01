@@ -8,7 +8,7 @@ import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
 
-export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
+export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, onSendToStar, onDeleteMail }) {
   const navigate = useNavigate()
   const [newMail, setNewMail] = useState(mail)
   const formattedDate = utilService.formatMailDate(mail.sentAt)
@@ -36,6 +36,15 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
     // setNewMail(updatedMail)
     // mailService.put(updatedMail)
     onSendToBin(updatedMail)
+      .then(() => {
+        setNewMail(updatedMail)
+      })
+  }
+  function handleSendToStar() {
+    const updatedMail = { ...newMail, status: 'star' }
+    // setNewMail(updatedMail)
+    // mailService.put(updatedMail)
+    onSendToStar(updatedMail)
       .then(() => {
         setNewMail(updatedMail)
       })
@@ -81,13 +90,13 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
           onMouseLeave={handleUnshowActions}
           className={`mail-card ${newMail.isRead ? 'read' : ''}`}>
 
+          <div>
+            <button className="star-btn" onClick={handleSendToStar}><img className="star-icon" src={imgs.starImg} alt="" /></button>
+          </div>
+
           <div className="mails-info" onClick={onOpenMail}>
 
             <div className="mail-sender-container">
-
-              <div>
-                <button className="star-btn" ><img className="star-icon" src={imgs.starImg} alt="" /></button>
-              </div>
 
               <div>
                 <td className="mail-sender">{mail.from}</td>

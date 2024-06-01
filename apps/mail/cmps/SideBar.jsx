@@ -93,6 +93,25 @@ export function SideBar({ mails, onInboxClick, onSentClick, onBinClick, onMenuCl
         </div>
       </NavLink>
 
+
+      <NavLink to='/mail/star' className="sent-container">
+        <div className="star-box" onClick={onBinClick}>
+
+          <div className="star-img-container">
+            <img className="star-img" src={imgs.starImg} alt="" />
+          </div>
+
+
+          <div className="star-btn">
+            <div className="star-count-container">
+              <h3 className="star-count">Starred</h3>
+            </div>
+          </div>
+
+
+        </div>
+      </NavLink>
+
     </div>
   )
 }
