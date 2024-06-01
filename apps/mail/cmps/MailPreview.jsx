@@ -8,12 +8,13 @@ import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
 
-export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
+export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, onSendToStar, onDeleteMail }) {
   const navigate = useNavigate()
   const [newMail, setNewMail] = useState(mail)
   const formattedDate = utilService.formatMailDate(mail.sentAt)
   const imgs = getMailImageDataUrls()
   const [showActions, setShowActions] = useState(false)
+  const [isStarred, setIsStarred] = useState(false)
 
 
 
@@ -33,10 +34,26 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
 
   function handleSendToBin() {
     const updatedMail = { ...newMail, status: 'bin' }
-    setNewMail(updatedMail)
-    mailService.put(updatedMail)
+    // setNewMail(updatedMail)
+    // mailService.put(updatedMail)
     onSendToBin(updatedMail)
+      .then(() => {
+        setNewMail(updatedMail)
+      })
   }
+  function handleSendToStar() {
+    const updatedMail = { ...newMail, isStarred: true }
+    if (updatedMail.isStarred === true)
+      console.log(updatedMail)
+    setNewMail(updatedMail)
+    onSendToStar(updatedMail)
+      .then(() => {
+        setNewMail(updatedMail)
+      })
+  }
+
+
+
 
   function handleMailDeletion() {
     console.log(mail.id)
@@ -78,13 +95,13 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
           onMouseLeave={handleUnshowActions}
           className={`mail-card ${newMail.isRead ? 'read' : ''}`}>
 
+          <div>
+            <button className="star-btn" onClick={handleSendToStar}><img className="star-icon" src={newMail.isStarred === true ? imgs.starFilledImg : imgs.starImg} alt="" /></button>
+          </div>
+
           <div className="mails-info" onClick={onOpenMail}>
 
             <div className="mail-sender-container">
-
-              <div>
-                <button className="star-btn" ><img className="star-icon" src={imgs.starImg} alt="" /></button>
-              </div>
 
               <div>
                 <td className="mail-sender">{mail.from}</td>

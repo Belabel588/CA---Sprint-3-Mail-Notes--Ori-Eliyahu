@@ -149,3 +149,25 @@ html {
   border-radius: 0px 10px 10px 0px;
   margin-inline-start: 0;
 }
+
+
+.star-box {
+  display: flex;
+  /* justify-content: space-evenly; */
+  gap: 0.9em;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: start;
+
+  padding: 0.4em;
+  color: #202124;
+  font-size: 0.875em;
+  /* background-color: #d3e3fd; */
+  border-radius: 0px 10px 10px 0px;
+  margin-inline-start: 0;
+}
+
+.star-img {
+  width: 1.375em;
+}
