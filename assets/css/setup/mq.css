@@ -72,6 +72,12 @@
     outline: none;
   }
 
+  .mails-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 85%;
+  }
+
   .mails-boxes {
     display: grid;
     grid-template-columns: 1fr;
