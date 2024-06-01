@@ -129,3 +129,8 @@
 .color-picker-input{
     width: 3em;
 }
+
+.video-title{
+    font-weight: bold;
+    margin: 10px;
+}
