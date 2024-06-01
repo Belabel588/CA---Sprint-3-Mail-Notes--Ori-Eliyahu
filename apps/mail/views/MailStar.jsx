@@ -46,7 +46,12 @@ export function MailStar({ onInboxClick, onSentClick, onSearch, onMarkAsRead, on
       })
   }
 
-
+  function onSendToBin(updatedMail) {
+    mailService.put(updatedMail)
+      .then(() => {
+        setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+      })
+  }
 
   function onDeleteMail(mailId) {
     mailService.remove(mailId)
@@ -54,7 +59,7 @@ export function MailStar({ onInboxClick, onSentClick, onSearch, onMarkAsRead, on
         setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
       })
   }
-  // console.log(mails);
+  console.log(mails);
 
   return (
     <div className="mail-app">
@@ -66,13 +71,13 @@ export function MailStar({ onInboxClick, onSentClick, onSearch, onMarkAsRead, on
 
         <div className="mails-list-container">
 
-          {mails.filter((mail) => mail.isStarred === true)
+          {mails.filter((mail) => mail.isStarred === true && mail.status !== 'bin')
             .filter((mail) => {
               return search.toLowerCase() === '' ? mail : mail.subject.toLowerCase().includes(search.toLowerCase()) ||
                 mail.body.toLowerCase().includes(search.toLowerCase()) ||
                 mail.from.toLowerCase().includes(search.toLowerCase())
             }).map(mail => <div key={mail.id} className="mail-preview">
-              <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onDeleteMail={onDeleteMail} />
+              <MailPreview mail={mail} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onDeleteMail={onDeleteMail} onSendToBin={onSendToBin} />
             </div>)
           }
         </div>
