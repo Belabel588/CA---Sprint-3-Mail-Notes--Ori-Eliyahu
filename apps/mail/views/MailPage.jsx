@@ -12,6 +12,7 @@ export function MailPage() {
   const navigate = useNavigate()
 
   const [mail, setMail] = useState(null)
+  const [isClicked, setIsClicked] = useState(false)
   const imgs = getMailImageDataUrls()
   // console.log(imgs)
 

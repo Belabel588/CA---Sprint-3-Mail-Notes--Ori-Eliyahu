@@ -10,6 +10,7 @@ import { MailPreview } from '../cmps/MailPreview.jsx'
 export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onMarkAsUnread, onSendToBin, onDeleteMail }) {
   const [mails, setMails] = useState([])
   const [search, setSearch] = useState('')
+  const [isClicked, setIsClicked] = useState(false)
 
   useEffect(() => {
     mailService.query()
@@ -24,6 +25,11 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
 
   function onSearch(ev) {
     setSearch(ev.target.value)
+  }
+
+
+  function onMenuClick() {
+    setIsClicked(!isClicked)
   }
 
   function onMarkAsRead(updatedMail) {
@@ -52,15 +58,14 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
 
   return (
     <div className="mail-app">
-      <MailHeader onSearch={onSearch} />
+      <MailHeader onSearch={onSearch} isClicked={isClicked} onMenuClick={onMenuClick} />
 
       <div className="mails-boxes">
-        <SideBar className="side-bar" mails={mails} onInboxClick={onInboxClick} onSentClick={onSentClick} />
+        <SideBar className="side-bar" mails={mails} onInboxClick={onInboxClick} onSentClick={onSentClick} onMenuClick={onMenuClick} isClicked={isClicked} />
 
 
         <div className="mails-list-container">
 
-          {/* <h1 className="mail-list">Mails list</h1> */}
           {
             mails.filter((mail) => mail.status === 'sent')
               .filter((mail) => {
