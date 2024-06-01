@@ -195,3 +195,7 @@ tr:hover {
   background-color: rgba(255, 255, 255, 0);
   width: 2em;
 }
+
+.star-btn:hover {
+  cursor: pointer;
+}
