@@ -20,7 +20,7 @@ export function MailCompose() {
     sentAt: new Date(),
     to: '',
     status: 'sent',
-    isRead: true,
+    isRead: false,
     id: utilService.makeId(6)
   })
 

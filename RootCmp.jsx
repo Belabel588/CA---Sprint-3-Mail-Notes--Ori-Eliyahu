@@ -10,6 +10,7 @@ import { MailPage } from "./apps/mail/views/MailPage.jsx"
 import { MailCompose } from "./apps/mail/cmps/MailCompose.jsx"
 import { MailSentList } from "./apps/mail/views/MailSentList.jsx"
 import { MailBin } from "./apps/mail/views/MailBIn.jsx"
+import { MailStar } from "./apps/mail/views/MailStar.jsx"
 
 
 export function App() {
@@ -32,6 +33,7 @@ export function App() {
 
                 <Route path="/mail/sent" element={<MailSentList />} />
                 <Route path="/mail/bin" element={<MailBin />} />
+                <Route path="/mail/star" element={<MailStar />} />
                 <Route path="/mail/:mailId" element={<MailPage />} />
 
 

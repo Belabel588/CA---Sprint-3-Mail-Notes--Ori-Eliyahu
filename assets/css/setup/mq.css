@@ -1,0 +1,326 @@
+/* PC/TV */
+
+@media screen and (min-width:1024px) {}
+
+
+/* Tablet */
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+
+
+
+  .mails-app-header {
+    display: flex;
+    flex-direction: column;
+
+
+    gap: 1.25em;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin-inline-start: 1em; */
+    margin-block-end: 1em;
+    /* width: 30%; */
+
+  }
+
+
+  .mail-app-logo {
+    width: 7em;
+    margin-inline-start: 0.2em;
+  }
+
+  .mail-input-container {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 65%;
+  }
+
+  .mail-filter-search {
+    font-size: 0.8125em;
+    line-height: 1.6875em;
+    text-align: start;
+    fill: #000000;
+    background-color: #eaf1fb;
+    border-radius: 1.5em;
+    height: 4.1em;
+    /* min-width: 21.875em; */
+    width: 50%;
+
+    /* max-width: 45em; */
+
+    /* height: 2.875em; */
+    padding: 1em 3.5em;
+    margin-inline-start: 1em;
+
+    /* margin-inline-end: 3.0625em; */
+    overflow: hidden;
+    /* width: 720px; */
+    border: 0;
+    /* box-shadow: 0 0 20px 0px #ccc; */
+  }
+
+
+  .search-btn {
+    position: absolute;
+    width: 2.8em;
+    border: 0;
+    top: 0.8em;
+    left: 11em;
+    background-color: #ffffff00;
+    outline: none;
+  }
+
+  .mails-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    gap: 2em;
+
+  }
+
+  .hidden {
+    display: block;
+  }
+
+  .menu-hidden {
+    display: none;
+  }
+
+  .menu-show {
+    display: block;
+  }
+
+  .inbox-container,
+  .sent-container {
+    display: block;
+    width: 20%;
+    height: 3em;
+
+  }
+
+  .inbox-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 105.2%;
+  }
+
+  .sent-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 3em;
+    height: 3em;
+
+  }
+
+  .mails-time-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    justify-items: end;
+    align-items: center;
+
+    gap: 1em;
+    /* width: 60%; */
+  }
+
+  .side-bar-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3em;
+    width: 40%;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .inbox-count,
+  .sent-count,
+  .bin-count,
+  .star-count {
+    display: none;
+  }
+
+
+}
+
+/* Mobile */
+
+@media screen and (max-width:767px) {
+  .mails-app-header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1.25em;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin-inline-start: 1em; */
+    margin-block-end: 1em;
+    /* width: 30%; */
+
+  }
+
+  .mail-app-logo {
+    width: 7em;
+    margin-inline-start: 0.2em;
+  }
+
+
+  .mail-input-container {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 65%;
+  }
+
+  .mail-filter-search {
+    font-size: 0.7125em;
+    line-height: 1.6875em;
+    text-align: start;
+    fill: #000000;
+    background-color: #eaf1fb;
+    border-radius: 1.5em;
+    height: 4.1em;
+    /* min-width: 21.875em; */
+    width: 70%;
+
+    /* max-width: 45em; */
+
+    /* height: 2.875em; */
+    padding: 1em 3.5em;
+    margin-inline-start: 1em;
+
+    /* margin-inline-end: 3.0625em; */
+    overflow: hidden;
+    /* width: 720px; */
+    border: 0;
+    /* box-shadow: 0 0 20px 0px #ccc; */
+  }
+
+  .mails-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: start;
+    align-content: center;
+    gap: 2em;
+
+  }
+
+
+  .search-btn {
+    position: absolute;
+    width: 2.8em;
+    border: 0;
+    top: 0.8em;
+    left: 8em;
+    background-color: #ffffff00;
+    outline: none;
+  }
+
+  .hidden {
+    display: block;
+  }
+
+  .menu-hidden {
+    display: none;
+  }
+
+  .menu-show {
+    display: block;
+  }
+
+  .inbox-container,
+  .sent-container {
+    display: block;
+    width: 20%;
+
+  }
+
+  .inbox-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 105.2%;
+    height: 65%;
+  }
+
+  .sent-container.active {
+    padding: 0.4em;
+    background-color: #d3e3fd;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 28.1%;
+    height: 65%;
+  }
+
+  .search-btn {
+    position: absolute;
+    width: 2.8em;
+    border: 0;
+    top: 0.8em;
+    left: 3.7em;
+    background-color: #ffffff00;
+    outline: none;
+  }
+
+  .mail-compose-container {
+    position: fixed;
+    right: 1.1em;
+    bottom: 40px;
+    box-shadow: 0 0 20px 0px #ccc;
+  }
+
+  #body {
+    width: 20%;
+  }
+
+  .mails-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .mails-time-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    justify-items: end;
+    align-items: center;
+
+    gap: 1em;
+    /* width: 60%; */
+  }
+
+  .side-bar-container {
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    /* align-items: flex-start; */
+    gap: 0.5em;
+
+    padding: 0.9em 10em 0.1em 0.1em;
+    background-color: #f6f8fc;
+    box-shadow: 0 0 3px 0px #ccc;
+  }
+
+  .inbox-count,
+  .sent-count,
+  .bin-count,
+  .star-count {
+    display: none;
+  }
+
+
+}

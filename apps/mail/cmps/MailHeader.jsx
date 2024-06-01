@@ -3,14 +3,28 @@
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
-export function MailHeader({ onSearch }) {
+export function MailHeader({ onSearch, onMenuClick, isClicked }) {
 
   const imgs = getMailImageDataUrls()
 
 
+
+
+
   return (
     <div className="mails-app-header">
-      <img className="mail-app-logo" src={imgs.mailIconImg} alt="" />
+
+
+      <div className="mail-logo-burger">
+
+        <div>
+          <button className="menu-btn hidden" onClick={onMenuClick}><img className="menu-icon" src={imgs.menuImg} alt="" /></button>
+        </div>
+
+        <div>
+          <img className="mail-app-logo" src={imgs.mailIconImg} alt="" />
+        </div>
+      </div>
 
 
       <div className="mail-input-container">

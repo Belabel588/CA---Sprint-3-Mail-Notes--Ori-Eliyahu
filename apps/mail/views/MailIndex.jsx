@@ -15,6 +15,7 @@ export function MailIndex() {
     const [mails, setMails] = useState([])
     const [search, setSearch] = useState('')
     const [view, setView] = useState('inbox')
+    const [isClicked, setIsClicked] = useState(false)
     // console.log(search)
     const imgs = getMailImageDataUrls()
 
@@ -50,19 +51,30 @@ export function MailIndex() {
             })
     }
 
-    function onDeleteMail(mailId) {
-        mailService.remove(mailId)
-            .then(() => {
-                setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
-            })
-    }
-
+    // function onDeleteMail(mailId) {
+    //     mailService.remove(mailId)
+    //         .then(() => {
+    //             setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
+    //         })
+    // }
 
     function onSendToBin(updatedMail) {
         mailService.put(updatedMail)
             .then(() => {
                 setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
             })
+    }
+
+    function onSendToStar(updatedMail) {
+        mailService.put(updatedMail)
+        // .then(() => {
+        //     setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
+        // })
+    }
+
+
+    function onMenuClick() {
+        setIsClicked(!isClicked)
     }
 
     function handleInboxClick() {
@@ -76,6 +88,11 @@ export function MailIndex() {
     function handleBinClick() {
         setView('bin')
     }
+    function handleStarClick() {
+        setView('star')
+    }
+
+
 
 
 
@@ -84,17 +101,18 @@ export function MailIndex() {
     return (
 
         <div className="mail-app">
-            <MailHeader onSearch={onSearch} />
+            <MailHeader onSearch={onSearch} isClicked={isClicked} onMenuClick={onMenuClick} />
 
             <div className="mails-boxes">
-                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} onBinClick={handleBinClick} />
+                <SideBar className="side-bar" mails={mails} onInboxClick={handleInboxClick} onSentClick={handleSentClick} onBinClick={handleBinClick} onStarClick={handleStarClick} isClicked={isClicked} onMenuClick={onMenuClick} />
 
 
 
                 {/* {console.log(mails)} */}
-                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
-                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
-                {view === 'bin' && < MailBin className="mails-list" onSendToBin={onSendToBin} onDeleteMail={onDeleteMail} />}
+                {view === 'inbox' && <MailList className="mails-list" mails={mails} search={search} onMarkAsRead={onMarkAsRead} onMarkAsUnread={onMarkAsUnread} onSendToBin={onSendToBin} onSendToStar={onSendToStar} />}
+                {view === 'sent' && < MailSentList className="mails-list" onInboxClick={handleInboxClick} onSentClick={handleSentClick} onSearch={onSearch} onSendToBin={onSendToBin} />}
+                {view === 'bin' && < MailBin className="mails-list" />}
+                {view === 'star' && < MailStar className="mails-list" />}
 
 
 

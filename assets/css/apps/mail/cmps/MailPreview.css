@@ -10,11 +10,12 @@ table {
 
 .mail-card {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  padding: 0.3em;
+  grid-template-columns: 1fr 9fr 1fr;
+  padding: 0em;
   /* justify-items: center; */
 
   /* align-items: center; */
+  align-items: baseline;
   /* justify-content: center; */
 
 
@@ -31,8 +32,8 @@ table {
 
 .mails-info {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
+  grid-template-columns: 1fr 2fr;
+  width: 85%;
 }
 
 .mail-sender-container {
@@ -56,6 +57,7 @@ table {
 
   gap: 1em;
   /* width: 60%; */
+  padding: 0.3em;
 }
 
 .actions {
@@ -140,7 +142,7 @@ tr:hover {
 }
 
 .delete-icon {
-  width: 1.375em;
+  width: 1.5em;
 }
 
 .unread-btn {
@@ -156,7 +158,7 @@ tr:hover {
 }
 
 .unread-icon {
-  width: 1.375em;
+  width: 1.5em;
 }
 
 .unread-icon:hover {
@@ -168,7 +170,7 @@ tr:hover {
 }
 
 .read-icon {
-  width: 1.375em;
+  width: 1.5em;
 }
 
 .read-icon:hover {
@@ -184,11 +186,16 @@ tr:hover {
 }
 
 .star-icon {
-  height: 1.8em;
-  ;
+  height: 1.5em;
+  width: 1.5em;
 }
 
 .star-btn {
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  width: 2em;
+}
+
+.star-btn:hover {
+  cursor: pointer;
 }

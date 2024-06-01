@@ -9,6 +9,7 @@ html {
 
 img {
   width: 100%;
+  object-fit: fill;
 }
 
 
@@ -22,12 +23,16 @@ img {
   gap: 1.25em;
   /* justify-content: center; */
   align-items: center;
-  margin-inline-start: 1em;
+  /* margin-inline-start: 1em; */
   margin-block-end: 1em;
+  /* width: 30%; */
 
 }
 
-
+.mail-logo-burger {
+  display: flex;
+  flex-direction: row;
+}
 
 .mail-filter-search {
   font-size: 0.8125em;
@@ -37,14 +42,18 @@ img {
   background-color: #eaf1fb;
   border-radius: 1.5em;
   height: 4.1em;
+  /* min-width: 21.875em; */
+  width: 80%;
+
+  /* max-width: 45em; */
 
   /* height: 2.875em; */
   padding: 1em 3.5em;
-  margin-inline-start: 3.4em;
+  margin-inline-start: 1em;
 
-  margin-inline-end: 3.0625em;
+  /* margin-inline-end: 3.0625em; */
   overflow: hidden;
-  width: 720px;
+  /* width: 720px; */
   border: 0;
   /* box-shadow: 0 0 20px 0px #ccc; */
 }
@@ -83,7 +92,7 @@ img {
 
 .mail-input-container {
   position: relative;
-  width: 30%;
+  width: 65%;
 }
 
 .search-btn {
@@ -91,7 +100,17 @@ img {
   width: 2.8em;
   border: 0;
   top: 0.8em;
-  left: 4.3em;
+  left: 1.8em;
   background-color: #ffffff00;
   outline: none;
+}
+
+.menu-btn {
+  border: 0;
+  background-color: #ffffff00;
+  outline: none;
+}
+
+.menu-icon {
+  width: 2.5em;
 }

@@ -6,7 +6,7 @@ const { Link, NavLink } = ReactRouterDOM
 import { getMailImageDataUrls } from '../services/MailImg.service.js'
 
 
-export function SideBar({ mails, onInboxClick, onSentClick, onBinClick }) {
+export function SideBar({ mails, onInboxClick, onSentClick, onBinClick, onMenuClick, isClicked }) {
   const [unreadMails, setUnreadMails] = useState([])
   const imgs = getMailImageDataUrls()
   // const navigate = useNavigate()
@@ -29,7 +29,7 @@ export function SideBar({ mails, onInboxClick, onSentClick, onBinClick }) {
   // }
 
   return (
-    <div className="side-bar-container">
+    <div className={`side-bar-container ${isClicked ? 'menu-hidden' : 'menu-show'} `}>
 
       <div className="compose-mail-btn">
         <Link to='/mail/compose' className="compose-mail"><img className="pen-img" src={imgs.penImg} alt="" />Compose</Link>
@@ -55,6 +55,23 @@ export function SideBar({ mails, onInboxClick, onSentClick, onBinClick }) {
         </div>
       </NavLink>
 
+      <NavLink to='/mail/star' className="sent-container">
+        <div className="star-box" onClick={onBinClick}>
+
+          <div className="star-img-container">
+            <img className="star-img" src={imgs.starImg} alt="" />
+          </div>
+
+
+          <div className="star-btn">
+            <div className="star-count-container">
+              <h3 className="star-count">Starred</h3>
+            </div>
+          </div>
+
+
+        </div>
+      </NavLink>
 
       <NavLink to='/mail/sent' className="sent-container">
         <div className="sent-box" onClick={onSentClick}>
@@ -92,6 +109,8 @@ export function SideBar({ mails, onInboxClick, onSentClick, onBinClick }) {
 
         </div>
       </NavLink>
+
+
 
     </div>
   )
