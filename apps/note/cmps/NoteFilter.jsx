@@ -23,7 +23,7 @@ export function NoteFilter({ filterBy, onFilter, notes }) {
                 type='text'
                 name='search'
             />
-            <div className="filter-options">
+            {/* <div className="filter-options">
                 <select name="type" onChange={handleChange} value={filterByToEdit.type || ''}>
                     <option value="">All</option>
                     <option value="NoteImg">By images</option>
@@ -31,7 +31,7 @@ export function NoteFilter({ filterBy, onFilter, notes }) {
                     <option value="NoteTodos">By todos</option>
                     <option value="NoteVids">By videos</option>
                 </select>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -18,10 +18,16 @@ export function NoteIndex() {
     const [isClicked, setIsClicked] = useState(false)
     const [videoData, setVideoData] = useState(null) // State to hold the video data
     const [videoId, setVideoId] = useState('')
-
+    const [img, setImg] = useState('')
 
     const YT_API = 'AIzaSyB4BXvsGKBG4o0WHOmm2jKzwIQS32KAVvM'
 
+    const images = getImageDataUrls()
+    const containerRef = useRef(null)
+    const imageInputRef = useRef(null)
+    const selectedImgRef = useRef(img)
+
+    console.log(selectedImgRef);
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -35,10 +41,9 @@ export function NoteIndex() {
         ]
     })
 
+    console.log(notes);
 
-    const images = getImageDataUrls()
-    const containerRef = useRef(null)
-    const imageInputRef = useRef(null)
+
 
 
     useEffect(() => {
@@ -64,6 +69,7 @@ export function NoteIndex() {
         }
     }, [inputs])
 
+
     function setNewFilterBy(newFilter) {
         setFilterBy(newFilter)
     }
@@ -87,6 +93,7 @@ export function NoteIndex() {
     function handleButtonClick(newNoteType, event) {
         setNoteType(newNoteType)
         if (newNoteType === 'NoteImg') {
+            console.log(newNoteType);
             setIsClicked(false)
             console.log(event);
         }
@@ -178,12 +185,22 @@ export function NoteIndex() {
 
 
     function handleClose() {
-
         setIsClicked(false)
         setIsFocused(false)
 
-        if (noteType === 'NoteImg') {
-            console.log('loading an img');
+        console.log(selectedImgRef.current)
+
+        if (selectedImgRef.current) {
+            setImg(selectedImgRef.current)
+            console.log(selectedImgRef.current);
+            console.log('adding an image')
+            // noteService.createNote(noteType,inputs.title,'',inputs.todos,src)
+
+            setImg(null) // Reset the image state
+            selectedImgRef.current = null // Reset the ref
+            if (imageInputRef.current) {
+                imageInputRef.current.value = null // Reset the input field value, not the ref itself
+            }
             setNoteType('NoteTxt')
             return
         }
@@ -295,18 +312,31 @@ export function NoteIndex() {
             .then(note => {
                 if (!note) {
                     console.error('Note not found:', noteId)
-                } else {
-                    setNotes(prevNotes =>
-                        prevNotes.map(note =>
-                            note.id === noteId ? { ...note, isPinned: !note.isPinned } : note
-                        )
-                    )
+                    return
                 }
+
+                const updatedNote = { ...note, isPinned: !note.isPinned }
+
+                noteService.save(updatedNote)
+                    .then(() => {
+
+                        setNotes(prevNotes =>
+                            prevNotes.map(note =>
+                                note.id === noteId ? updatedNote : note
+                            )
+                        )
+                        showSuccessMsg(`Note ${noteId} pin status updated successfully`)
+                    })
+                    .catch(error => {
+                        console.error('Error saving note:', error)
+                        showErrorMsg(`Failed to update pin status for note ${noteId}`)
+                    })
             })
             .catch(error => {
                 console.error('Error fetching note:', error)
             })
     }
+
 
 
 
@@ -320,7 +350,11 @@ export function NoteIndex() {
                 }
                 console.log('original note:', note)
                 const newNote = noteService.createNote(note.type, note.info.title, note.info.txt, note.info.todos, note.videoId)
-                .then((res)=>noteService.addNote(res))
+                    .then((res) => {
+
+                        noteService.addNote(res)
+                    }
+                    )
                 setFilterBy(prevFilterBy => ({ ...prevFilterBy, refresh: Date.now() }))
                 if (!newNote) {
                     console.error('Error: Failed to create new note')
@@ -359,10 +393,21 @@ export function NoteIndex() {
 
 
     function handleImgClick() {
+        console.log('hi');
 
-        console.log('loading img');
+        imageInputRef.current.click()
+
     }
 
+
+    function handleImgChange(event) {
+        setNoteType('NoteImg')
+        const file = event.target.files[0]
+        setImg(file)
+        selectedImgRef.current = file
+        console.log(file);
+   
+    }
     // Filter the pinned / unpinned notes
     const pinnedNotes = notes.filter(note => note.isPinned)
     const unPinnedNotes = notes.filter(note => !note.isPinned)
@@ -375,9 +420,10 @@ export function NoteIndex() {
             <div className="text-inputs" ref={containerRef}>
                 <div className="note-add-inputs">
                     <div className="input-container">
-                        {noteType === 'noteImg' && (
-                            <div>
 
+                        {(
+                            <div>
+                                {img ? <img ref={selectedImgRef} className="selected-image" src={URL.createObjectURL(img)} /> : <img className="none" src={null} />}
                             </div>
                         )}
 
@@ -392,6 +438,7 @@ export function NoteIndex() {
                                 name="title"
                             />
                         )}
+
                         {(noteType === 'NoteTxt' || noteType === 'NoteLink') && (
                             <input
                                 className={`input-new-note ${isFocused ? 'expanded' : ''}`}
@@ -403,6 +450,7 @@ export function NoteIndex() {
                                 name="txt"
                             />
                         )}
+
                         {noteType === 'NoteTodos' && (
                             <ul className={'new-todo-list'}>
                                 {inputs.todos.map((todo, idx) => (
@@ -416,17 +464,19 @@ export function NoteIndex() {
                                 ))}
                             </ul>
                         )}
+
                         {!isClicked && (
                             <div className={'actions'}>
-                                <div className="btn-new-img">
+                                <div onClick={() => { handleImgClick }} className="btn-new-img">
+
                                     <input
                                         ref={imageInputRef}
                                         type="file"
                                         id="file-input"
                                         style={{ display: 'none' }}
-                                        onClick={handleImgClick}
+                                        onChange={handleImgChange}
                                     />
-                                    <label htmlFor="file-input" onClick={(e) => e.stopPropagation()}>
+                                    <label htmlFor="file-input" onClick={(e) => { e.stopPropagation() }}>
                                         <img
                                             src={images.noteImg}
                                             alt="Upload"

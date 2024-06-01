@@ -60,7 +60,7 @@ function _createDemoNotes() {
     }
 }
 
-function createNote(type, title, txt, todos, videoId = '') {
+function createNote(type, title, txt, todos, videoId = '', imgSrc = '') {
     return new Promise((resolve, reject) => {
         try {
             // Define a list of colors to randomly assign to the note's background
@@ -74,6 +74,7 @@ function createNote(type, title, txt, todos, videoId = '') {
 
             // Create a new note object with the specified type, title, and content
             const newNote = {
+                src: imgSrc,
                 videoId: videoId,
                 id: utilService.makeId(), // Generate a unique ID for the note
                 type: type, // Note type (e.g., 'NoteTxt', 'NoteTodos', etc.)
