@@ -83,6 +83,18 @@
     justify-items: center;
     align-content: center;
     gap: 2em;
+  }
+
+  .mail-card {
+    display: grid;
+    grid-template-columns: 1fr 9fr 1fr;
+    padding: 1em;
+
+    align-items: baseline;
+
+    border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
+    border-top: 0.1em solid rgba(201, 201, 201, 0.35);
+    width: 100%;
 
   }
 
