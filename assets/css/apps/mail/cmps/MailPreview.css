@@ -33,7 +33,7 @@ table {
 .mails-info {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  width: 85%;
+  width: 100%;
 }
 
 .mail-sender-container {
