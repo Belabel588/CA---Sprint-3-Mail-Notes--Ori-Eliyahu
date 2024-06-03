@@ -10,7 +10,7 @@ table {
 
 .mail-card {
   display: grid;
-  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-columns: 1fr 9fr 2fr;
   padding: 0em;
 
 
