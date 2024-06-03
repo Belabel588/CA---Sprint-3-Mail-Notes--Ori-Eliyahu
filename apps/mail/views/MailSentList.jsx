@@ -15,11 +15,11 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
   useEffect(() => {
     mailService.query()
       .then(mails => {
-        // console.log(mails);
+
         setMails(mails)
       })
   }, [])
-  // console.log(mails);
+
 
 
 
@@ -33,8 +33,6 @@ export function MailSentList({ onInboxClick, onSentClick, onSearch, onMarkAsRead
   }
 
   function onMarkAsRead(updatedMail) {
-    // console.log(updatedMail)
-    // console.log(mails)
     mailService.put(updatedMail)
       .then(() => {
         setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))

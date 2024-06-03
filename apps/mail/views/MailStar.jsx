@@ -15,7 +15,6 @@ export function MailStar({ onInboxClick, onSentClick, onSearch, onMarkAsRead, on
   useEffect(() => {
     mailService.query()
       .then(mails => {
-        // console.log(mails);
         setMails(mails)
       })
   }, [])
@@ -31,8 +30,7 @@ export function MailStar({ onInboxClick, onSentClick, onSearch, onMarkAsRead, on
   }
 
   function onMarkAsRead(updatedMail) {
-    // console.log(updatedMail)
-    // console.log(mails)
+
     mailService.put(updatedMail)
       .then(() => {
         setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))

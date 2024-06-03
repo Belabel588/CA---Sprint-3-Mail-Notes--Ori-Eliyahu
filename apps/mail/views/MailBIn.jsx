@@ -15,7 +15,6 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
   useEffect(() => {
     mailService.query()
       .then(mails => {
-        // console.log(mails);
         setMails(mails)
       })
   }, [])
@@ -31,8 +30,6 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
   }
 
   function onMarkAsRead(updatedMail) {
-    // console.log(updatedMail)
-    // console.log(mails)
     mailService.put(updatedMail)
       .then(() => {
         setMails(prevMails => prevMails.map(mail => mail.id === updatedMail.id ? updatedMail : mail))
@@ -54,7 +51,6 @@ export function MailBin({ onInboxClick, onSentClick, onSearch, onMarkAsRead, onM
         setMails(prevMails => prevMails.filter(mail => mail.id !== mailId))
       })
   }
-  // console.log(mails);
 
   return (
     <div className="mail-app">

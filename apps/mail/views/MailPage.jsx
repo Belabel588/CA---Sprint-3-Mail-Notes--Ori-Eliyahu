@@ -14,11 +14,11 @@ export function MailPage() {
   const [mail, setMail] = useState(null)
   const [isClicked, setIsClicked] = useState(false)
   const imgs = getMailImageDataUrls()
-  // console.log(imgs)
+
 
   function loadMail() {
     mailService.get(mailId).then(mail => {
-      // console.log(mail)
+
       setMail(mail)
     })
   }

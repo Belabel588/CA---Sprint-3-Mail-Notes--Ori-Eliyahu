@@ -22,20 +22,16 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
   function onOpenMail() {
     navigate('/mail/' + mail.id)
     setNewMail(prevMail => {
-      // console.log(prevMail)
+
       const updatedMail = { ...prevMail, isRead: true }
       mailService.put(updatedMail)
       return updatedMail
-      // console.log(prevMail)
-      // console.log(updatedMail)
     })
   }
 
 
   function handleSendToBin() {
     const updatedMail = { ...newMail, status: 'bin' }
-    // setNewMail(updatedMail)
-    // mailService.put(updatedMail)
     onSendToBin(updatedMail)
       .then(() => {
         setNewMail(updatedMail)
@@ -117,7 +113,6 @@ export function MailPreview({ mail, onMarkAsRead, onMarkAsUnread, onSendToBin, o
           <div className="mails-time-actions">
 
 
-            {/* <div className="actions-container"> */}
 
             {showActions && (
 

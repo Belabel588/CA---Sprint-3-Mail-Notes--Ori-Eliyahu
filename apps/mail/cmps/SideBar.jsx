@@ -9,7 +9,6 @@ import { getMailImageDataUrls } from '../services/MailImg.service.js'
 export function SideBar({ mails, onInboxClick, onSentClick, onBinClick, onMenuClick, isClicked }) {
   const [unreadMails, setUnreadMails] = useState([])
   const imgs = getMailImageDataUrls()
-  // const navigate = useNavigate()
 
 
 
@@ -18,15 +17,12 @@ export function SideBar({ mails, onInboxClick, onSentClick, onBinClick, onMenuCl
   }, [mails])
 
   function showUnread() {
-    // console.log('all mails', mails)
     const unread = mails.filter(mail => !mail.isRead)
-    // console.log(unread)
+
     setUnreadMails(unread)
   }
 
-  // function openInbox() {
-  //   navigate('/mail/inbox')
-  // }
+
 
   return (
     <div className={`side-bar-container ${isClicked ? 'menu-hidden' : 'menu-show'} `}>

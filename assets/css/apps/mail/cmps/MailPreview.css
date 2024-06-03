@@ -12,18 +12,17 @@ table {
   display: grid;
   grid-template-columns: 1fr 9fr 1fr;
   padding: 0em;
-  /* justify-items: center; */
 
-  /* align-items: center; */
+
+
   align-items: baseline;
-  /* justify-content: center; */
 
 
-  /* border-radius: 5px; */
+
   border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
   border-top: 0.1em solid rgba(201, 201, 201, 0.35);
   width: 100%;
-  /* box-shadow: inset 2px -1px 0px 0px #86838375; */
+
 }
 
 .mail-subject-body-container {
@@ -42,10 +41,7 @@ table {
   align-items: center;
 }
 
-/* 
-.mails-info:hover {
-  cursor: pointer;
-} */
+
 
 
 .mails-time-actions {
@@ -56,7 +52,7 @@ table {
   align-items: center;
 
   gap: 1em;
-  /* width: 60%; */
+
   padding: 0.3em;
 }
 
@@ -70,9 +66,7 @@ table {
 
 }
 
-/* .mail-sender-container {}
 
-.mail-subject-body-container {} */
 
 td {
   padding: 0.6em;
@@ -99,7 +93,7 @@ tr:hover {
 .mail-sender {
   font-weight: bold;
   color: #202124;
-  /* width: 10px; */
+
 }
 
 .mail-subject {
@@ -116,7 +110,7 @@ tr:hover {
   display: grid;
   align-content: center;
 
-  /* margin-inline-start: 22.8em; */
+
 }
 
 .sent-time {
@@ -138,7 +132,7 @@ tr:hover {
   background-color: rgba(128, 128, 128, 0.423);
   border-radius: 50px;
   transition: 0.5s;
-  /* width: 2.5em; */
+
 }
 
 .delete-icon {

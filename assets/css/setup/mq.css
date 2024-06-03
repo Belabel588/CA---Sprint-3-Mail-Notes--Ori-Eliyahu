@@ -15,12 +15,11 @@
 
 
     gap: 1.25em;
-    /* justify-content: center; */
     align-items: center;
     justify-content: space-evenly;
-    /* margin-inline-start: 1em; */
+
     margin-block-end: 1em;
-    /* width: 30%; */
+
 
   }
 
@@ -45,20 +44,19 @@
     background-color: #eaf1fb;
     border-radius: 1.5em;
     height: 4.1em;
-    /* min-width: 21.875em; */
+
     width: 50%;
 
-    /* max-width: 45em; */
 
-    /* height: 2.875em; */
+
+
     padding: 1em 3.5em;
     margin-inline-start: 1em;
 
-    /* margin-inline-end: 3.0625em; */
+
     overflow: hidden;
-    /* width: 720px; */
     border: 0;
-    /* box-shadow: 0 0 20px 0px #ccc; */
+
   }
 
 
@@ -75,7 +73,7 @@
   .mails-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 85%;
+    width: 100%;
   }
 
   .mails-boxes {
@@ -134,7 +132,7 @@
     align-items: center;
 
     gap: 1em;
-    /* width: 60%; */
+
   }
 
   .side-bar-container {
@@ -164,12 +162,10 @@
     flex-direction: column;
     position: relative;
     gap: 1.25em;
-    /* justify-content: center; */
     align-items: center;
     justify-content: space-evenly;
-    /* margin-inline-start: 1em; */
     margin-block-end: 1em;
-    /* width: 30%; */
+
 
   }
 
@@ -194,20 +190,18 @@
     background-color: #eaf1fb;
     border-radius: 1.5em;
     height: 4.1em;
-    /* min-width: 21.875em; */
     width: 70%;
 
-    /* max-width: 45em; */
 
-    /* height: 2.875em; */
+
+
     padding: 1em 3.5em;
     margin-inline-start: 1em;
 
-    /* margin-inline-end: 3.0625em; */
     overflow: hidden;
-    /* width: 720px; */
+
     border: 0;
-    /* box-shadow: 0 0 20px 0px #ccc; */
+
   }
 
   .mails-boxes {
@@ -301,9 +295,7 @@
     grid-auto-flow: row;
     justify-items: end;
     align-items: center;
-
     gap: 1em;
-    /* width: 60%; */
   }
 
   .side-bar-container {
@@ -313,7 +305,6 @@
     position: fixed;
     width: 100%;
     bottom: 0;
-    /* align-items: flex-start; */
     gap: 0.5em;
 
     padding: 0.9em 10em 0.1em 0.1em;

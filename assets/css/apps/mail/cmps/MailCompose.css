@@ -30,7 +30,7 @@
   background-color: rgba(128, 128, 128, 0.423);
   border-radius: 50px;
   transition: 0.3s;
-  /* padding: 0.3em; */
+
 }
 
 
@@ -45,7 +45,7 @@
   font-size: 0.875em;
   padding: 1em;
   color: #041e49;
-  /* border-radius: 10px; */
+
 }
 
 .mail-to-container {
