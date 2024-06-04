@@ -1,0 +1,59 @@
+.about-header {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.about-title {
+  font-size: 3em;
+  margin-block-end: 2em;
+
+  color: #202124;
+}
+
+.devs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.dev1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 5em;
+  gap: 1em;
+}
+
+.dev1-img {
+  width: 20em;
+  border-radius: 150%;
+  box-shadow: 0 0 20px 0px #ccc;
+
+
+
+}
+
+.dev-name {
+  display: flex;
+  justify-content: center;
+
+  font-size: 2em;
+
+  width: 1em;
+}
+
+.devs-icons {
+  display: flex;
+  flex-direction: row;
+
+  gap: 0.2em;
+
+}
+
+.linkedin-icon {
+  width: 2.5em;
+}
+
+.gitHub-icon {
+  width: 3.8em;
+}

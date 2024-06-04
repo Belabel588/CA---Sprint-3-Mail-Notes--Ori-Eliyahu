@@ -12,6 +12,7 @@
 
 /* Views */
 @import './views/home.css';
+@import './views/About.css';
 @import './../css/apps/mail/views/MailPage.css';
 @import './../css/apps/mail/views/MailIndex.css';
 
