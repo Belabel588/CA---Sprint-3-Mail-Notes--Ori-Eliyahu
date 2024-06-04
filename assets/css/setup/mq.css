@@ -207,6 +207,14 @@
     margin-inline-start: 1.3em;
     font-size: 1.8em;
   }
+
+  .mail-home-icon {
+    height: 1.8em;
+  }
+
+  .mail-note-icon {
+    height: 1.5em;
+  }
 }
 
 /* Mobile */
@@ -429,6 +437,14 @@
     font-size: 1.2em;
 
     margin-inline-start: 1em;
+  }
+
+  .mail-home-icon {
+    height: 1.8em;
+  }
+
+  .mail-note-icon {
+    height: 1.5em;
   }
 
 }
