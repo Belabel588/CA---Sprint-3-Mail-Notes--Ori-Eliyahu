@@ -1,1 +1,17 @@
  /* home */
+
+
+ .home-page {
+   background-image: url('../../mail-imgs/homePage.jpg');
+ }
+
+ .home-header {
+   position: absolute;
+   left: 5em;
+   top: 3em;
+
+
+   font-size: 4em;
+   color: #202124;
+   margin-bottom: 1rem;
+ }

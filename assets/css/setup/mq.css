@@ -237,6 +237,23 @@
     outline: none;
   }
 
+  .mail-card {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    padding: 0em;
+
+
+
+    align-items: baseline;
+
+
+
+    border-bottom: 0.1em solid rgba(201, 201, 201, 0.35);
+    border-top: 0.1em solid rgba(201, 201, 201, 0.35);
+    width: 100%;
+
+  }
+
   .hidden {
     display: block;
   }
