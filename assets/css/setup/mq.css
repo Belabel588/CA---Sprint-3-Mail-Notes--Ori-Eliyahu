@@ -88,7 +88,7 @@
   .mail-card {
     display: grid;
     grid-template-columns: 1fr 7fr 2fr;
-    padding: 1em;
+    padding: 1.5em;
 
     align-items: baseline;
 
