@@ -164,6 +164,30 @@
   .menu-hidden {
     display: none;
   }
+
+  .home-page {
+    background-image: url('../../mail-imgs/homePage2-croped.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .home-header {
+
+
+    font-size: 2.8em;
+    color: #202124;
+    margin-inline-start: 0.5em;
+    margin-bottom: 1rem;
+  }
+
+  .home-links {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.5em;
+    margin-inline-start: 0.2em;
+  }
 }
 
 /* Mobile */
@@ -360,5 +384,27 @@
     display: none;
   }
 
+  .home-page {
+    background-image: url('../../mail-imgs/homePage2-mobile.jpg');
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .home-header {
+
+
+    font-size: 1.2em;
+    color: #202124;
+    margin-inline-start: 0.5em;
+    margin-bottom: 1rem;
+  }
+
+  .home-links {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.5em;
+    margin-inline-start: 0.2em;
+  }
 
 }

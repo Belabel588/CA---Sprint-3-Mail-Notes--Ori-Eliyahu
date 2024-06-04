@@ -15,7 +15,7 @@ export function Home() {
 
 
                 <div>
-                    <h1 className="home-header">YuHalfus <br></br> your life-managment app!</h1>
+                    <h1 className="home-header">YuHalfus <br></br> your life-managment <br></br> app!</h1>
                 </div>
 
                 <div className="home-links">
