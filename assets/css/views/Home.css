@@ -49,6 +49,7 @@
 
  .mail-home-icon {
    height: 2.8em;
+   width: 3.333em;
 
  }
 
@@ -58,6 +59,7 @@
 
  .mail-note-icon {
    height: 3.5em;
+   width: 2.916em;
  }
 
  .mail-note-icon:hover {
