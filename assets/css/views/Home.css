@@ -9,7 +9,7 @@
  }
 
  .home-page {
-   background-image: url("homePage2.jpg");
+   background-image: url("../../mail-imgs/homePage2.jpg");
    background-size: cover;
    width: 100vw;
    height: 100vh;
@@ -26,6 +26,7 @@
    font-size: 4em;
    color: #202124;
    margin-inline-start: 0.5em;
+   margin-block-start: 1em;
    margin-bottom: 1rem;
  }
 
