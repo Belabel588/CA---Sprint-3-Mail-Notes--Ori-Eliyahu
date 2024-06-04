@@ -15,7 +15,13 @@ export function Home() {
 
 
                 <div>
-                    <h1 className="home-header">YuHalfus <br></br> your life-managment <br></br> app!</h1>
+                    <h1 className="home-header">HalfYu</h1>
+                </div>
+                <div>
+
+                    <h2 className="sub-header">
+                        your second half <br></br> for managing your life
+                    </h2>
                 </div>
 
                 <div className="home-links">
