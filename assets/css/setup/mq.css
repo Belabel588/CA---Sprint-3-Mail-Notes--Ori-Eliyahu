@@ -191,7 +191,7 @@
 
 
     color: #202124;
-    margin-inline-start: 0.5em;
+    /* margin-inline-start: 0.5em; */
     margin-bottom: 1rem;
   }
 
@@ -200,20 +200,12 @@
     flex-direction: row;
 
     gap: 0.5em;
-    margin-inline-start: 1.9em;
+    /* margin-inline-start: 1.9em; */
   }
 
   .sub-header {
-    margin-inline-start: 1.3em;
+    /* margin-inline-start: 1.3em; */
     font-size: 1.8em;
-  }
-
-  .mail-home-icon {
-    height: 1.8em;
-  }
-
-  .mail-note-icon {
-    height: 1.5em;
   }
 }
 
@@ -421,7 +413,7 @@
 
 
     color: #202124;
-    margin-inline-start: 0.2em;
+    /* margin-inline-start: 0.2em; */
     margin-bottom: 1rem;
   }
 
@@ -430,21 +422,13 @@
     flex-direction: row;
 
     gap: 0.5em;
-    margin-inline-start: 0.8em;
+    /* margin-inline-start: 0.8em; */
   }
 
   .sub-header {
     font-size: 1.2em;
 
-    margin-inline-start: 1em;
-  }
-
-  .mail-home-icon {
-    height: 1.8em;
-  }
-
-  .mail-note-icon {
-    height: 1.5em;
+    /* margin-inline-start: 1em; */
   }
 
 }

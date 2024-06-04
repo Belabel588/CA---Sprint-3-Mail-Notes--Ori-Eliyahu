@@ -18,6 +18,8 @@
  .home-body {
    display: flex;
    flex-direction: column;
+
+   margin-inline-start: 5em;
  }
 
  .home-header {
@@ -25,14 +27,14 @@
 
    font-size: 4em;
    color: #202124;
-   margin-inline-start: 0.5em;
+   /* margin-inline-start: 0.5em; */
    margin-block-start: 1em;
    margin-bottom: 1rem;
    letter-spacing: 2px;
  }
 
  .sub-header {
-   margin-inline-start: 1.1em;
+   /* margin-inline-start: 1.1em; */
    font-size: 1.8em;
  }
 
@@ -42,11 +44,12 @@
    align-items: center;
 
    gap: 0.5em;
-   margin-inline-start: 1.6em;
+   /* margin-inline-start: 1.6em; */
  }
 
  .mail-home-icon {
    height: 2.8em;
+
  }
 
  .mail-home-icon:hover {
