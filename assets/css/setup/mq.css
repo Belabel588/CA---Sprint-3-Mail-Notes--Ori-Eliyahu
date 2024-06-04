@@ -102,9 +102,7 @@
     display: block;
   }
 
-  .menu-hidden {
-    display: none;
-  }
+
 
   .menu-show {
     display: block;
@@ -163,7 +161,9 @@
     display: none;
   }
 
-
+  .menu-hidden {
+    display: none;
+  }
 }
 
 /* Mobile */
@@ -268,9 +268,7 @@
     display: block;
   }
 
-  .menu-hidden {
-    display: none;
-  }
+
 
   .menu-show {
     display: block;
@@ -355,6 +353,10 @@
   .sent-count,
   .bin-count,
   .star-count {
+    display: none;
+  }
+
+  .menu-hidden {
     display: none;
   }
 
