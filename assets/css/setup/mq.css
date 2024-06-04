@@ -239,8 +239,8 @@
 
   .mail-card {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
-    padding: 0em;
+    grid-template-columns: 1fr 1fr 2fr;
+    padding: 1em;
 
 
 
