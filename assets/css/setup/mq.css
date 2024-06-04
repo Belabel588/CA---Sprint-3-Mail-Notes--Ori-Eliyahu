@@ -181,7 +181,7 @@
   }
 
   .home-page {
-    background-image: url('../../mail-imgs/homePage2-croped.jpg');
+    background-image: url("../../mail-imgs/homePage-croped.jpg");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -404,7 +404,7 @@
   }
 
   .home-page {
-    background-image: url('../../mail-imgs/homePage2-mobile.jpg');
+    background-image: url("../../mail-imgs/HomePage2-mobile.jpg");
     background-size: cover;
     height: 100vh;
   }
