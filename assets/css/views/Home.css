@@ -1,17 +1,59 @@
  /* home */
 
 
+
+ .home-section {
+   width: 500px;
+   height: 500px;
+
+ }
+
  .home-page {
-   background-image: url('../../mail-imgs/homePage.jpg');
+   background-image: url('../../mail-imgs/homePage2.jpg');
+   background-size: cover;
+   width: 100vw;
+   height: 100vh;
+ }
+
+ .home-body {
+   display: flex;
+   flex-direction: column;
  }
 
  .home-header {
-   position: absolute;
-   left: 5em;
-   top: 3em;
 
 
    font-size: 4em;
    color: #202124;
+   margin-inline-start: 0.5em;
    margin-bottom: 1rem;
+ }
+
+ .home-links {
+   display: flex;
+   flex-direction: row;
+
+   gap: 0.5em;
+   margin-inline-start: 1.6em;
+ }
+
+ .mail-home-icon {
+   width: 3.5em;
+ }
+
+ .mail-home-icon:hover {
+   cursor: pointer;
+ }
+
+ .mail-note-icon {
+   width: 2.5em;
+ }
+
+ .mail-note-icon:hover {
+   cursor: pointer;
+ }
+
+ .home-icon-btn {
+   border: none;
+   background-color: rgba(255, 255, 255, 0);
  }

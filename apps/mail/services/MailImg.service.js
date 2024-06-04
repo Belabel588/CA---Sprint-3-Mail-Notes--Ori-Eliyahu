@@ -17,7 +17,9 @@ export function getMailImageDataUrls() {
     starFilledImg: 'assets/mail-imgs/star-filled.png',
     loadingImg: 'assets/mail-imgs/loading.svg',
     menuImg: 'assets/mail-imgs/menu.png',
-    homePageBcg:'assets/mail-imgs/homePage.jpg'
+    homePageBcg: 'assets/mail-imgs/homePage.jpg',
+    homeMailIcon: 'assets/mail-imgs/homeMailIcon.png',
+    homeNoteIcon: 'assets/mail-imgs/homeNoteIcon.png'
 
   }
 }
