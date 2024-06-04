@@ -98,6 +98,11 @@
 
   }
 
+
+  .actions {
+    margin-inline-end: 0.5em;
+  }
+
   .hidden {
     display: block;
   }
